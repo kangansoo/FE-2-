@@ -1,0 +1,17 @@
+.NavBar {
+    height: 70px;
+    
+    display: flex;
+    align-items: center;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    margin: 0 auto;
+}
+
+.NavBarSearchIcon {
+    text-decoration: none;
+    width: 20px;
+
+}

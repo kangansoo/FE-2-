@@ -8,7 +8,7 @@ import { login } from '../apis/login';
 
 // 로그인 화면
 
-const Home = () => {
+const Login = () => {
     //로그인 입력 받기
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
@@ -52,7 +52,7 @@ const Home = () => {
 
 
 
-export default Home;
+export default Login;
 
 const Button = styled.button`
     background-color: black;

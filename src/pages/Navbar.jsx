@@ -3,8 +3,8 @@ import '../css/Navbar.css';
 import { Link } from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search"
 
-
 export default function Navbar() {
+  const id = localStorage.getItem('id');
 
   return (
     <div className='NavBar'>
@@ -16,7 +16,7 @@ export default function Navbar() {
         </Link>
         
         <Link to='/mypage'>
-            유저이름
+         {id}
         </Link>
 
     </div>

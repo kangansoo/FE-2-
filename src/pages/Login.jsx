@@ -13,7 +13,7 @@ const Login = () => {
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
     const navigate = useNavigate();
-
+    
     const onChangeId = (e) => {
         setId(e.target.value);
     };
@@ -31,6 +31,7 @@ const Login = () => {
         //localstorage에 저장 setItem(key, value)
         localStorage.setItem('access', accessToken);
         localStorage.setItem('refresh', refreshToken);
+        localStorage.setItem('id', id);
         //마이페이지로 이동
         navigate("/mypage");
     };

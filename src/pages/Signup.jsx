@@ -12,7 +12,8 @@ export default function Signup() {
   const [name, onChangeName] = useForm();
   const [age, onChangeAge] = useForm();
   const navigate = useNavigate();
-  //signUp api 호출
+
+//signUp api 호출
   const onClick = async () => {
     await signUp(id, pw, name, age);
     navigate('/');

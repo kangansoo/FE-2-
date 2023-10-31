@@ -12,13 +12,24 @@ const Login = () => {
     //로그인 입력 받기
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+
+    
+    const [button, setButton] = useState(true);
+
+    function changeButton() {
+        id.includes('@') && pw.length >= 8 ? setButton(false) :setButton(true);
+    }
+
+
     const navigate = useNavigate();
     
     const onChangeId = (e) => {
         setId(e.target.value);
+        changeButton();
     };
     const onChangePw = (e) => {
         setPw(e.target.value);
+        changeButton();
     };
 
     //login.js에서 post 요청한 데이터 가져오기
@@ -41,17 +52,15 @@ const Login = () => {
         <Title>로그인하기</Title>
         <Form>
             <Inputs>
-                <Input placeholder="아이디" value={id} onChange={onChangeId}/>
-                <Input placeholder="비밀번호" type="password" value={pw} onChange={onChangePw}/>
+                <Input placeholder="이메일" value={id} onChange={onChangeId}/>
+                <Input placeholder="비밀번호 8자리 이상" type="password" value={pw} onChange={onChangePw}/>
             </Inputs>
-            <Button onClick={onClick}>Login</Button>
+            <Button onClick={onClick} disabled={button}>Login</Button>
         </Form>
         <CustomLink to='/signup'>회원가입하기</CustomLink>
     </Wrapper>
   )
 }
-
-
 
 export default Login;
 
@@ -60,7 +69,10 @@ const Button = styled.button`
     color: white;
     padding: 20px;
     border-radius: 10px;
-
+    &:disabled {
+        background-color: rgba(0, 0, 0, 0.25);
+      }
+}
 `;
 
 //링크 css 수정

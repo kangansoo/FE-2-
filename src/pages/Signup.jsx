@@ -4,6 +4,8 @@ import { useForm } from '../hooks/useForm';
 import { styled } from 'styled-components';
 import { signUp } from '../apis/signUp';
 import { useNavigate } from 'react-router-dom';
+import imageData from '../components/imgdata';
+
 
 export default function Signup() {
   //Home.jsx 처럼 useState와 onChange를 쓰기에는 코드가 길어지기 때문에 커스텀 훅을 사용(useForm.js 생성)
@@ -28,6 +30,17 @@ export default function Signup() {
   const onClickAge = (e) => {
     onChangeAge(e.target.value);
   };
+  
+  const [selectedVods, setSelectedVods] = useState([]);
+  const handlePosterClick = (name) => {
+      if (selectedVods.includes(name)) {
+        setSelectedVods(selectedVods.filter((e) => e !== name));
+      } else {
+        setSelectedVods([...selectedVods, name]);
+      }    
+  };
+  
+
 
 
 
@@ -41,18 +54,21 @@ export default function Signup() {
       </Inputs>
 
 
+      {/* 성별 라디오 그룹 */}
       <div>
+        <label>
         <input type='radio' value='0' checked={gender==='0'} onChange={onClickGender}>
-        </input><label>남</label>
+        </input>남</label>
         <label>
         <input type='radio' value='1' checked={gender==='1'} onChange={onClickGender}>
         </input>여</label>
       </div>
 
-
+      {/* 나이 라디오 그룹 */}
       <div>
+        <label>
         <input type='radio' value='0' checked={age==='0'} onChange={onClickAge}>
-        </input><label>20-24</label>
+        </input>20-24</label>
         <label>
         <input type='radio' value='1' checked={age==='1'} onChange={onClickAge}>
         </input>25-29</label>
@@ -84,7 +100,23 @@ export default function Signup() {
         <input type='radio' value='10' checked={age==='10'} onChange={onClickAge}>
         </input>그 외</label>
       </div>
-  
+
+
+      {/* VOD 체크박스 */}
+      <div>
+        {imageData.map((item, idx) => (
+            <label key={idx}>
+                <img
+                src={item.url}
+                name={item.label}
+                alt=""
+                onClick={() => handlePosterClick(item.label)}
+                style={{ border: selectedVods.includes(item.label) ? '2px solid red' : '2px solid transparent' }}
+                />
+            </label>
+        ))}
+    </div>
+
 
       {/* Sign Up 했을 때 api 처리를 하기 위해 signUp.js 생성 */}
       <Button onClick={onClick}>Sign Up</Button>

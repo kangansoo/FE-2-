@@ -1,10 +1,13 @@
-import React,{useState} from 'react'
+import React,{useState} from 'react';
 import { Input, Inputs, Title, Wrapper } from '../components/Common';
 import { useForm } from '../hooks/useForm';
 import { styled } from 'styled-components';
 import { signUp } from '../apis/signUp';
 import { useNavigate } from 'react-router-dom';
 import imageData from '../components/imgdata';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from "moment/moment";
 
 
 export default function Signup() {
@@ -12,12 +15,16 @@ export default function Signup() {
   const [id, onChangeId] = useForm();
   const [pw, onChangePw] = useForm();
   const [nickname, onChangeName] = useForm();
+  //생년월일 캘린더 - 다른 값의 변경 때마다 콘솔에 찍힘... 수정 필요
+  const [startDate, setStartDate] = useState(new Date());
+  const birthYear = moment(startDate).format("YYYY");
+  
 
   const navigate = useNavigate();
 
 //signUp api 호출
   const onClick = async () => {
-    await signUp(id, pw, nickname,gender,age);
+    await signUp(id, pw, nickname, gender, birthYear);
     navigate('/');
   };
 
@@ -26,23 +33,18 @@ export default function Signup() {
     onChangeGender(e.target.value);
   };
 
-  const [age,onChangeAge]= useState('0');
-  const onClickAge = (e) => {
-    onChangeAge(e.target.value);
-  };
-  
+  //얘도 다른 값의 변경 시 콘솔에 찍힘..
   const [selectedVods, setSelectedVods] = useState([]);
-  const handlePosterClick = (name) => {
-      if (selectedVods.includes(name)) {
-        setSelectedVods(selectedVods.filter((e) => e !== name));
+  const handlePosterClick = (e) => {
+
+      if (selectedVods.includes(e)) {
+        setSelectedVods(selectedVods.filter((E) => E !== e));
       } else {
-        setSelectedVods([...selectedVods, name]);
+        setSelectedVods([...selectedVods, e]);
       }    
+      
   };
   
-
-
-
 
   return (
     <Wrapper>
@@ -55,6 +57,7 @@ export default function Signup() {
 
 
       {/* 성별 라디오 그룹 */}
+      
       <div>
         <label>
         <input type='radio' value='0' checked={gender==='0'} onChange={onClickGender}>
@@ -64,45 +67,19 @@ export default function Signup() {
         </input>여</label>
       </div>
 
-      {/* 나이 라디오 그룹 */}
+      {/* 생년월일 선택 캘린더*/}
       <div>
-        <label>
-        <input type='radio' value='0' checked={age==='0'} onChange={onClickAge}>
-        </input>20-24</label>
-        <label>
-        <input type='radio' value='1' checked={age==='1'} onChange={onClickAge}>
-        </input>25-29</label>
-        <label>
-        <input type='radio' value='2' checked={age==='2'} onChange={onClickAge}>
-        </input>30-34</label>
-        <label>
-        <input type='radio' value='3' checked={age==='3'} onChange={onClickAge}>
-        </input>35-39</label>
-        <label>
-        <input type='radio' value='4' checked={age==='4'} onChange={onClickAge}>
-        </input>40-44</label>
-        <label>
-        <input type='radio' value='5' checked={age==='5'} onChange={onClickAge}>
-        </input>45-49</label>
-        <label>
-        <input type='radio' value='6' checked={age==='6'} onChange={onClickAge}>
-        </input>50-54</label>
-        <label>
-        <input type='radio' value='7' checked={age==='7'} onChange={onClickAge}>
-        </input>55-59</label>
-        <label>
-        <input type='radio' value='8' checked={age==='8'} onChange={onClickAge}>
-        </input>60-64</label>
-        <label>
-        <input type='radio' value='9' checked={age==='9'} onChange={onClickAge}>
-        </input>65-69</label>
-        <label>
-        <input type='radio' value='10' checked={age==='10'} onChange={onClickAge}>
-        </input>그 외</label>
+      <span>생년월일</span>
+      <DatePicker
+			  selected={startDate}
+			  onChange={(date) => setStartDate(date)}
+			  dateFormat="yyyy-mm-dd"
+			/>
       </div>
 
 
-      {/* VOD 체크박스 */}
+      {/* VOD 선택 */}
+      <h1>영화선택</h1>
       <div>
         {imageData.map((item, idx) => (
             <label key={idx}>

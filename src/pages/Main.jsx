@@ -27,6 +27,7 @@ const [currentIndex, setCurrentIndex] = useState();
       <Carousel
           showArrows={true}
           autoPlay={true}
+          dynamicHeight={true}
           infiniteLoop={true}
           showThumbs={false}
           interval={1000}

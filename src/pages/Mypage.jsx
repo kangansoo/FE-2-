@@ -24,6 +24,12 @@ export default function Mypage() {
       {/* ? = data가 undefined일 때 아무것도 출력하지 마라 (useEffect 실행 전까지는 undefined)*/}
       <div>{data?.name}</div>
       <div>{data?.age}</div>
+      
+      <div>회원정보</div>
+
+      <div>찜목록</div>
+
+      <div>평점내역</div>
     </div>
   )
 }

@@ -21,20 +21,7 @@ export default function Main() {
     <div>
       메인페이지
 
-      <Carousel
-          showArrows={true}
-          autoPlay={true}
-          dynamicHeight={true}
-          infiniteLoop={true}
-          showThumbs={false}
-          interval={1000}
-          selectedItem={imageData[currentIndex]}
-          onChange={handleChange}
-          thumbWidth={80}
-          width={'50%'}
-          className="w-[200px] lg:hidden">
-          {renderSlides}
-        </Carousel>
+
       <h1>인기작</h1>
         <Carousel
         centerMode={true}

@@ -6,6 +6,10 @@ export default function Mypage() {
   //로딩화면 (데이터를 받아오는데 오래 걸리면 빈화면 출력되기 때문에 로딩 페이지 생성)
   const [loading, setLoading] = useState(true);
 
+
+
+
+  
   //페이지 이동했을 때 api 호출
   useEffect(() =>{
     //mypage 정보 불러오기(이름, 나이 정보 호출) -> mypage.js api생성

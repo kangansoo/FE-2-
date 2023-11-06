@@ -36,12 +36,12 @@ const Login = () => {
     const onClick = async() => {
         //로그인 api
         const result = await login(id, pw);
-        console.log(result); //localstorage에 token 잘 들어감
+        //token X console.log(result); //localstorage에 token 잘 들어감
         //구조분해할당으로 data.data에서 accessToken, refreshToken을 꺼냄
-        const {accessToken, refreshToken} = result;
+        //token X const {accessToken, refreshToken} = result;
         //localstorage에 저장 setItem(key, value)
-        localStorage.setItem('access', accessToken);
-        localStorage.setItem('refresh', refreshToken);
+        //token X localStorage.setItem('access', accessToken);
+        //token X localStorage.setItem('refresh', refreshToken);
         localStorage.setItem('id', id);
         //마이페이지로 이동
         navigate("/mypage");

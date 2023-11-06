@@ -21,7 +21,6 @@ export default function Main() {
     <div>
       메인페이지
 
-
       <h1>인기작</h1>
         <Carousel
         centerMode={true}

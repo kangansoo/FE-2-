@@ -4,7 +4,10 @@ import {Wrapper, Title, Form, Inputs, Input} from "../components/Common";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../apis/login';
+//token X import { login } from '../apis/login';
+
+import axios from 'axios';
+
 
 // 로그인 화면
 
@@ -17,7 +20,7 @@ const Login = () => {
     const [button, setButton] = useState(true);
 
     function changeButton() {
-        id.includes('@') && pw.length >= 8 ? setButton(false) :setButton(true);
+        id.includes('@') && pw.length >= 7 ? setButton(false) :setButton(true);
     }
 
 
@@ -32,20 +35,41 @@ const Login = () => {
         changeButton();
     };
 
-    //login.js에서 post 요청한 데이터 가져오기
+    //토큰 없이 json-server 이용 로그인
     const onClick = async() => {
-        //로그인 api
-        const result = await login(id, pw);
-        console.log(result); //localstorage에 token 잘 들어감
-        //구조분해할당으로 data.data에서 accessToken, refreshToken을 꺼냄
-        const {accessToken, refreshToken} = result;
-        //localstorage에 저장 setItem(key, value)
-        localStorage.setItem('access', accessToken);
-        localStorage.setItem('refresh', refreshToken);
-        localStorage.setItem('id', id);
-        //마이페이지로 이동
-        navigate("/mypage");
+
+        //토큰 없이 json-server 이용 로그인
+        axios.get('http://localhost:30/signup',{params:{id:id,pw:pw}})
+        .then((Response)=>{
+            if (Response.data.length>0 && Response.data[0].id === id && Response.data[0].pw === pw){
+                localStorage.setItem('id', Response.data[0].id);
+                localStorage.setItem('pw', Response.data[0].pw);
+                navigate("/mypage");
+            }else{
+                alert('로그인 정보가 틀렸습니다.\n비회원은 회원가입을 부탁드립니다.');
+            }});
+            
     };
+
+
+    //login.js에서 post 요청한 데이터 가져오기
+    //const onClick = async() => {
+        //로그인 api
+        //token X const result = await login(id, pw);
+        //token X console.log(result); //localstorage에 token 잘 들어감
+        //구조분해할당으로 data.data에서 accessToken, refreshToken을 꺼냄
+        //token X const {accessToken, refreshToken} = result;
+        //localstorage에 저장 setItem(key, value)
+        //token X localStorage.setItem('access', accessToken);
+        //token X localStorage.setItem('refresh', refreshToken);
+        //localStorage.setItem('id', id);
+        //마이페이지로 이동
+        //navigate("/mypage")
+    //};
+
+
+
+
 
   return (
     <Wrapper>

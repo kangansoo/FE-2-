@@ -1,16 +1,23 @@
-
-import { getAuthAxios } from "./authAxios";
+import axios from "axios"; //token 생기면 삭제
+//token X import { getAuthAxios } from "./authAxios";
 
 
 //마이페이지 정보 불러오는 함수
 export const getMyPage = async () => {
     //local storage에서 access 토큰 가져오기
-    const access=localStorage.getItem("access");
-    const authAxios = getAuthAxios(access);
+    //token X const access=localStorage.getItem("access");
+    //token X const authAxios = getAuthAxios(access);
+
     //authAxios에 baseurl을 설정해줬기 때문에 '/mypage'만 붙이면 됨
-    const result = await authAxios.get('/mypage');
-    return result.data;
+    //token X const result = await authAxios.get('/mypage');
+    //return result.data;
 
 
+    //토큰없이 구현 위한 코드
+    const id = localStorage.getItem('id');
+    const pw = localStorage.getItem('pw');
+
+    const result = await axios.get('http://localhost:30/signup',{params:{id:id,pw:pw}}); //token 생기면 삭제
+    return result.data
 };
 

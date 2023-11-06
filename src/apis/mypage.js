@@ -10,9 +10,14 @@ export const getMyPage = async () => {
 
     //authAxios에 baseurl을 설정해줬기 때문에 '/mypage'만 붙이면 됨
     //token X const result = await authAxios.get('/mypage');
-    const result = await axios.get('/mypage'); //token 생기면 삭제
-    return result.data;
+    //return result.data;
 
 
+    //토큰없이 구현 위한 코드
+    const id = localStorage.getItem('id');
+    const pw = localStorage.getItem('pw');
+
+    const result = await axios.get('http://localhost:30/signup',{params:{id:id,pw:pw}}); //token 생기면 삭제
+    return result.data
 };
 

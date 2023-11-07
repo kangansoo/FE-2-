@@ -5,6 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import imageData from "../components/imgdata";
 
+import {NavLink} from "react-router-dom";
 
 export default function Main() {
 
@@ -15,6 +16,10 @@ export default function Main() {
       slidesToSlide: 1 // optional, default to 1.
     }
   };
+
+  //const onClickPoster =() =>{
+
+  //}
 
   return (
 
@@ -42,7 +47,9 @@ export default function Main() {
       >
         {imageData.map(image => (
           <label key={image.alt}>
-            <img src={image.url} alt={image.alt} />
+            <NavLink to={"/detail/"+image.content_id}>
+            <img src={image.url} alt={image.alt}/>
+            </NavLink>
           </label>
           ))
         }

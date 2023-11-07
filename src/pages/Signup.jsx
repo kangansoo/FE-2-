@@ -15,10 +15,12 @@ export default function Signup() {
   const [id, onChangeId] = useForm();
   const [pw, onChangePw] = useForm();
   const [nickname, onChangeName] = useForm();
+
   //생년월일 캘린더 - 다른 값의 변경 때마다 콘솔에 찍힘... 수정 필요
   const [startDate, setStartDate] = useState(new Date());
   const birthYear = moment(startDate).format("YYYY");
   
+  const [selectedVods, setSelectedVods] = useState([]);
 
   const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ export default function Signup() {
   };
 
   //얘도 다른 값의 변경 시 콘솔에 찍힘..
-  const [selectedVods, setSelectedVods] = useState([]);
+  
   const handlePosterClick = (e) => {
 
       if (selectedVods.includes(e)) {

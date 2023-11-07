@@ -18,6 +18,7 @@ function App() {
         <Route path='/main' element={<><Navbar /><Main /></>} />
         <Route path='/search' element={<><Navbar /><Search /></>} />
         <Route path='/detail' element={<><Navbar /><Detail /></>} />
+        <Route path='/detail/:content_id' element={<><Navbar /><Detail /></>} />
       </Routes>
     </BrowserRouter>
   );

@@ -5,8 +5,7 @@ import { Rating } from 'react-simple-star-rating'
 import { useParams } from 'react-router-dom';
 
 import imageData from "../components/imgdata";
-
-import ratingpost from "../apis/rating"
+import axios from "axios";
 
 
 
@@ -20,21 +19,23 @@ export default function Detail() {
     const poster=imageData.find(
         function (imageData) 
         { return imageData.content_id === content_id }
-    )
+    );
     
-    const id=localStorage.getItem('id');
-
+    
     // Catch Rating value
+    const handleRating = async(rate) => {
+        if (typeof(rate)==="number"){
+        const id= await localStorage.getItem('id');
 
-    const handleRating = (rate) => {
-        setRating(rate)
-      };
+        await setRating(rate);
+        console.log(rating);
 
-    const sendRating = async (id,content_id,rating) => {
-        await ratingpost();
-      };
-  
-  
+        const rating_info={user_id:id,content_id:content_id,rating:rating};
+        await axios.post("http://localhost:30/ratings", rating_info);
+      }};
+    
+
+
     return (
     <div>
         <h2>{poster.label}</h2>
@@ -45,10 +46,8 @@ export default function Detail() {
         
             <Rating
                 size="35"
-                onClick={()=>{
-                    handleRating();
-                    sendRating(id,content_id,rating);
-                    }}/>
+                onClick={handleRating}
+                    />
 
         </div>
     )

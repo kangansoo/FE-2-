@@ -8,52 +8,73 @@ import imageData from '../components/imgdata';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from "moment/moment";
+import { emailcheck } from '../apis/emailCheck';
+import { nicknamecheck } from '../apis/nicknameCheck';
 
 
 export default function Signup() {
   //Home.jsx 처럼 useState와 onChange를 쓰기에는 코드가 길어지기 때문에 커스텀 훅을 사용(useForm.js 생성)
-  const [id, onChangeId] = useForm();
-  const [pw, onChangePw] = useForm();
+  const [email, onChangeId] = useForm();
+  const [password, onChangePw] = useForm();
   const [nickname, onChangeName] = useForm();
+
   //생년월일 캘린더 - 다른 값의 변경 때마다 콘솔에 찍힘... 수정 필요
   const [startDate, setStartDate] = useState(new Date());
   const birthYear = moment(startDate).format("YYYY");
   
+  const [selectedVods, setSelectedVods] = useState([]);
 
   const navigate = useNavigate();
 
+
 //signUp api 호출
   const onClick = async () => {
-    await signUp(id, pw, nickname, gender, birthYear);
+    await signUp(email, password, nickname, gender, birthYear,selectedVods);
     navigate('/');
   };
 
+  const clickEmailCheck = async () => {
+    const status=await emailcheck(email);
+
+    //백에서 받은 코드로 사용 여부 안내
+    if(status===201){alert("사용 가능한 이메일입니다.")}else{alert("사용 불가능한이메일입니다.")}
+  };
+
+  const clickNicknameCheck = async () => {
+    const status=await nicknamecheck(nickname);
+
+    //백에서 받은 코드로 사용 여부 안내
+    if(status===201){alert("사용 가능한 닉네임입니다.")}else{alert("사용 불가능한 닉네임입니다.")}
+  };
+
+  
   const [gender,onChangeGender]= useState('0');
   const onClickGender = (e) => {
-    onChangeGender(e.target.value);
+    onChangeGender(e.target.value)
   };
 
   //얘도 다른 값의 변경 시 콘솔에 찍힘..
-  const [selectedVods, setSelectedVods] = useState([]);
+  
   const handlePosterClick = (e) => {
 
       if (selectedVods.includes(e)) {
         setSelectedVods(selectedVods.filter((E) => E !== e));
       } else {
         setSelectedVods([...selectedVods, e]);
-      }    
+      }
+      
       
   };
   
-
   return (
     <Wrapper>
       <Title>회원가입</Title>
       <Inputs>
-        <Input placeholder="아이디" value={id} onChange={onChangeId}/>
-        <Input placeholder="비밀번호" type="password" value={pw} onChange={onChangePw}/>
-        <Input placeholder="닉네임" value={nickname} onChange={onChangeName}/>
-      </Inputs>
+        <Input placeholder="아이디" type="email" value={email} onChange={onChangeId}/>
+        <button onClick={clickEmailCheck}>중복확인</button>
+        <Input placeholder="비밀번호" type="password" value={password} onChange={onChangePw}/>
+        <Input placeholder="닉네임" type="text" value={nickname} onChange={onChangeName}/>
+        <button onClick={clickNicknameCheck}>중복확인</button></Inputs>
 
 
       {/* 성별 라디오 그룹 */}
@@ -72,10 +93,13 @@ export default function Signup() {
       <span>생년월일</span>
       <DatePicker
 			  selected={startDate}
+        maxDate={new Date()}
 			  onChange={(date) => setStartDate(date)}
-			  dateFormat="yyyy-mm-dd"
+			  dateFormat="yyyy-MM-dd"
+
 			/>
       </div>
+      
 
 
       {/* VOD 선택 */}
@@ -87,8 +111,8 @@ export default function Signup() {
                 src={item.url}
                 name={item.label}
                 alt=""
-                onClick={() => handlePosterClick(item.label)}
-                style={{ border: selectedVods.includes(item.label) ? '2px solid red' : '2px solid transparent' }}
+                onClick={() => handlePosterClick(item.content_id)}
+                style={{ border: selectedVods.includes(item.content_id) ? '2px solid red' : '2px solid transparent' }}
                 />
             </label>
         ))}

@@ -76,7 +76,9 @@ export default function Main() {
       >
         {imageData.map(image => (
           <label key={image.alt}>
-            <img src={image.url} alt={image.alt} />
+            <NavLink to={"/detail/"+image.content_id}>
+            <img src={image.url} alt={image.alt}/>
+            </NavLink>
           </label>
           ))
         }
@@ -102,7 +104,9 @@ export default function Main() {
       >
         {imageData.map(image => (
           <label key={image.alt}>
-            <img src={image.url} alt={image.alt} />
+            <NavLink to={"/detail/"+image.content_id}>
+            <img src={image.url} alt={image.alt}/>
+            </NavLink>
           </label>
           ))
         }

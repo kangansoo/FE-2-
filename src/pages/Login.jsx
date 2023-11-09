@@ -13,14 +13,14 @@ import axios from 'axios';
 
 const Login = () => {
     //로그인 입력 받기
-    const [id, setId] = useState("");
-    const [pw, setPw] = useState("");
+    const [email, setId] = useState("");
+    const [password, setPw] = useState("");
 
     
     const [button, setButton] = useState(true);
 
     function changeButton() {
-        id.includes('@') && pw.length >= 7 ? setButton(false) :setButton(true);
+        email.includes('@') && password.length >= 7 ? setButton(false) :setButton(true);
     }
 
 
@@ -39,11 +39,11 @@ const Login = () => {
     const onClick = async() => {
 
         //토큰 없이 json-server 이용 로그인
-        axios.get('http://localhost:30/signup',{params:{id:id,pw:pw}})
+        axios.get('http://localhost:30/signup',{params:{email:email,password:password}})
         .then((Response)=>{
-            if (Response.data.length>0 && Response.data[0].id === id && Response.data[0].pw === pw){
-                localStorage.setItem('id', Response.data[0].id);
-                localStorage.setItem('pw', Response.data[0].pw);
+            if (Response.data.length>0 && Response.data[0].email === email && Response.data[0].password === password){
+                localStorage.setItem('email', Response.data[0].email);
+                localStorage.setItem('password', Response.data[0].password);
                 navigate("/mypage");
             }else{
                 alert('로그인 정보가 틀렸습니다.\n비회원은 회원가입을 부탁드립니다.');
@@ -76,8 +76,8 @@ const Login = () => {
         <Title>로그인하기</Title>
         <Form>
             <Inputs>
-                <Input placeholder="이메일" value={id} onChange={onChangeId}/>
-                <Input placeholder="비밀번호 8자리 이상" type="password" value={pw} onChange={onChangePw}/>
+                <Input placeholder="이메일" value={email} onChange={onChangeId}/>
+                <Input placeholder="비밀번호 8자리 이상" type="password" value={password} onChange={onChangePw}/>
             </Inputs>
             <Button onClick={onClick} disabled={button}>Login</Button>
         </Form>

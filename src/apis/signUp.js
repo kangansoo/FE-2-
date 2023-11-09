@@ -1,13 +1,14 @@
 import axios from "axios";
 
 //회원가입 api
-export const signUp = async (id, pw, nickname, gender, birthYear) => {
+export const signUp = async (email, password, nickname, gender, birthYear,selectedVods) => {
     const result = await axios.post("http://localhost:30/signup", {
-        id,
-        pw,
+        email,
+        password,
         nickname,
         gender,
-        birthYear
+        birthYear,
+        selectedVods
     });
     return result.data;
 };

@@ -12,6 +12,7 @@ import axios from "axios";
 export default function Detail() {
     const [rating, setRating] = useState(0)
 
+
     //url 파라미터("localhost:3000/detail/" 뒤에 붙는 상세 페이지 파라미터)를 content_id 변수로 저장
     let {content_id}=useParams();
 
@@ -34,6 +35,7 @@ export default function Detail() {
         await axios.post("http://localhost:30/ratings", rating_info);
       }};
     
+    
 
 
     return (
@@ -41,7 +43,7 @@ export default function Detail() {
         <h2>{poster.label}</h2>
         <div>
             <img src={poster.url} alt={poster.alt} >
-            </img>
+            </img><p>{poster.desc}</p>
         </div>
         
             <Rating

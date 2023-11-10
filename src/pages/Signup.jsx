@@ -21,34 +21,69 @@ export default function Signup() {
   //생년월일 캘린더 - 다른 값의 변경 때마다 콘솔에 찍힘... 수정 필요
   const [startDate, setStartDate] = useState(new Date());
   const birthYear = moment(startDate).format("YYYY");
-  
+
+  const [gender,onChangeGender]= useState('0');
+
   const [selectedVods, setSelectedVods] = useState([]);
+
+  const [emailCheck, setEmailCheck] = useState(false);
+  const [nicknameCheck, setNicknameCheck] = useState(false);
 
   const navigate = useNavigate();
 
+  
 
 //signUp api 호출
   const onClick = async () => {
-    await signUp(email, password, nickname, gender, birthYear,selectedVods);
+    if (!emailCheck){
+      alert("이메일 중복확인을 해주세요");
+    }else if(
+      !nicknameCheck){alert("닉네임 중복확인을 해주세요")
+    }else if(
+      selectedVods.length<3){alert("정확한 추천을 위해 3개 이상의 VOD를 선택해주세요")
+    }else{
+      await signUp(email, password, nickname, gender, birthYear,selectedVods);
+      alert("회원가입을 축하드립니다!")
     navigate('/');
+    }
+    
   };
 
   const clickEmailCheck = async () => {
     const status=await emailcheck(email);
 
     //백에서 받은 코드로 사용 여부 안내
-    if(status===201){alert("사용 가능한 이메일입니다.")}else{alert("사용 불가능한이메일입니다.")}
+    if(status===201){
+      
+      if (email.includes("@")){
+        setEmailCheck(true);
+        alert("사용 가능한 이메일입니다.");
+      }else{
+        alert("올바른 이메일 형식을 입력해주세요.")
+      }
+      
+      
+    }else{
+      alert("사용 불가능한이메일입니다.");
+      setEmailCheck();
+    }
   };
-
+  
   const clickNicknameCheck = async () => {
     const status=await nicknamecheck(nickname);
-
+    
     //백에서 받은 코드로 사용 여부 안내
-    if(status===201){alert("사용 가능한 닉네임입니다.")}else{alert("사용 불가능한 닉네임입니다.")}
+    if(status===201){
+      alert("사용 가능한 닉네임입니다.");
+      setNicknameCheck(true);
+      
+    }else{alert("사용 불가능한 닉네임입니다.");
+    setNicknameCheck();
+    }
   };
-
   
-  const [gender,onChangeGender]= useState('0');
+  
+
   const onClickGender = (e) => {
     onChangeGender(e.target.value)
   };
@@ -62,17 +97,17 @@ export default function Signup() {
       } else {
         setSelectedVods([...selectedVods, e]);
       }
-      
-      
   };
   
   return (
     <Wrapper>
       <Title>회원가입</Title>
       <Inputs>
-        <Input placeholder="아이디" type="email" value={email} onChange={onChangeId}/>
+        <span>아이디</span>
+        <Input placeholder="example@gmail.com" type="email" value={email} onChange={onChangeId}/>
         <button onClick={clickEmailCheck}>중복확인</button>
-        <Input placeholder="비밀번호" type="password" value={password} onChange={onChangePw}/>
+        <span>비밀번호</span>
+        <Input placeholder="8자 이상 입력해주세요" type="password" value={password} onChange={onChangePw}/>
         <Input placeholder="닉네임" type="text" value={nickname} onChange={onChangeName}/>
         <button onClick={clickNicknameCheck}>중복확인</button></Inputs>
 
@@ -112,11 +147,13 @@ export default function Signup() {
                 name={item.label}
                 alt=""
                 onClick={() => handlePosterClick(item.content_id)}
+                
                 style={{ border: selectedVods.includes(item.content_id) ? '2px solid red' : '2px solid transparent' }}
                 />
             </label>
         ))}
     </div>
+    
 
 
       {/* Sign Up 했을 때 api 처리를 하기 위해 signUp.js 생성 */}
@@ -135,4 +172,5 @@ const Button = styled.button`
   padding-bottom: 10px;
   border-radius: 10px;
   margin-top: 20px;
+  }
 `;

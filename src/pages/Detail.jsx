@@ -26,12 +26,11 @@ export default function Detail() {
     // Catch Rating value
     const handleRating = async(rate) => {
         if (typeof(rate)==="number"){
-        const id= await localStorage.getItem('id');
+        const email= await localStorage.getItem('email');
 
-        await setRating(rate);
-        console.log(rating);
+        setRating(rate);
 
-        const rating_info={user_id:id,content_id:content_id,rating:rating};
+        const rating_info={email:email,content_id:content_id,rating:rating};
         await axios.post("http://localhost:30/ratings", rating_info);
       }};
     

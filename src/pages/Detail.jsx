@@ -42,16 +42,14 @@ export default function Detail() {
     // Catch Rating value
     const handleRating = async(rate) => {
         if (typeof(rate)==="number"){
-        const email= await localStorage.getItem('email');
-
+        const email= localStorage.getItem('email');
         setRating(rate);
-
         const rating_info={email:email,content_id:content_id,rating:rating};
-        await axios.post("http://localhost:30/ratings", rating_info);
-      }};
+        axios.post("http://localhost:30/ratings", rating_info);
+      }
     
+    };
     
-
 
     return (
     <div>

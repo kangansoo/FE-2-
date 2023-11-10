@@ -77,7 +77,7 @@ const Login = () => {
         <Form>
             <Inputs>
                 <Input placeholder="이메일" value={email} onChange={onChangeId}/>
-                <Input placeholder="비밀번호 8자리 이상" type="password" value={password} onChange={onChangePw}/>
+                <Input placeholder="비밀번호" type="password" value={password} onChange={onChangePw}/>
             </Inputs>
             <Button onClick={onClick} disabled={button}>Login</Button>
         </Form>

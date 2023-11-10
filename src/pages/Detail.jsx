@@ -11,7 +11,7 @@ import axios from "axios";
 
 export default function Detail() {
     const [rating, setRating] = useState(0)
-
+    console.log(rating);
 
     //url 파라미터("localhost:3000/detail/" 뒤에 붙는 상세 페이지 파라미터)를 content_id 변수로 저장
     let {content_id}=useParams();
@@ -26,12 +26,12 @@ export default function Detail() {
     // Catch Rating value
     const handleRating = async(rate) => {
         if (typeof(rate)==="number"){
-        const id= await localStorage.getItem('id');
+        const email= localStorage.getItem('email');
 
-        await setRating(rate);
-        console.log(rating);
+        setRating(rate);
+        
 
-        const rating_info={user_id:id,content_id:content_id,rating:rating};
+        const rating_info={email:email,content_id:content_id,rating:rating};
         await axios.post("http://localhost:30/ratings", rating_info);
       }};
     

@@ -1,10 +1,10 @@
-import {React,useEffect,useState} from 'react'
+import {React} from 'react' //,useEffect,useState
 import Carousel from "react-multi-carousel";
 import imageData from "../components/imgdata";
 import "react-multi-carousel/lib/styles.css";
 import {NavLink} from "react-router-dom";
 
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function Main() {
   const responsive = {
@@ -15,25 +15,25 @@ export default function Main() {
     }
   };
 
-  const [data1, setData1] = useState();
+  // const [data1, setData1] = useState();
 
-  const setData = async () => {
-    const data = await axios.get("http://localhost:30/VODdata");
-    setData1(data.data)
-  };
-  setData()
+  // const setData = async () => {
+  //   const data = await axios.get("http://localhost:30/VODdata");
+  //   setData1(data.data)
+  // };
+  // setData()
 
-  useEffect(()=>{
-    axios
-      .all([axios.get("http://localhost:30/VODdata")])
-      .then(
-        axios.spread((res1)=>{
-          setData1(res1.data);
-          console.log(data1)
-        })
-      )
+  // useEffect(()=>{
+  //   axios
+  //     .all([axios.get("http://localhost:30/VODdata")])
+  //     .then(
+  //       axios.spread((res1)=>{
+  //         setData1(res1.data);
+  //         console.log(data1)
+  //       })
+  //     )
       
-  });
+  // });
 
 
     return (

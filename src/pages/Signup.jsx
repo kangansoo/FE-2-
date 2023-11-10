@@ -10,6 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import moment from "moment/moment";
 import { emailcheck } from '../apis/emailCheck';
 import { nicknamecheck } from '../apis/nicknameCheck';
+import { ko } from "date-fns/esm/locale";
 
 
 export default function Signup() {
@@ -34,6 +35,7 @@ export default function Signup() {
   
 
 //signUp api 호출
+//회원가입 유효성 검사
   const onClick = async () => {
     if (!emailCheck){
       alert("이메일 중복확인을 해주세요");
@@ -129,11 +131,13 @@ export default function Signup() {
       <div>
       <span>생년월일</span>
       <DatePicker
+        locale={ko}
 			  selected={startDate}
         maxDate={new Date()}
 			  onChange={(date) => setStartDate(date)}
 			  dateFormat="yyyy-MM-dd"
-
+        
+          
 			/>
       </div>
       

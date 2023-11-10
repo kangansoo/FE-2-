@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import { Rating } from 'react-simple-star-rating'
-
+import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
 //상세페이지 동적 url 라우팅 위한 useParams 
 import { useParams } from 'react-router-dom';
+import { styled } from 'styled-components';
 
 import imageData from "../components/imgdata";
 import axios from "axios";
@@ -21,7 +22,22 @@ export default function Detail() {
         function (imageData) 
         { return imageData.content_id === content_id }
     );
-    
+
+    //찜하기
+    const [wish, setWish] = useState(0);
+    const [isWished, setIsWished] = useState(false);
+  
+    const wishAddHandler = () => {
+      setIsWished(!isWished);
+    }
+    const handleWishButton = (()=> {
+      wishAddHandler();
+      if(!isWished){
+        setWish(wish+1);
+      }else{
+        setWish(wish-1);
+      }
+    });
     
     // Catch Rating value
     const handleRating = async(rate) => {
@@ -48,7 +64,22 @@ export default function Detail() {
                 size="35"
                 onClick={handleRating}
                     />
+            <Button
+                onClick={handleWishButton}>
+                {isWished ? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
+            </Button>
 
-        </div>
+    </div>
     )
 }
+
+const Button = styled.button`
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 10px;
+    &:hover{
+      transform: scale(1.1);
+    }
+}
+`;

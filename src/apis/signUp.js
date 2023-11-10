@@ -10,6 +10,6 @@ export const signUp = async (email, password, nickname, gender, birthYear,select
         birthYear,
         selectedVods
     });
-    return result.data;
+    return result.status;
 };
 

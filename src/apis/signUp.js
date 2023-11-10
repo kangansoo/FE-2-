@@ -12,3 +12,4 @@ export const signUp = async (email, password, nickname, gender, birthYear,select
     });
     return result.data;
 };
+

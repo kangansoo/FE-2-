@@ -42,8 +42,10 @@ export default function Signup() {
     }else if(
       selectedVods.length<3){alert("정확한 추천을 위해 3개 이상의 VOD를 선택해주세요")
     }else{
-      await signUp(email, password, nickname, gender, birthYear,selectedVods);
-      alert("회원가입을 축하드립니다!")
+      const status = await signUp(email, password, nickname, gender, birthYear,selectedVods);
+      if(status === 201){alert("회원가입을 축하드립니다!")}
+      
+
     navigate('/');
     }
     

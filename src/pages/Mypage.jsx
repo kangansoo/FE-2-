@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react'
 import { getMyPage } from '../apis/mypage';
 import axios from "axios";
 
+import { Rating } from 'react-simple-star-rating'
+
 export default function Mypage() {
   const [data, setData] = useState();
   //로딩화면 (데이터를 받아오는데 오래 걸리면 빈화면 출력되기 때문에 로딩 페이지 생성)
   const [loading, setLoading] = useState(true);
 
   const [isRated, setIsRated] = useState(false);
-
+  
   const [ratingData, setRatingData] = useState();  
 
   useEffect(() => {
@@ -18,12 +20,19 @@ export default function Mypage() {
       try {
         const response = await axios.get('http://localhost:30/ratings');
         const found = response.data.filter((item) => item.email === email);
+        if (found.length > 0) {
         setIsRated(!!found);
         setRatingData(found);
         //console.log("길이", found.length)
         //console.log("데이터", found)
+        // const vodData = await axios.get('http://localhost:30/VODdata');
+        // const ratedVod = vodData.data.filter((item) => item.content_id === ratingData.content_id);
+        // console.log("ratedVod", ratedVod);
+        } else{
+          setIsRated();
+        }
       } catch (error) {
-        setIsRated(false);
+        setIsRated();
       }
     };
 
@@ -55,16 +64,24 @@ export default function Mypage() {
       <li>nickname: {data[0]?.nickname}</li>
       <li>gender: {data[0]?.gender}</li>
       <li>birthYear: {data[0]?.birthYear}</li>
-        
+      <br />
+
       <div>찜목록</div>
 
+      <br />
       <div>평점내역</div>
       <div>
       { isRated ? 
       (ratingData.map((item) => (
         <div key={item.content_id}>
           content_id: {item.content_id}
+          <Rating
+            size="20"
+            initialValue={item.rating}
+            readonly="true"
+          />
         </div>
+      
       ))) : (
         "평점 내역이 존재하지 않습니다."
       )}

@@ -7,6 +7,7 @@ import Main from './pages/Main';
 import Search from './pages/Search';
 import Navbar from './pages/Navbar';
 import Detail from './pages/Detail';
+import Genre from './pages/Genre';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/search' element={<><Navbar /><Search /></>} />
         <Route path='/detail' element={<><Navbar /><Detail /></>} />
         <Route path='/detail/:content_id' element={<><Navbar /><Detail /></>} />
+        <Route path='/genre' element={<><Navbar /><Genre /></>} />
       </Routes>
     </BrowserRouter>
   );

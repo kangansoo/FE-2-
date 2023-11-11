@@ -9,7 +9,7 @@ import {NavLink} from "react-router-dom";
 export default function Main() {
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 500 },
       items: 5,
       slidesToSlide: 1 // optional, default to 1.
     }

@@ -20,7 +20,7 @@ export default function Detail() {
         function (imageData) 
         { return imageData.content_id === content_id }
     );
-
+    
     //const [rating, setRating] = useState(0)
 
     //찜하기

@@ -15,6 +15,10 @@ export default function Main() {
     }
   };
 
+ const onClickRefreshButton = (() => {
+    window.location.reload();
+  });
+  
   // const [data1, setData1] = useState();
 
   // const setData = async () => {
@@ -67,7 +71,13 @@ export default function Main() {
             ))
           }
         </Carousel>
-  
+          
+          <br />
+          <button onClick={onClickRefreshButton}>
+            새로고침
+          </button>
+          
+        <br />
         <h1>장르별 추천</h1>
           <Carousel
           centerMode={true}

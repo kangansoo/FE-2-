@@ -131,6 +131,10 @@ export default function Signup() {
       <div>
       <span>생년월일</span>
       <DatePicker
+        showYearDropdown
+        scrollableYearDropdown
+        yearDropdownItemNumber= {123}
+        showMonthDropdown
         locale={ko}
 			  selected={startDate}
         maxDate={new Date()}

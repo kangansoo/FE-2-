@@ -62,7 +62,7 @@ export default function Detail() {
             <Rating
                 size="35"
                 onClick={handleRating}
-                    />
+            />
             <Button
                 onClick={handleWishButton}>
                 {isWished ? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}

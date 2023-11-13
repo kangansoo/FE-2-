@@ -1,13 +1,17 @@
-import {React} from 'react' //,useEffect,useState
+import {React, useState,useEffect} from 'react' 
 import Carousel from "react-multi-carousel";
-import imageData from "../components/imgdata";
+//import imageData from "../components/imgdata";
 import "react-multi-carousel/lib/styles.css";
 import {NavLink} from "react-router-dom";
 
-// import axios from 'axios';
+//각 모델 결과 요청
+import { VOD_model1 } from '../apis/vod_model1';
+import { VOD_model2 } from '../apis/vod_model2'
+import { VOD_model3 } from '../apis/vod_model3';
+
 
 export default function Main() {
-  const responsive = {
+    const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 500 },
       items: 5,
@@ -19,27 +23,41 @@ export default function Main() {
     window.location.reload();
   });
   
-  // const [data1, setData1] = useState();
-
-  // const setData = async () => {
-  //   const data = await axios.get("http://localhost:30/VODdata");
-  //   setData1(data.data)
-  // };
-  // setData()
-
-  // useEffect(()=>{
-  //   axios
-  //     .all([axios.get("http://localhost:30/VODdata")])
-  //     .then(
-  //       axios.spread((res1)=>{
-  //         setData1(res1.data);
-  //         console.log(data1)
-  //       })
-  //     )
-      
-  // });
+  //모델별 추천 결과 받을 리스트
+  const [VODs1, setVODs1] = useState([]);
+  const [VODs2, setVODs2] = useState([]);
+  const [VODs3, setVODs3] = useState([]);
 
 
+  //모델 1 결과
+  useEffect(()=>{
+    const getVOD1 = async () => {
+      const result = await VOD_model1();
+      setVODs1(result)
+    };
+    getVOD1();
+  },[]);
+
+  //모델 2 결과
+  useEffect(()=>{
+    const getVOD2 = async () => {
+      const result = await VOD_model2();
+      setVODs2(result)
+    };
+    getVOD2();
+  },[]);
+
+  //모델 3 결과
+  useEffect(()=>{
+    const getVOD3 = async () => {
+      const result = await VOD_model3();
+      setVODs3(result)
+    };
+    getVOD3();
+  },[]);
+
+
+console.log(VODs1)
     return (
       <div>
         메인페이지
@@ -62,7 +80,7 @@ export default function Main() {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-left"
         >
-          {imageData.map(image => (
+          {VODs1&&VODs1.map(image => (
             <label key={image.alt}>
               <NavLink to={"/detail/"+image.content_id}>
               <img src={image.url} alt={image.alt}/>
@@ -97,7 +115,7 @@ export default function Main() {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-left"
         >
-          {imageData.map(image => (
+          {VODs2&&VODs2.map(image => (
             <label key={image.alt}>
               <NavLink to={"/detail/"+image.content_id}>
               <img src={image.url} alt={image.alt}/>
@@ -125,7 +143,7 @@ export default function Main() {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-left"
         >
-          {imageData.map(image => (
+          {VODs3&&VODs3.map(image => (
             <label key={image.alt}>
               <NavLink to={"/detail/"+image.content_id}>
               <img src={image.url} alt={image.alt}/>

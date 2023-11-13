@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Rating } from 'react-simple-star-rating'
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
 //상세페이지 동적 url 라우팅 위한 useParams 
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-
+import { wishes } from '../apis/wishes';
 import imageData from "../components/imgdata";
 import axios from "axios";
 
@@ -26,23 +26,48 @@ export default function Detail() {
     //찜하기
     const [wish, setWish] = useState(0);
     const [isWished, setIsWished] = useState(false);
+    const email= localStorage.getItem('email');
+    
+    
+    // const wishAddHandler = async() => {
 
-    const wishAddHandler = () => {
-      setIsWished(!isWished);
-    }
-    const handleWishButton = (()=> {
-      wishAddHandler();
-      if(!isWished){
-        setWish(wish+1);
-      }else{
-        setWish(wish-1);
-      }
-    });
+    //   await wishes(email, content_id, wish);
+    // }
+  
+    // const handleWishButton = async()=> {
+    //   wishAddHandler();
+    //   if(!isWished){
+    //     setWish(wish+1);
+    //   }else{
+    //     setWish(wish-1);
+    //   }
+    //   setIsWished(!isWished);
+    // };
+    // console.log(wish);
+
+    useEffect(() => {
+      const wishesHandler = async () => {
+        await wishes(email, content_id, wish);
+      };
+
+      wishesHandler();
+    }, [isWished, email, content_id, wish]);
+  
+      const handleWishButton = async () => {
+        if (!isWished) {
+          setWish(wish + 1);
+        } else {
+          setWish(wish - 1);
+        }
+        setIsWished(!isWished);
+      };
+      // console.log(wish)
+
 
     // Catch Rating value
     const handleRating = async(rate) => {
         
-        const email= localStorage.getItem('email');
+        
         //setRating(rate);
 
         const rating_info={email:email, content_id:content_id, rating:rate};

@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import { Rating } from 'react-simple-star-rating'
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
+
 //상세페이지 동적 url 라우팅 위한 useParams 
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { wishes } from '../apis/wishes';
 import imageData from "../components/imgdata";
 import axios from "axios";
+
+
 
 
 export default function Detail() {

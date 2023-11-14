@@ -27,9 +27,10 @@ export default function Detail() {
     const [wish, setWish] = useState(0);
     const email= localStorage.getItem('email');
     const [count,setCount]=useState(0);
+    //const [isWished, setIsWished] = useState(false);
 
     //rating get 요청 usestate
-    const [lastRating, setLastRating] = useState();
+    const [rating, setRating] = useState();
     const [isRated, setIsRated] = useState(false);
 
     const handleWishButton = () => {
@@ -58,11 +59,10 @@ export default function Detail() {
       const checkRatings = async () => {
         try {
           const response = await axios.get('http://localhost:30/ratings');
-          const found = response.data.filter((item) => item.email === email&&item.content_id === content_id);
+          const found = response.data.filter((item) => item.email === email && item.content_id === content_id);
           if (found.length > 0) {
-          setIsRated(true);
-          setLastRating(found[found.length - 1].rating);
-          
+            setIsRated(true);
+            setRating(found[found.length-1].rating);
           } else{
             setIsRated(false);
           }
@@ -70,16 +70,37 @@ export default function Detail() {
           setIsRated(false);
         }
       };
-    
       checkRatings();
     }, []);
 
+
+    //wish get요청
+    useEffect(() => {
+      const checkWishes = async () => {
+        try {
+          const response = await axios.get('http://localhost:30/wishes');
+          const found = response.data.filter((item) => item.email === email&&item.content_id === content_id);
+          if (found.length > 0) {
+            //setIsWished(true);
+            setWish(found[found.length - 1].wish);
+            
+          } else{
+            //setIsWished(false);
+            setWish(0);
+          }
+        } catch (error) {
+          //setIsWish(false);
+          setWish(0);
+        }
+      };
+      checkWishes();
+    }, []);
+    
+
     // Catch Rating value
     const handleRating = async(rate) => {
-
         const rating_info={email:email, content_id:content_id, rating:rate};
         await axios.post("http://localhost:30/ratings", rating_info);
-      
     };
     
 
@@ -93,7 +114,8 @@ export default function Detail() {
         { isRated ? 
               (<Rating
                 size="35"
-                initialValue={lastRating}
+                initialValue={rating}
+                onClick={handleRating}
               />
               ) : (
               <Rating

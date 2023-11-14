@@ -28,6 +28,9 @@ export default function Detail() {
     const email= localStorage.getItem('email');
     const [count,setCount]=useState(0);
 
+    //rating get 요청 usestate
+    const [lastRating, setLastRating] = useState();
+    const [isRated, setIsRated] = useState(false);
 
     const handleWishButton = () => {
       if (!wish) {
@@ -48,6 +51,28 @@ export default function Detail() {
     }
     }, [email, content_id, wish]);
 
+    
+
+    //rating get요청
+    useEffect(() => {
+      const checkRatings = async () => {
+        try {
+          const response = await axios.get('http://localhost:30/ratings');
+          const found = response.data.filter((item) => item.email === email&&item.content_id === content_id);
+          if (found.length > 0) {
+          setIsRated(true);
+          setLastRating(found[found.length - 1].rating);
+          
+          } else{
+            setIsRated(false);
+          }
+        } catch (error) {
+          setIsRated(false);
+        }
+      };
+    
+      checkRatings();
+    }, []);
 
     // Catch Rating value
     const handleRating = async(rate) => {
@@ -65,11 +90,19 @@ export default function Detail() {
             <img src={poster.url} alt={poster.alt} >
             </img><p>{poster.desc}</p>
         </div>
-        
-            <Rating
+        { isRated ? 
+              (<Rating
                 size="35"
-                onClick={handleRating}
-            />
+                initialValue={lastRating}
+              />
+              ) : (
+              <Rating
+                  size="35"
+                  onClick={handleRating}
+                  />
+              )
+        }  
+            
             <Button
                 onClick={handleWishButton}>
                 {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}

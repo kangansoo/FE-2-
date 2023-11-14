@@ -14,10 +14,10 @@ export const getMyPage = async () => {
 
 
     //토큰없이 구현 위한 코드
-    const email = localStorage.getItem('email');
+    const subsr = localStorage.getItem('subsr');
     const password = localStorage.getItem('password');
 
-    const result = await axios.get('http://localhost:30/signup',{params:{email:email,password:password}}); //token 생기면 삭제
+    const result = await axios.get('http://localhost:30/signup',{params:{subsr:subsr,password:password}}); //token 생기면 삭제
     return result.data
 };
 

@@ -14,12 +14,12 @@ export default function Mypage() {
   const [ratingData, setRatingData] = useState();  
 
   useEffect(() => {
-    const email = localStorage.getItem('email');
+    const subsr = localStorage.getItem('subsr');
     
     const checkRatings = async () => {
       try {
         const response = await axios.get('http://localhost:30/ratings');
-        const found = response.data.filter((item) => item.email === email);
+        const found = response.data.filter((item) => item.subsr === subsr);
         if (found.length > 0) {
         setIsRated(!!found);
         setRatingData(found);
@@ -60,10 +60,8 @@ export default function Mypage() {
       
       <div>회원정보</div>
 
-      <li>id: {data[0]?.id}</li>
-      <li>nickname: {data[0]?.nickname}</li>
-      <li>gender: {data[0]?.gender}</li>
-      <li>birthYear: {data[0]?.birthYear}</li>
+      <li>셋탑박스 번호: {data[0]?.subsr}</li>
+
       <br />
 
       <div>찜목록</div>

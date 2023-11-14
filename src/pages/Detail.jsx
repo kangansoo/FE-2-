@@ -21,19 +21,18 @@ export default function Detail() {
     );
 
     //찜하기
-    const [wish, setWish] = useState();
+    const [wish, setWish] = useState(0);
     const email= localStorage.getItem('email');
     const [count,setCount]=useState(0);
 
 
     const handleWishButton = () => {
       if (!wish) {
-        setWish(true);
+        setWish(1);
       } else {
-        setWish(false);
+        setWish(0);
       }
     };
-
 
     useEffect(() => {
       const postwishes = async()=>{
@@ -44,7 +43,7 @@ export default function Detail() {
     } else {
       postwishes();
     }
-    }, [email, content_id, wish,count]);
+    }, [email, content_id, wish]);
 
 
     // Catch Rating value

@@ -2,14 +2,14 @@ import React,{useState} from 'react';
 import { Input, Inputs, Title, Wrapper } from '../components/Common';
 import { useForm } from '../hooks/useForm';
 import { styled } from 'styled-components';
-import { signUp } from '../apis/signUp';
+//import { signUp } from '../apis/signUp';
 import { useNavigate } from 'react-router-dom';
 import imageData from '../components/imgdata';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from "moment/moment";
-import { emailcheck } from '../apis/emailCheck';
-import { nicknamecheck } from '../apis/nicknameCheck';
+//import { emailcheck } from '../apis/emailCheck';
+//import { nicknamecheck } from '../apis/nicknameCheck';
 import { ko } from "date-fns/esm/locale";
 
 

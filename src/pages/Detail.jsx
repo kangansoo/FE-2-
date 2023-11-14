@@ -9,7 +9,6 @@ import imageData from "../components/imgdata";
 import axios from "axios";
 
 
-
 export default function Detail() {
     
     //url 파라미터("localhost:3000/detail/" 뒤에 붙는 상세 페이지 파라미터)를 content_id 변수로 저장
@@ -20,55 +19,35 @@ export default function Detail() {
         function (imageData) 
         { return imageData.content_id === content_id }
     );
-    
-    //const [rating, setRating] = useState(0)
 
     //찜하기
     const [wish, setWish] = useState(0);
-    const [isWished, setIsWished] = useState(false);
     const email= localStorage.getItem('email');
-    
-    
-    // const wishAddHandler = async() => {
+    const [count,setCount]=useState(0);
 
-    //   await wishes(email, content_id, wish);
-    // }
-  
-    // const handleWishButton = async()=> {
-    //   wishAddHandler();
-    //   if(!isWished){
-    //     setWish(wish+1);
-    //   }else{
-    //     setWish(wish-1);
-    //   }
-    //   setIsWished(!isWished);
-    // };
-    // console.log(wish);
+
+    const handleWishButton = () => {
+      if (!wish) {
+        setWish(1);
+      } else {
+        setWish(0);
+      }
+    };
 
     useEffect(() => {
-      const wishesHandler = async () => {
-        await wishes(email, content_id, wish);
-      };
-
-      wishesHandler();
-    }, [isWished, email, content_id, wish]);
-  
-      const handleWishButton = async () => {
-        if (!isWished) {
-          setWish(wish + 1);
-        } else {
-          setWish(wish - 1);
-        }
-        setIsWished(!isWished);
-      };
-      // console.log(wish)
+      const postwishes = async()=>{
+        wishes(email, content_id, wish);}
+      
+      if (count===0) {
+          setCount(count+1)
+    } else {
+      postwishes();
+    }
+    }, [email, content_id, wish]);
 
 
     // Catch Rating value
     const handleRating = async(rate) => {
-        
-        
-        //setRating(rate);
 
         const rating_info={email:email, content_id:content_id, rating:rate};
         await axios.post("http://localhost:30/ratings", rating_info);
@@ -90,7 +69,7 @@ export default function Detail() {
             />
             <Button
                 onClick={handleWishButton}>
-                {isWished ? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
+                {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
             </Button>
 
     </div>

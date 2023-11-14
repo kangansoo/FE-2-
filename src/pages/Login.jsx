@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from 'styled-components';
 import {Wrapper, Title, Form, Inputs, Input} from "../components/Common";
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 //token X import { login } from '../apis/login';
@@ -12,15 +12,15 @@ import axios from 'axios';
 // 로그인 화면
 
 const Login = () => {
-    //로그인 입력 받기
-    const [email, setId] = useState("");
+    //회원 정보 입력
+    const [subsr, setId] = useState("");
     const [password, setPw] = useState("");
 
     
     const [button, setButton] = useState(true);
 
     function changeButton() {
-        email.includes('@') && password.length >= 7 ? setButton(false) :setButton(true);
+        subsr.includes('@') && password.length >= 7 ? setButton(false) :setButton(true);
     }
 
 
@@ -39,14 +39,14 @@ const Login = () => {
     const onClick = async() => {
 
         //토큰 없이 json-server 이용 로그인
-        axios.get('http://localhost:30/signup',{params:{email:email,password:password}})
+        axios.get('http://localhost:30/signup',{params:{subsr:subsr,password:password}})
         .then((Response)=>{
-            if (Response.data.length>0 && Response.data[0].email === email && Response.data[0].password === password){
-                localStorage.setItem('email', Response.data[0].email);
+            if (Response.data.length>0 && Response.data[0].subsr === subsr && Response.data[0].password === password){
+                localStorage.setItem('subsr', Response.data[0].subsr);
                 localStorage.setItem('password', Response.data[0].password);
                 navigate("/mypage");
             }else{
-                alert('로그인 정보가 틀렸습니다.\n비회원은 회원가입을 부탁드립니다.');
+                alert('셋탑박스 회원 정보가 틀렸습니다.\n정보 확인을 부탁드립니다.');
             }});
             
     };
@@ -76,12 +76,12 @@ const Login = () => {
         <Title>로그인하기</Title>
         <Form>
             <Inputs>
-                <Input placeholder="이메일" value={email} onChange={onChangeId}/>
+                <Input placeholder="셋탑박스" value={subsr} onChange={onChangeId}/>
                 <Input placeholder="비밀번호" type="password" value={password} onChange={onChangePw}/>
             </Inputs>
             <Button onClick={onClick} disabled={button}>Login</Button>
         </Form>
-        <CustomLink to='/signup'>회원가입하기</CustomLink>
+        {/* 주석 처리 <CustomLink to='/signup'>회원가입하기</CustomLink> */}
     </Wrapper>
   )
 }
@@ -100,12 +100,12 @@ const Button = styled.button`
 `;
 
 //링크 css 수정
-const CustomLink = styled(Link)`
-    margin-top: 20px;
-    color: black;
-    text-decoration: none;
-    &:visitied {
-        color: black;
-        text-decoration: none;
-    }
-`;
+// const CustomLink = styled(Link)`
+//     margin-top: 20px;
+//     color: black;
+//     text-decoration: none;
+//     &:visitied {
+//         color: black;
+//         text-decoration: none;
+//     }
+// `;

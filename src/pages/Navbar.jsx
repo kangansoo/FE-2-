@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search"
 
 export default function Navbar() {
-  const email = localStorage.getItem('email');
+  const subsr = localStorage.getItem('subsr');
 
   return (
     <div className='NavBar'>
@@ -16,7 +16,7 @@ export default function Navbar() {
         </Link>
         
         <Link to='/mypage'>
-         {email}
+         {subsr}
         </Link>
 
     </div>

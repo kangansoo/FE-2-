@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const wishes = async(email, content_id, wish) => {
+export const wishes = async(subsr, content_id, wish) => {
     const result = await axios.post("http://localhost:30/wishes", {
-        email,
+        subsr,
         content_id,
         wish
     });

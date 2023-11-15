@@ -24,10 +24,10 @@ export default function Detail() {
     );
 
     //찜하기
-    const [wish, setWish] = useState(0);
-    const email= localStorage.getItem('email');
+    const subsr= localStorage.getItem('subsr');
     const [count,setCount]=useState(0);
-    //const [isWished, setIsWished] = useState(false);
+    const [isWished, setIsWished] = useState(0);
+    const [wish, setWish] = useState(isWished);
 
     //rating get 요청 usestate
     const [rating, setRating] = useState();
@@ -43,23 +43,23 @@ export default function Detail() {
 
     useEffect(() => {
       const postwishes = async()=>{
-        wishes(email, content_id, wish);}
+        wishes(subsr, content_id, wish);}
       
       if (count===0) {
           setCount(count+1)
     } else {
       postwishes();
     }
-    }, [email, content_id, wish]);
+    }, [subsr, content_id, wish]);
 
-    
+
 
     //rating get요청
     useEffect(() => {
       const checkRatings = async () => {
         try {
           const response = await axios.get('http://localhost:30/ratings');
-          const found = response.data.filter((item) => item.email === email && item.content_id === content_id);
+          const found = response.data.filter((item) => item.subsr === subsr && item.content_id === content_id);
           if (found.length > 0) {
             setIsRated(true);
             setRating(found[found.length-1].rating);
@@ -67,39 +67,39 @@ export default function Detail() {
             setIsRated(false);
           }
         } catch (error) {
-          setIsRated(false);
+          console.log(error);
         }
       };
       checkRatings();
     }, []);
 
-
+    
     //wish get요청
     useEffect(() => {
       const checkWishes = async () => {
         try {
           const response = await axios.get('http://localhost:30/wishes');
-          const found = response.data.filter((item) => item.email === email&&item.content_id === content_id);
+          const found = response.data.filter((item) => item.subsr === subsr&&item.content_id === content_id);
           if (found.length > 0) {
-            //setIsWished(true);
-            setWish(found[found.length - 1].wish);
-            
+            setIsWished(found[found.length-1].wish);
+            console.log("found.length", found)
+            console.log("[found.length-1].wish", found[found.length-1].wish)
+            console.log("isWished", isWished)
+            console.log("wish", wish)
           } else{
-            //setIsWished(false);
-            setWish(0);
+            console.log("elseisWished", isWished);
           }
         } catch (error) {
-          //setIsWish(false);
-          setWish(0);
+          console.log("error", error);
         }
       };
       checkWishes();
     }, []);
     
-
+    
     // Catch Rating value
     const handleRating = async(rate) => {
-        const rating_info={email:email, content_id:content_id, rating:rate};
+        const rating_info={subsr:subsr, content_id:content_id, rating:rate};
         await axios.post("http://localhost:30/ratings", rating_info);
     };
     
@@ -124,12 +124,10 @@ export default function Detail() {
                   />
               )
         }  
-            
             <Button
                 onClick={handleWishButton}>
                 {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
             </Button>
-
     </div>
     )
 }

@@ -12,7 +12,7 @@ export default function Mypage() {
   const [isRated, setIsRated] = useState(false);
   
   const [ratingData, setRatingData] = useState();  
-
+  console.log("ratingData", ratingData);
   useEffect(() => {
     const subsr = localStorage.getItem('subsr');
     
@@ -21,13 +21,8 @@ export default function Mypage() {
         const response = await axios.get('http://localhost:30/ratings');
         const found = response.data.filter((item) => item.subsr === subsr);
         if (found.length > 0) {
-        setIsRated(!!found);
+        setIsRated(true);
         setRatingData(found);
-        //console.log("길이", found.length)
-        //console.log("데이터", found)
-        // const vodData = await axios.get('http://localhost:30/VODdata');
-        // const ratedVod = vodData.data.filter((item) => item.content_id === ratingData.content_id);
-        // console.log("ratedVod", ratedVod);
         } else{
           setIsRated();
         }
@@ -70,8 +65,8 @@ export default function Mypage() {
       <div>평점내역</div>
       <div>
       { isRated ? 
-      (ratingData.map((item) => (
-        <div key={item.content_id}>
+      (ratingData.map((item, index) => (
+        <div key={index}>
           content_id: {item.content_id}
           <Rating
             size="20"

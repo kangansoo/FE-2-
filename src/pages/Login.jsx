@@ -14,15 +14,17 @@ import axios from 'axios';
 const Login = () => {
     //회원 정보 입력
     const [subsr, setId] = useState("");
-    const [password, setPw] = useState("");
-
+    //const [password, setPw] = useState("");
     
     const [button, setButton] = useState(true);
 
-    function changeButton() {
-        subsr.includes('@') && password.length >= 7 ? setButton(false) :setButton(true);
-    }
+    // function changeButton() {
+    //     subsr.includes('@') && password.length >= 7 ? setButton(false) :setButton(true);
+    // }
 
+    function changeButton() {
+        subsr.includes('@') ? setButton(false) :setButton(true);
+    }
 
     const navigate = useNavigate();
     
@@ -30,20 +32,21 @@ const Login = () => {
         setId(e.target.value);
         changeButton();
     };
-    const onChangePw = (e) => {
-        setPw(e.target.value);
-        changeButton();
-    };
+    // const onChangePw = (e) => {
+    //     setPw(e.target.value);
+    //     changeButton();
+    // };
 
     //토큰 없이 json-server 이용 로그인
     const onClick = async() => {
 
         //토큰 없이 json-server 이용 로그인
-        axios.get('http://localhost:30/signup',{params:{subsr:subsr,password:password}})
+        axios.get('http://localhost:30/login',{params:{subsr:subsr}})
         .then((Response)=>{
-            if (Response.data.length>0 && Response.data[0].subsr === subsr && Response.data[0].password === password){
+            console.log(Response.data[0])
+            if (Response.data.length>0 && Response.data[0].subsr=== subsr ){//&& Response.data[0].password === password){
                 localStorage.setItem('subsr', Response.data[0].subsr);
-                localStorage.setItem('password', Response.data[0].password);
+                //localStorage.setItem('password', Response.data[0].password);
                 navigate("/mypage");
             }else{
                 alert('셋탑박스 회원 정보가 틀렸습니다.\n정보 확인을 부탁드립니다.');
@@ -77,7 +80,7 @@ const Login = () => {
         <Form>
             <Inputs>
                 <Input placeholder="셋탑박스" value={subsr} onChange={onChangeId}/>
-                <Input placeholder="비밀번호" type="password" value={password} onChange={onChangePw}/>
+                {/*<Input placeholder="비밀번호" type="password" value={password} onChange={onChangePw}/>*/}
             </Inputs>
             <Button onClick={onClick} disabled={button}>Login</Button>
         </Form>

@@ -81,11 +81,12 @@ export default function Detail() {
           const response = await axios.get('http://localhost:30/wishes');
           const found = response.data.filter((item) => item.subsr === subsr&&item.content_id === content_id);
           if (found.length > 0) {
-            setIsWished(found[found.length-1].wish);
-            console.log("found.length", found)
+            setIsWished((isWished) => isWished = found[found.length-1].wish);
+            //console.log("foundfilter", found.filter(item => ))
             console.log("[found.length-1].wish", found[found.length-1].wish)
             console.log("isWished", isWished)
             console.log("wish", wish)
+            
           } else{
             console.log("elseisWished", isWished);
           }

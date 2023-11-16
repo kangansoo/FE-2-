@@ -17,7 +17,7 @@ export const getMyPage = async () => {
     const subsr = localStorage.getItem('subsr');
     const password = localStorage.getItem('password');
 
-    const result = await axios.get('http://localhost:30/signup',{params:{subsr:subsr,password:password}}); //token 생기면 삭제
+    const result = await axios.get('http://localhost:30/login',{params:{subsr:subsr,password:password}}); //token 생기면 삭제
     return result.data
 };
 

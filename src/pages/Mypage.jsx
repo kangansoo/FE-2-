@@ -1,18 +1,49 @@
 import React, {useEffect, useState} from 'react'
 import { getMyPage } from '../apis/mypage';
 import axios from "axios";
-
+import { NavLink } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
+
 
 export default function Mypage() {
   const [data, setData] = useState();
   //로딩화면 (데이터를 받아오는데 오래 걸리면 빈화면 출력되기 때문에 로딩 페이지 생성)
   const [loading, setLoading] = useState(true);
 
+  const [isWished, setIsWished] = useState(false);
+  const [wishData, setWishData] = useState();
+
   const [isRated, setIsRated] = useState(false);
-  
   const [ratingData, setRatingData] = useState();  
-  console.log("ratingData", ratingData);
+  
+  useEffect(() => {
+    const subsr = localStorage.getItem('subsr');
+    
+    const checkWishes = async () => {
+      try {
+        const response = await axios.get('http://localhost:30/wishes');
+        const found = response.data.filter((item) => item.subsr === subsr);
+        if (found.length > 0) {
+          setIsWished(true);
+          setWishData(found);
+        console.log("found",found)
+        console.log("wishData", wishData);
+        } else{
+          setIsRated();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    checkWishes();
+  }, []);
+
+
+
+
+
+
   useEffect(() => {
     const subsr = localStorage.getItem('subsr');
     
@@ -23,6 +54,8 @@ export default function Mypage() {
         if (found.length > 0) {
         setIsRated(true);
         setRatingData(found);
+        // console.log("found[found.length-1]",found[found.length-1])
+        // console.log("ratingData", ratingData);
         } else{
           setIsRated();
         }
@@ -60,14 +93,28 @@ export default function Mypage() {
       <br />
 
       <div>찜목록</div>
-
+      <div>
+      { isWished ? 
+      (wishData.map((item, index) => (
+        <div key={index}>
+          <NavLink to={"/detail/"+item.content_id}>
+          content_id: {item.content_id}
+          </NavLink>
+        </div>
+      
+      ))) : (
+        "찜 내역이 존재하지 않습니다."
+      )}
+      </div>
       <br />
       <div>평점내역</div>
       <div>
       { isRated ? 
       (ratingData.map((item, index) => (
         <div key={index}>
+          <NavLink to={"/detail/"+item.content_id}>
           content_id: {item.content_id}
+          </NavLink>
           <Rating
             size="20"
             initialValue={item.rating}

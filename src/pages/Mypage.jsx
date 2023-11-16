@@ -3,6 +3,7 @@ import { getMyPage } from '../apis/mypage';
 import axios from "axios";
 import { NavLink } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
+import {getReplay} from '../apis/mypage_replay';
 
 
 export default function Mypage() {
@@ -15,7 +16,25 @@ export default function Mypage() {
 
   const [isRated, setIsRated] = useState(false);
   const [ratingData, setRatingData] = useState();  
+
+  const [replayData, setReplayData] = useState();
   
+  useEffect(()=> {
+    const getreplay = async () => {
+      const result = await getReplay();
+      setReplayData(result);
+      console.log("getreplay",result);
+    };
+    getreplay();
+    
+  }, []);
+  
+  
+
+
+
+
+
   useEffect(() => {
     const subsr = localStorage.getItem('subsr');
     
@@ -91,7 +110,22 @@ export default function Mypage() {
       <li>셋탑박스 번호: {data[0]?.subsr}</li>
 
       <br />
+      <div>시청중인 컨텐츠</div>
+      <div>
+        {replayData.map((item, index) =>(
+          <label key={index}>
+            <NavLink to={"/detail/"+item.content_id}>
+              <img 
+              src={item.posterurl}
+              alt={item.alt}
+              />
+              {item.title}
+            </NavLink>
+          </label>
+        ))}
+      </div>
 
+      <br />
       <div>찜목록</div>
       <div>
       { isWished ? 
@@ -101,7 +135,6 @@ export default function Mypage() {
           content_id: {item.content_id}
           </NavLink>
         </div>
-      
       ))) : (
         "찜 내역이 존재하지 않습니다."
       )}

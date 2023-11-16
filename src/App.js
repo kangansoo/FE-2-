@@ -8,6 +8,7 @@ import Search from './pages/Search';
 import Navbar from './pages/Navbar';
 import Detail from './pages/Detail';
 import Genre from './pages/Genre';
+import Modal from 'react-modal';
 
 function App() {
   return (
@@ -24,5 +25,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
+Modal.setAppElement('#root')
 export default App;

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Rating } from 'react-simple-star-rating'
+
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
 
 //상세페이지 동적 url 라우팅 위한 useParams 
@@ -8,9 +8,7 @@ import { styled } from 'styled-components';
 import { wishes } from '../apis/wishes';
 import imageData from "../components/imgdata";
 import axios from "axios";
-
-
-
+import ReviewModal from '../components/ReviewModal';
 
 export default function Detail() {
     
@@ -28,27 +26,6 @@ export default function Detail() {
     const [count,setCount]=useState(0);
     const [wish, setWish] = useState();
 
-    //rating get 요청 usestate
-    const [rating, setRating] = useState();
-
-    //rating get요청
-    useEffect(() => {
-      const checkRatings = async () => {
-        try {
-          const response = await axios.get('http://localhost:30/ratings');
-          const found = response.data.filter((item) => item.subsr === subsr && item.content_id === content_id);
-          if (found.length > 0) {
-            setRating(found[found.length-1].rating);
-          } else{
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      checkRatings();
-    }, []);
-
-    
     //wish get요청
     useEffect(() => {
       const checkWishes = async () => {
@@ -57,7 +34,6 @@ export default function Detail() {
           const found = response.data.filter((item) => item.subsr === subsr&&item.content_id === content_id);
           if (found.length > 0) {
             setWish(found[found.length-1].wish);
-    
           } 
         } catch (error) {   
           console.log("error", error);
@@ -65,15 +41,6 @@ export default function Detail() {
       };
       checkWishes();
     }, []);
-    
-    
-    //POST Rating 
-    const handleRating = async(rate) => {
-        const rating_info={subsr:subsr, content_id:content_id, rating:rate};
-        await axios.post("http://localhost:30/ratings", rating_info);
-    };
-    
-
 
     //POST Wishes
     useEffect(() => {
@@ -86,7 +53,6 @@ export default function Detail() {
       postwishes();
     }
     }, [subsr, content_id, wish]);
-
 
     //wish 변경 
     const handleWishButton = () => {
@@ -104,12 +70,8 @@ export default function Detail() {
             <img src={poster.url} alt={poster.alt} >
             </img><p>{poster.desc}</p>
         </div>
-        { <Rating
-                size="35"
-                initialValue={rating}
-                onClick={handleRating}
-              />
-        }  
+        
+        <ReviewModal />
             <Button
                 onClick={handleWishButton}>
                 {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}

@@ -83,7 +83,7 @@ console.log(VODs1)
           {VODs1&&VODs1.map(image => (
             <label key={image.alt}>
               <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.url} alt={image.alt}/>
+              <img src={image.posterurl} alt={image.alt}/>
               </NavLink>
             </label>
             ))
@@ -118,7 +118,7 @@ console.log(VODs1)
           {VODs2&&VODs2.map(image => (
             <label key={image.alt}>
               <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.url} alt={image.alt}/>
+              <img src={image.posterurl} alt={image.alt}/>
               </NavLink>
             </label>
             ))
@@ -146,7 +146,7 @@ console.log(VODs1)
           {VODs3&&VODs3.map(image => (
             <label key={image.alt}>
               <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.url} alt={image.alt}/>
+              <img src={image.posterurl} alt={image.alt}/>
               </NavLink>
             </label>
             ))

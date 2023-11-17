@@ -4,7 +4,7 @@ import axios from "axios";
 import { NavLink } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
 import {getReplay} from '../apis/mypage_replay';
-import { getReview } from '../apis/mypage_review';
+//import { getReview } from '../apis/mypage_review';
 
 export default function Mypage() {
   const [data, setData] = useState();
@@ -19,7 +19,7 @@ export default function Mypage() {
 
   const [replayData, setReplayData] = useState();
 
-  const [reviewData, setReviewData] = useState();
+  //const [reviewData, setReviewData] = useState();
   
   //replay GET
   useEffect(()=> {
@@ -31,15 +31,15 @@ export default function Mypage() {
     
   }, []);
 
-  //review GET
-  useEffect(()=> {
-    const getreview = async () => {
-      const result = await getReview();
-      setReviewData(result);
-    };
-    getreview();
+  // //review GET
+  // useEffect(()=> {
+  //   const getreview = async () => {
+  //     const result = await getReview();
+  //     setReviewData(result);
+  //   };
+  //   getreview();
     
-  }, []);
+  // }, []);
 
 
   
@@ -162,14 +162,15 @@ export default function Mypage() {
             size="20"
             initialValue={item.rating}
             readonly="true"
-          />{item.rating_date}
+          />{item.rating_date}{item.review}
 
-          {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 */}
+          {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 
            <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
           &&reviewitem.content_id === item.content_id)
           .map((item2, index)=>(
             <label key={index}>{item2.review}</label>
-          ))}</text>
+          ))}</text>*/}
+          
         </NavLink></div>
       
       ))) : (

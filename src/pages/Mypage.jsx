@@ -86,6 +86,7 @@ export default function Mypage() {
       setLoading(false);
     });
   }, []); //의존성 배열을 공백으로 하여 한 번만 실행하도록 함
+  
   //로딩이 true이면 로딩중이라는 글자가 띄워짐, 로딩이 false가 되면 밑의 컴포넌트 출력
   if (loading) return <div>로딩중..</div>; //애니메이션을 넣어도 됨
   //console.log("받아오는 데이터", data)
@@ -119,11 +120,15 @@ export default function Mypage() {
       <div>
       { isWished ? 
       (wishData.map((item, index) => (
-        <div key={index}>
+        <label key={index}>
           <NavLink to={"/detail/"+item.content_id}>
-          content_id: {item.content_id}
+              <img 
+              src={item.posterurl}
+              alt={item.alt}
+              />
+              {item.title}
           </NavLink>
-        </div>
+        </label>
       ))) : (
         "찜 내역이 존재하지 않습니다."
       )}

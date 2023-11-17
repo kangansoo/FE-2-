@@ -13,6 +13,7 @@ export default function ReviewModal() {
     const [review, setReview] = useState();
     //rating get 요청 useState
     const [rating, setRating] = useState();
+    const [isRated, setIsRated] = useState(false);
     //rating_date 설정 useState
     const [ratingDate, setRatingDate] = useState();
     const rating_date = moment(ratingDate).format('yyyy-MM-DD HH:mm');
@@ -25,8 +26,10 @@ export default function ReviewModal() {
           const found = response.data.filter((item) => item.subsr === subsr && item.content_id === content_id);
           if (found.length > 0) {
             setRating(found[found.length-1].rating);
+            setIsRated(true);
           } else{
             setRating();
+            setIsRated(false);
           }
         } catch (error) {
           console.log(error);
@@ -105,7 +108,10 @@ export default function ReviewModal() {
 
   return (
     <div>
-      <button onClick={openModal}>리뷰작성</button>
+      <button 
+        onClick={openModal}>
+          {isRated ? "리뷰수정":"리뷰작성"}
+      </button>
       
       <Modal
         isOpen={modalIsOpen}

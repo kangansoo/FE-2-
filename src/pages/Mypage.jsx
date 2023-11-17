@@ -29,12 +29,6 @@ export default function Mypage() {
     
   }, []);
   
-  
-
-
-
-
-
   useEffect(() => {
     const subsr = localStorage.getItem('subsr');
     
@@ -57,11 +51,6 @@ export default function Mypage() {
 
     checkWishes();
   }, []);
-
-
-
-
-
 
   useEffect(() => {
     const subsr = localStorage.getItem('subsr');

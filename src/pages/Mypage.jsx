@@ -140,14 +140,17 @@ export default function Mypage() {
       (ratingData.map((item, index) => (
         <div key={index}>
           <NavLink to={"/detail/"+item.content_id}>
-          content_id: {item.content_id}
-          </NavLink>
+          <img 
+              src={item.posterurl}
+              alt={item.alt} width="50px" 
+              />
+          {item.title}
           <Rating
             size="20"
             initialValue={item.rating}
             readonly="true"
-          />
-        </div>
+          />{item.rating_date}
+        </NavLink></div>
       
       ))) : (
         "평점 내역이 존재하지 않습니다."

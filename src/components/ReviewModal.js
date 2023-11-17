@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { Rating } from 'react-simple-star-rating'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import moment from "moment/moment";
 
 export default function ReviewModal() {
     let {content_id}=useParams();
@@ -12,6 +13,9 @@ export default function ReviewModal() {
     const [review, setReview] = useState();
     //rating get 요청 useState
     const [rating, setRating] = useState();
+    //rating_date 설정 useState
+    const [ratingDate, setRatingDate] = useState();
+    const rating_date = moment(ratingDate).format('yyyy-MM-DD HH:mm');
 
     //rating get요청
     useEffect(() => {
@@ -22,7 +26,7 @@ export default function ReviewModal() {
           if (found.length > 0) {
             setRating(found[found.length-1].rating);
           } else{
-            setRating(0);
+            setRating();
           }
         } catch (error) {
           console.log(error);
@@ -40,6 +44,7 @@ export default function ReviewModal() {
           if (found.length > 0) {
             setReview(found[found.length-1].review);
           } else{
+            setReview();
           }
         } catch (error) {
           console.log(error);
@@ -62,6 +67,7 @@ export default function ReviewModal() {
 
   function closeModal() {
     setIsOpen(false);
+    setRating(0);
   }
 
   const handleChange = ((e)=> {
@@ -70,10 +76,11 @@ export default function ReviewModal() {
 
     const rate = (rating)=>{
         setRating(rating);
+        setRatingDate(new Date());
     }
     //POST Rating 
     const handleRating = async() => {
-        const rating_info={subsr:subsr, content_id:content_id, rating:rating};
+        const rating_info={subsr:subsr, content_id:content_id, rating:rating, rating_date:rating_date};
         await axios.post("http://localhost:30/ratings", rating_info);
     };
 
@@ -91,8 +98,8 @@ export default function ReviewModal() {
         alert("평점을 메겨주세요");
         e.preventDefault();
       }else{
-        handleRating();
-        handleReview();
+        await handleRating();
+        await handleReview();
       }
     }
 

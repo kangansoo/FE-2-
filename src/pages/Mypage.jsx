@@ -4,7 +4,7 @@ import axios from "axios";
 import { NavLink } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
 import {getReplay} from '../apis/mypage_replay';
-
+import { getReview } from '../apis/mypage_review';
 
 export default function Mypage() {
   const [data, setData] = useState();
@@ -18,17 +18,32 @@ export default function Mypage() {
   const [ratingData, setRatingData] = useState();  
 
   const [replayData, setReplayData] = useState();
+
+  const [reviewData, setReviewData] = useState();
   
+  //replay GET
   useEffect(()=> {
     const getreplay = async () => {
       const result = await getReplay();
       setReplayData(result);
-      console.log("getreplay",result);
     };
     getreplay();
     
   }, []);
+
+  //review GET
+  useEffect(()=> {
+    const getreview = async () => {
+      const result = await getReview();
+      setReviewData(result);
+    };
+    getreview();
+    
+  }, []);
+
+
   
+  //위시 GET
   useEffect(() => {
     const subsr = localStorage.getItem('subsr');
     
@@ -39,8 +54,6 @@ export default function Mypage() {
         if (found.length > 0) {
           setIsWished(true);
           setWishData(found);
-        console.log("found",found)
-        console.log("wishData", wishData);
         } else{
           setIsRated();
         }
@@ -52,6 +65,7 @@ export default function Mypage() {
     checkWishes();
   }, [wishData]);
 
+  //평점 GET
   useEffect(() => {
     const subsr = localStorage.getItem('subsr');
     
@@ -62,20 +76,18 @@ export default function Mypage() {
         if (found.length > 0) {
         setIsRated(true);
         setRatingData(found);
-        // console.log("found[found.length-1]",found[found.length-1])
-        // console.log("ratingData", ratingData);
         } else{
           setIsRated();
         }
       } catch (error) {
-        setIsRated();
+        console.log(error);
       }
     };
 
     checkRatings();
   }, []);
 
-  
+
   //페이지 이동했을 때 api 호출
   useEffect(() =>{
     //mypage 정보 불러오기(이름, 나이 정보 호출) -> mypage.js api생성
@@ -95,12 +107,12 @@ export default function Mypage() {
     <div>
       {/* ? = data가 undefined일 때 아무것도 출력하지 마라 (useEffect 실행 전까지는 undefined)*/}
       
-      <div>회원정보</div>
+      <h2>회원정보</h2>
 
       <li>셋탑박스 번호: {data[0]?.subsr}</li>
 
       <br />
-      <div>시청중인 컨텐츠</div>
+      <h2>시청중인 컨텐츠</h2>
       <div>
         {replayData.map((item, index) =>(
           <label key={index}>
@@ -116,7 +128,7 @@ export default function Mypage() {
       </div>
 
       <br />
-      <div>찜목록</div>
+      <h2>찜목록</h2>
       <div>
       { isWished ? 
       (wishData.map((item, index) => (
@@ -134,7 +146,8 @@ export default function Mypage() {
       )}
       </div>
       <br />
-      <div>평점내역</div>
+
+      <h2>리뷰목록</h2>
       <div>
       { isRated ? 
       (ratingData.map((item, index) => (
@@ -150,11 +163,19 @@ export default function Mypage() {
             initialValue={item.rating}
             readonly="true"
           />{item.rating_date}
+
+          {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 */}
+           <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
+          &&reviewitem.content_id === item.content_id)
+          .map((item2, index)=>(
+            <label key={index}>{item2.review}</label>
+          ))}</text>
         </NavLink></div>
       
       ))) : (
         "평점 내역이 존재하지 않습니다."
       )}
+
       </div>
 
     </div>

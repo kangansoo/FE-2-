@@ -50,7 +50,7 @@ export default function Mypage() {
     };
 
     checkWishes();
-  }, []);
+  }, [wishData]);
 
   useEffect(() => {
     const subsr = localStorage.getItem('subsr');

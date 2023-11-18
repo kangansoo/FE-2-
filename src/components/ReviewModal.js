@@ -30,7 +30,7 @@ export default function ReviewModal() {
             setRatingDate(found[found.length-1].ratingDate);
             setIsRated(true);
           } else{
-            setRating();
+            setRating(0);
             setReview();
             setIsRated(false);
           }

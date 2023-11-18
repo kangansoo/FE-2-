@@ -63,7 +63,7 @@ export default function Mypage() {
     };
 
     checkWishes();
-  }, [wishData]);
+  }, []);
 
   //평점 GET
   useEffect(() => {

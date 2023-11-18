@@ -26,9 +26,12 @@ export default function ReviewModal() {
           const found = response.data.filter((item) => item.subsr === subsr && item.content_id === content_id);
           if (found.length > 0) {
             setRating(found[found.length-1].rating);
+            setReview(found[found.length-1].review);
+            setRatingDate(found[found.length-1].ratingDate);
             setIsRated(true);
           } else{
             setRating();
+            setReview();
             setIsRated(false);
           }
         } catch (error) {
@@ -39,22 +42,22 @@ export default function ReviewModal() {
     }, [subsr, content_id]);
 
     //review get요청
-    useEffect(() => {
-      const checkReviews = async () => {
-        try {
-          const response = await axios.get('http://localhost:30/reviews');
-          const found = response.data.filter((item) => item.subsr === subsr && item.content_id === content_id);
-          if (found.length > 0) {
-            setReview(found[found.length-1].review);
-          } else{
-            setReview();
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      checkReviews();
-    }, [subsr, content_id]);
+    // useEffect(() => {
+    //   const checkReviews = async () => {
+    //     try {
+    //       const response = await axios.get('http://localhost:30/reviews');
+    //       const found = response.data.filter((item) => item.subsr === subsr && item.content_id === content_id);
+    //       if (found.length > 0) {
+    //         setReview(found[found.length-1].review);
+    //       } else{
+    //         setReview();
+    //       }
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   };
+    //   checkReviews();
+    // }, [subsr, content_id]);
 
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -83,18 +86,18 @@ export default function ReviewModal() {
     }
     //POST Rating 
     const handleRating = async() => {
-        const rating_info={subsr:subsr, content_id:content_id, rating:rating, rating_date:rating_date};
+        const rating_info={subsr:subsr, content_id:content_id, rating:rating, rating_date:rating_date, review:review};
         await axios.post("http://localhost:30/ratings", rating_info);
     };
 
-    const handleReview = async() => {
-      if (review.length === 0) {
-        setReview();
-      }else{
-        const review_info={subsr:subsr, content_id:content_id, review:review};
-        await axios.post("http://localhost:30/reviews", review_info);
-      }
-    }
+    // const handleReview = async() => {
+    //   if (review.length === 0) {
+    //     setReview();
+    //   }else{
+    //     const review_info={subsr:subsr, content_id:content_id, review:review};
+    //     await axios.post("http://localhost:30/reviews", review_info);
+    //   }
+    // }
 
     const clickSubmit = async(e) => {
       if(rating === 0){
@@ -102,7 +105,6 @@ export default function ReviewModal() {
         e.preventDefault();
       }else{
         await handleRating();
-        await handleReview();
       }
     }
 

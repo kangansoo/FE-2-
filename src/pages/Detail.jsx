@@ -9,6 +9,7 @@ import { wishes } from '../apis/wishes';
 import imageData from "../components/imgdata";
 import axios from "axios";
 import ReviewModal from '../components/ReviewModal';
+import { Rating } from 'react-simple-star-rating'
 
 export default function Detail() {
     
@@ -25,6 +26,9 @@ export default function Detail() {
     const subsr= localStorage.getItem('subsr');
     const [count,setCount]=useState(0);
     const [wish, setWish] = useState();
+    
+    //review 데이터
+    const [reviewData, setReviewData] = useState();
 
     //wish get요청
     useEffect(() => {
@@ -63,6 +67,23 @@ export default function Detail() {
       }
     };
 
+    //review get요청
+    useEffect(() => {
+      const getReivew = async () => {
+        try {
+          const response = await axios.get('http://localhost:30/ratings');
+          const found = response.data.filter((item) => item.content_id === content_id);
+          if (found.length > 0) {
+            setReviewData(found);
+            console.log("found", found)
+          } 
+        } catch (error) {   
+          console.log("error", error);
+        }
+      };
+      getReivew();
+    }, [content_id]);
+
     return (
     <div>
         <h2>{poster.label}</h2>
@@ -76,6 +97,28 @@ export default function Detail() {
                 onClick={handleWishButton}>
                 {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
             </Button>
+        <div>
+          <h2>리뷰 목록</h2>
+            {
+              (reviewData&&reviewData.map((item, index)=>(
+                <li key={index}>
+                  {item.subsr}
+                  <Rating
+                    fillColor="#A50034"
+                    size="15"
+                    initialValue={item.rating}
+                    readonly="true"
+                  />
+                  {item.reating_date}
+                  <br />
+                  {item.review}
+                  <hr />
+                </li>
+              )))
+            }
+
+        </div>
+
     </div>
     )
 }

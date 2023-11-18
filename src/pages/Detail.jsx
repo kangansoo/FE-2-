@@ -40,8 +40,8 @@ export default function Detail() {
         }
       };
       checkWishes();
-    }, []);
-
+    }, [subsr, content_id]);
+    
     //POST Wishes
     useEffect(() => {
       const postwishes = async()=>{

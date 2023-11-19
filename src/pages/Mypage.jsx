@@ -30,18 +30,6 @@ export default function Mypage() {
     getreplay();
     
   }, []);
-
-  // //review GET
-  // useEffect(()=> {
-  //   const getreview = async () => {
-  //     const result = await getReview();
-  //     setReviewData(result);
-  //   };
-  //   getreview();
-    
-  // }, []);
-
-
   
   //위시 GET
   useEffect(() => {

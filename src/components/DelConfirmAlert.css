@@ -1,0 +1,39 @@
+.custom-ui {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-ui h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .custom-ui p {
+    margin-bottom: 20px;
+  }
+  
+  .custom-ui button {
+    color: black;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .custom-ui button:hover {
+    background-color: #f1f1f1;
+  }
+
+  .delbutton {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+  }

@@ -33,6 +33,7 @@ export default function DropDownSubsr() {
     }, []);
 
     const handleLogout = () => {
+        setIsOpen(!isOpen);
         confirmAlert({
           customUI: ({ onClose }) => {
             return (
@@ -42,7 +43,7 @@ export default function DropDownSubsr() {
                 <button onClick={onClose}>닫기</button>
                 <button
                   onClick={() => {
-                    
+                    //로그아웃 기능 추가해야 함
                     navigate("../")
                   }}
                 >
@@ -52,6 +53,9 @@ export default function DropDownSubsr() {
             );
           },
         });
+      };
+      const handleMyPageClick = () => {
+        setIsOpen(false);
       };
 
     return (
@@ -66,7 +70,7 @@ export default function DropDownSubsr() {
           안녕하세요
           <br />
           {subsr}님
-            <Link to='../mypage'>
+            <Link to='../mypage' onClick={handleMyPageClick}>
                 <p>마이페이지</p>
             </Link>
             <p onClick={handleLogout}>로그아웃</p>

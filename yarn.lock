@@ -8950,6 +8950,11 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
+react-confirm-alert@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/react-confirm-alert/-/react-confirm-alert-3.0.6.tgz#f7552ec839c1e189370cef02ffed3035e7ca2e22"
+  integrity sha512-rplP6Ed9ZSNd0KFV5BUzk4EPQ77BxsrayllBXGFuA8xPXc7sbBjgU5KUrNpl7aWFmP7mXRlVXfuy1IT5DbffYw==
+
 react-datepicker@^4.21.0:
   version "4.21.0"
   resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.21.0.tgz#09b2ba3e53654a8563b22c9f649835716c8456d3"

@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/Navbar.css';
 import { Link } from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search"
+import DropDownSubsr from '../components/DropDownSubsr';
 
 export default function Navbar() {
   const subsr = localStorage.getItem('subsr');
@@ -15,9 +16,9 @@ export default function Navbar() {
             <SearchIcon className='NavBarSearchIcon' color="white"></SearchIcon>
         </Link>
         
-        <Link to='/mypage'>
+        <DropDownSubsr>
          {subsr}
-        </Link>
+        </DropDownSubsr>
 
     </div>
   )

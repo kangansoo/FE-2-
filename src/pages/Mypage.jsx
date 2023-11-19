@@ -4,6 +4,7 @@ import axios from "axios";
 import { NavLink } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
 import {getReplay} from '../apis/mypage_replay';
+import DelConfirmAlert from '../components/DelConfirmAlert'
 //import { getReview } from '../apis/mypage_review';
 
 export default function Mypage() {
@@ -74,7 +75,6 @@ export default function Mypage() {
 
     checkRatings();
   }, []);
-
 
   //페이지 이동했을 때 api 호출
   useEffect(() =>{
@@ -159,7 +159,10 @@ export default function Mypage() {
             <label key={index}>{item2.review}</label>
           ))}</text>*/}
           
-        </NavLink></div>
+        </NavLink>
+          <DelConfirmAlert />
+          <hr />
+        </div>
       
       ))) : (
         "평점 내역이 존재하지 않습니다."

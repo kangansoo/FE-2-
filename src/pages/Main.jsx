@@ -91,8 +91,10 @@ useEffect(()=>{
               </NavLink>
               
               {image.mood.map(mood=>(
+                <label key={mood}>
                 <NavLink to={"/mood/"+mood}>
-                <text>#{mood}</text></NavLink>
+                #{mood}</NavLink>
+                </label>
               ))}
             </label>
             ))
@@ -126,8 +128,10 @@ useEffect(()=>{
               </NavLink>
               
               {image.mood.map(mood=>(
+                <label key={mood}>
                 <NavLink to={"/mood/"+mood}>
-                <text>#{mood}</text></NavLink>
+                #{mood}</NavLink>
+                </label>
               ))}
             </label>
             ))
@@ -160,8 +164,10 @@ useEffect(()=>{
               </NavLink>
               
               {image.mood.map(mood=>(
+                <label key={mood}>
                 <NavLink to={"/mood/"+mood}>
-                  <text>#{mood}</text></NavLink>
+                  #{mood}</NavLink>
+                  </label>
               ))}
             </label>
             ))

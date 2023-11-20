@@ -4,10 +4,14 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import {NavLink} from "react-router-dom";
 
-//각 모델 결과 요청
-import { VOD_model1 } from '../apis/vod_model1';
-import { VOD_model2 } from '../apis/vod_model2'
-import { VOD_model3 } from '../apis/vod_model3';
+//처음 추천 결과 요청
+import { allVods } from '../apis/vodallmodels';
+
+//각 모델 새로고침 결과 요청
+import { VOD_model1 } from '../apis/vodmodel1';
+import { VOD_model2 } from '../apis/vodmodel2'
+import { VOD_model3 } from '../apis/vodmodel3';
+
 
 
 export default function Main() {
@@ -22,42 +26,55 @@ export default function Main() {
  const onClickRefreshButton = (() => {
     window.location.reload();
   });
-  
-  //모델별 추천 결과 받을 리스트
+
+  //모델별 결과 받을 리스트
   const [VODs1, setVODs1] = useState([]);
   const [VODs2, setVODs2] = useState([]);
   const [VODs3, setVODs3] = useState([]);
 
-
-  //모델 1 결과
-  useEffect(()=>{
-    const getVOD1 = async () => {
-      const result = await VOD_model1();
-      setVODs1(result)
-    };
-    getVOD1();
-  },[]);
-
-  //모델 2 결과
-  useEffect(()=>{
-    const getVOD2 = async () => {
-      const result = await VOD_model2();
-      setVODs2(result)
-    };
-    getVOD2();
-  },[]);
-
-  //모델 3 결과
-  useEffect(()=>{
-    const getVOD3 = async () => {
-      const result = await VOD_model3();
-      setVODs3(result)
-    };
-    getVOD3();
-  },[]);
+  //초기 결과 받을 리스트
+  
+// 전체 모델 결과
+useEffect(()=>{
+  const getAllVODs = async () => {
+    const result = await allVods();
+    setVODs1(result["model1"]);
+    setVODs2(result["model2"]);
+    setVODs3(result["model3"]);
+  };
+  getAllVODs();
+  
+},[]);
 
 
-console.log(VODs1)
+  // //모델 1 새로고침 결과
+  // useEffect(()=>{
+  //   const getVOD1 = async () => {
+  //     const result = await VOD_model1();
+  //     setVODs1(result)
+  //   };
+  //   getVOD1();
+  // },[a]);
+
+  // //모델 2 새로고침 결과
+  // useEffect(()=>{
+  //   const getVOD2 = async () => {
+  //     const result = await VOD_model2();
+  //     setVODs2(result)
+  //   };
+  //   getVOD2();
+  // },[a]);
+
+  // //모델 3 새로고침 결과
+  // useEffect(()=>{
+  //   const getVOD3 = async () => {
+  //     const result = await VOD_model3();
+  //     setVODs3(result)
+  //   };
+  //   getVOD3();
+  // },[a]);
+
+
     return (
       <div>
         메인페이지

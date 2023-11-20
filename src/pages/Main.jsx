@@ -13,7 +13,6 @@ import { VOD_model2 } from '../apis/vodmodel2'
 import { VOD_model3 } from '../apis/vodmodel3';
 
 
-
 export default function Main() {
     const responsive = {
     desktop: {
@@ -90,11 +89,16 @@ useEffect(()=>{
               <NavLink to={"/detail/"+image.content_id}>
               <img src={image.posterurl} alt={image.alt}/>
               </NavLink>
+              
+              {image.mood.map(mood=>(
+                <NavLink to={"/mood/"+mood}>
+                <text>#{mood}</text></NavLink>
+              ))}
             </label>
             ))
           }
         </Carousel>
-        <br />
+        <br /><br />
         <h1>장르별 추천</h1>
         <button onClick={getVOD2}>새로고침</button>
           <Carousel
@@ -120,11 +124,16 @@ useEffect(()=>{
               <NavLink to={"/detail/"+image.content_id}>
               <img src={image.posterurl} alt={image.alt}/>
               </NavLink>
+              
+              {image.mood.map(mood=>(
+                <NavLink to={"/mood/"+mood}>
+                <text>#{mood}</text></NavLink>
+              ))}
             </label>
             ))
           }
         </Carousel>
-          <br/>
+          <br/><br />
         <h1>감독, 배우 추천</h1>
         <button onClick={getVOD3}>새로고침</button>
           <Carousel
@@ -149,6 +158,11 @@ useEffect(()=>{
               <NavLink to={"/detail/"+image.content_id}>
               <img src={image.posterurl} alt={image.alt}/>
               </NavLink>
+              
+              {image.mood.map(mood=>(
+                <NavLink to={"/mood/"+mood}>
+                  <text>#{mood}</text></NavLink>
+              ))}
             </label>
             ))
           }

@@ -69,6 +69,7 @@ const Login = () => {
         //navigate("/mypage")
     //};
 
+
   return (
     <Wrapper>
         <Title>로그인하기</Title>
@@ -77,7 +78,7 @@ const Login = () => {
                 <Input placeholder="셋탑박스" value={subsr} onChange={onChangeId}/>
                 {/*<Input placeholder="비밀번호" type="password" value={password} onChange={onChangePw}/>*/}
             </Inputs>
-            <Button onClick={onClick}  disabled={button}>Login</Button>
+            <Button onClick={onClick} disabled={button}>Login</Button>
         </Form>
         {/* 주석 처리 <CustomLink to='/signup'>회원가입하기</CustomLink> */}
     </Wrapper>

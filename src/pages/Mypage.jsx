@@ -82,6 +82,7 @@ export default function Mypage() {
     getMyPage().then((res)=>{
       //res를 data에 넣기
       setData(res)
+      console.log('res', res)
       //setData를 받으면 setLoading을 false로 설정
       setLoading(false);
     });
@@ -97,12 +98,15 @@ export default function Mypage() {
       
       <h2>회원정보</h2>
 
-      <li>셋탑박스 번호: {data[0]?.subsr}</li>
+      <li>
+        { data.length > 0 ? ('셋탑박스 번호:', data[0]?.subsr):('로그인이 필요합니다.')}
+      </li>
 
       <br />
       <h2>시청중인 컨텐츠</h2>
       <div>
-        {replayData.map((item, index) =>(
+        { replayData.length > 0 ?
+        (replayData.map((item, index) =>(
           <label key={index}>
             <NavLink to={"/detail/"+item.content_id}>
               <img 
@@ -112,7 +116,9 @@ export default function Mypage() {
               {item.title}
             </NavLink>
           </label>
-        ))}
+        ))):(
+          '시청 중인 컨텐츠가 없습니다.'
+        )}
       </div>
 
       <br />

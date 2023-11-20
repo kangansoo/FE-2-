@@ -15,7 +15,6 @@ export default function Mypage() {
   const [ratingData, setRatingData] = useState();
 
   const [replayData, setReplayData] = useState();
-  console.log('replayData', replayData);
   //const [reviewData, setReviewData] = useState();
   
   //replay GET
@@ -140,6 +139,7 @@ export default function Mypage() {
           
         </NavLink>
           <DelConfirmAlert />
+          {console.log()}
           <hr />
         </div>
       

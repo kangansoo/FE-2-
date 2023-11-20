@@ -23,10 +23,6 @@ export default function Main() {
     }
   };
 
- const onClickRefreshButton = (() => {
-    window.location.reload();
-  });
-
   //모델별 결과 받을 리스트
   const [VODs1, setVODs1] = useState([]);
   const [VODs2, setVODs2] = useState([]);
@@ -47,38 +43,30 @@ useEffect(()=>{
 },[]);
 
 
-  // //모델 1 새로고침 결과
-  // useEffect(()=>{
-  //   const getVOD1 = async () => {
-  //     const result = await VOD_model1();
-  //     setVODs1(result)
-  //   };
-  //   getVOD1();
-  // },[a]);
+  //모델 1 새로고침 결과
+  const getVOD1 = async () => {
+    const result = await VOD_model1();
+    setVODs1(result)
+  };
 
-  // //모델 2 새로고침 결과
-  // useEffect(()=>{
-  //   const getVOD2 = async () => {
-  //     const result = await VOD_model2();
-  //     setVODs2(result)
-  //   };
-  //   getVOD2();
-  // },[a]);
 
-  // //모델 3 새로고침 결과
-  // useEffect(()=>{
-  //   const getVOD3 = async () => {
-  //     const result = await VOD_model3();
-  //     setVODs3(result)
-  //   };
-  //   getVOD3();
-  // },[a]);
+  //모델 2 새로고침 결과
+    const getVOD2 = async () => {
+      const result = await VOD_model2();
+      setVODs2(result)
+    };
+
+  //모델 3 새로고침 결과
+    const getVOD3 = async () => {
+      const result = await VOD_model3();
+      setVODs3(result)
+    };
 
 
     return (
       <div>
-        메인페이지
         <h1>인기작</h1>
+        <button onClick={getVOD1}>새로고침</button>
           <Carousel
           centerMode={true}
           focusOnSelect={true}
@@ -106,14 +94,9 @@ useEffect(()=>{
             ))
           }
         </Carousel>
-          
-          <br />
-          <button onClick={onClickRefreshButton}>
-            새로고침
-          </button>
-          
         <br />
         <h1>장르별 추천</h1>
+        <button onClick={getVOD2}>새로고침</button>
           <Carousel
           centerMode={true}
           focusOnSelect={true}
@@ -141,8 +124,9 @@ useEffect(()=>{
             ))
           }
         </Carousel>
-  
+          <br/>
         <h1>감독, 배우 추천</h1>
+        <button onClick={getVOD3}>새로고침</button>
           <Carousel
           centerMode={true}
           swipeable={false}

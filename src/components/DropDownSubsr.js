@@ -9,7 +9,7 @@ export default function DropDownSubsr() {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     
-    const navigate = useNavigate
+    const navigate = useNavigate();
 
     const toggleDropdown = () => {
       setIsOpen(!isOpen);
@@ -43,8 +43,9 @@ export default function DropDownSubsr() {
                 <button onClick={onClose}>닫기</button>
                 <button
                   onClick={() => {
-                    //로그아웃 기능 추가해야 함
+                    localStorage.removeItem('subsr', subsr);
                     navigate("../")
+                    onClose();
                   }}
                 >
                   로그아웃
@@ -74,8 +75,6 @@ export default function DropDownSubsr() {
                 <p>마이페이지</p>
             </Link>
             <p onClick={handleLogout}>로그아웃</p>
-          
-          {/* 추가적인 메뉴 항목들 */}
         </div>
       )}
     </div>

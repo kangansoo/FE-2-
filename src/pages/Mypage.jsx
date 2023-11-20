@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
 import {getReplay} from '../apis/mypage_replay';
 import DelConfirmAlert from '../components/DelConfirmAlert'
+import "../css/Mypage.css"
 
 export default function Mypage() {
   const subsr = localStorage.getItem('subsr');
@@ -65,56 +66,57 @@ export default function Mypage() {
   }, []);
 
   return (
-    <div>
+    <>
       {/* ? = data가 undefined일 때 아무것도 출력하지 마라 (useEffect 실행 전까지는 undefined)*/}
-      
+      <div>
       <h2>회원정보</h2>
 
       <li>
         셋탑박스 번호 : {subsr}
       </li>
+      </div>
+      <br/>
 
+      <div className='Div'>
       <br />
       <h2>시청중인 컨텐츠</h2>
-      <div>
         { replayData&&replayData.length > 0 ?
         (replayData.map((item, index) =>(
-          <label key={index}>
-            <NavLink to={"/detail/"+item.content_id}>
+          <figure key={index} >
+            <NavLink to={"/detail/"+item.content_id} className='ImageDiv'>
               <img 
               src={item.posterurl}
               alt={item.alt}
               />
-              {item.title}
+              <figcaption><progress value={item.disp_rtm} max={item.use_tms} /><figcaption>{item.title}</figcaption></figcaption>
             </NavLink>
-          </label>
+          </figure>
         ))):(
           '시청 중인 컨텐츠가 없습니다.'
         )}
       </div>
 
-      <br />
+      <div className='Div'>
       <h2>찜목록</h2>
-      <div>
+      
       { isWished ? 
       (wishData.map((item, index) => (
-        <label key={index}>
-          <NavLink to={"/detail/"+item.content_id}>
+        <figure key={index}>
+          <NavLink to={"/detail/"+item.content_id} className='ImageDiv' >
               <img 
               src={item.posterurl}
               alt={item.alt}
-              />
-              {item.title}
+              /><figcaption>{item.title}</figcaption>
+              
           </NavLink>
-        </label>
+        </figure>
       ))) : (
         "찜 내역이 존재하지 않습니다."
       )}
       </div>
-      <br />
 
       <h2>리뷰목록</h2>
-      <div>
+      <div >
       { isRated ? 
       (ratingData.map((item, index) => (
         <div key={index}>
@@ -147,7 +149,7 @@ export default function Mypage() {
         "평점 내역이 존재하지 않습니다."
       )}
       </div>
-    </div>
+    </>
   )
   
 }

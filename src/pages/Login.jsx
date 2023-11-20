@@ -52,6 +52,11 @@ const Login = () => {
             }});
     };
 
+    const keyPress=e=>{
+        if (e.key==='Enter'){
+            onClick();
+        }
+    }
 
     //login.js에서 post 요청한 데이터 가져오기
     //const onClick = async() => {
@@ -74,7 +79,8 @@ const Login = () => {
         <Title>로그인하기</Title>
         <Form>
             <Inputs>
-                <Input placeholder="셋탑박스" value={subsr} onChange={onChangeId}/>
+                <Input placeholder="셋탑박스" value={subsr} onChange={onChangeId}
+                onKeyDown={keyPress} />
                 {/*<Input placeholder="비밀번호" type="password" value={password} onChange={onChangePw}/>*/}
             </Inputs>
             <Button onClick={onClick} disabled={button}>Login</Button>

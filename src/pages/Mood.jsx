@@ -1,15 +1,34 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 
 import { useParams } from 'react-router-dom';
-
+import { moodList } from '../apis/mood';
+import { NavLink } from 'react-router-dom';
 
 export default function Detail() {
     
-    //url 파라미터("localhost:3000/mood/" 뒤에 붙는 상세 페이지 파라미터)를 content_id 변수로 저장
+    //url 파라미터("localhost:3000/mood/" 뒤에 붙는 파라미터)를 mood 변수로 저장
     let {mood}=useParams();
 
+    const [moodVods,setMoodVods]=useState();
+
+    //각 mood 별 검색 목록 불러오기
+    useEffect(()=>{
+    const getmoodList = async()=>{
+            const result =await moodList(mood);    
+            setMoodVods(result)}
+            getmoodList()
+    },[]);
+
+
     return (
-        <text>{mood} VOD 목록 </text>
+        <div>
+        <h3>{mood} VOD 목록 </h3>
+         {moodVods&&moodVods.map(image => (
+            <label key={image.alt}>
+              <NavLink to={"/detail/"+image.content_id}>
+              <img src={image.posterurl} alt={image.alt}/>
+              </NavLink></label>))}
+              </div> 
     );
 
 }

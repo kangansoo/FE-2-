@@ -41,7 +41,9 @@ export default function DropDownGenres() {
       getgenres()
       
     },[]);
-      
+
+    const handleLogout = () => {
+      setIsOpen(!isOpen);}
 
     return (
     <div className="dropdown" ref={dropdownRef}>
@@ -56,7 +58,7 @@ export default function DropDownGenres() {
           <br />{allGenres&&allGenres.map((genre)=>(
             <label key={genre}>
               <NavLink to={`../vods/${encodeURIComponent(genre)}`} >
-              <p>{genre}</p>
+              <p onClick={handleLogout}>{genre}</p>
           </NavLink></label>
           ))}
             

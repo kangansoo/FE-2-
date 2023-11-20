@@ -17,7 +17,7 @@ export default function Mood() {
             const result =await genreList(genre);    
             setGenreVods(result)}
             getgenreList()
-    },[]);
+    },);
 
 
     return (

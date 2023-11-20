@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { moodList } from '../apis/mood';
 import { NavLink } from 'react-router-dom';
 
-export default function Detail() {
+export default function Moodpage() {
     
     //url 파라미터("localhost:3000/mood/" 뒤에 붙는 파라미터)를 mood 변수로 저장
     let {mood}=useParams();

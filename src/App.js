@@ -7,9 +7,9 @@ import Main from './pages/Main';
 import Search from './pages/Search';
 import Navbar from './pages/Navbar';
 import Detail from './pages/Detail';
-import Genre from './pages/Genre';
 import Modal from 'react-modal';
-import Mood from './pages/Mood'
+import Mood from './pages/Mood';
+import Genre from './pages/Vods'
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Route path='/search' element={<><Navbar /><Search /></>} />
         <Route path='/detail/:content_id' element={<><Navbar /><Detail /></>} />
         <Route path='/mood/:mood' element={<><Navbar /><Mood /></>} />
-        <Route path='/genre' element={<><Navbar /><Genre /></>} />
+        <Route path='/vods/:genre' element={<><Navbar /><Genre /></>} />
       </Routes>
     </BrowserRouter>
   );

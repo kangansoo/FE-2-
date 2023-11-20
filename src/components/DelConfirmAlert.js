@@ -1,8 +1,11 @@
 import React from 'react'
 import { confirmAlert } from 'react-confirm-alert';
 import './DelConfirmAlert.css';
+import { delReview } from '../apis/reviewdel';
 
 export default function DelConfirmAlert() {
+
+
     
     const handleDelete = () => {
         
@@ -12,9 +15,10 @@ export default function DelConfirmAlert() {
               <div className='custom-ui'>
                 <h1>리뷰 삭제 확인</h1>
                 <p>정말로 삭제하시겠습니까?</p>
-                <button onClick={onClose}>닫기</button>
+                <button onClick={onClose}>취소</button>
                 <button
                   onClick={() => {
+                    delReview();
                     window.location.reload();
                   }}
                 >

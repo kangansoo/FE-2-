@@ -39,14 +39,15 @@ useEffect(()=>{
     setVODs3(result["personal_data"]);
   };
   getAllVODs();
-  
 },[]);
-
+console.log("vods1:",VODs1)
 
   //모델 1 새로고침 결과
   const getVOD1 = async () => {
     const result = await VOD_model1(subsr);
     setVODs1(result)
+    console.log(result)
+    console.log(VODs1)
   };
 
 
@@ -85,14 +86,14 @@ useEffect(()=>{
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-left"
         >
-          {VODs1&&VODs1.map(image => (
-            <label key={image.alt}>
+          {VODs1&&VODs1.map((image,index) => (
+            <label key={index}> 
               <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={image.alt}/>
+              <img src={image.posterurl} alt={index}/>
               </NavLink>
               
-              {image.mood.map(mood=>(
-                <label key={mood}>
+              {image.mood.map((mood,index)=>(
+                <label key={index}>
                 <NavLink to={"/mood/"+mood}>
                 #{mood}</NavLink>
                 </label>
@@ -122,10 +123,10 @@ useEffect(()=>{
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-left"
         >
-          {VODs2&&VODs2.map(image => (
-            <label key={image.alt}>
+          {VODs2&&VODs2.map((image,index) => (
+            <label key={index}>
               <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={image.alt}/>
+              <img src={image.posterurl} alt={index}/>
               </NavLink>
               
               {image.mood.map(mood=>(
@@ -158,10 +159,10 @@ useEffect(()=>{
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-left"
         >
-          {VODs3&&VODs3.map(image => (
-            <label key={image.alt}>
+          {VODs3&&VODs3.map((image,index) => (
+            <label key={index}>
               <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={image.alt}/>
+              <img src={image.posterurl} alt={index}/>
               </NavLink>
               
               {image.mood.map(mood=>(

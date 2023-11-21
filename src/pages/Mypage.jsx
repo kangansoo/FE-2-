@@ -31,7 +31,7 @@ export default function Mypage() {
   useEffect(() => {
     const checkWishes = async () => {
       try {
-        const response = await axios.get(`http://localhost:30/mypagewish${subsr}`);
+        const response = await axios.get("http://localhost:30/mypagewish",{subsr}); //post
         const found = response.data.filter((item) => item.subsr === subsr);
         if (found.length > 0) {
           setIsWished(true);
@@ -50,7 +50,7 @@ export default function Mypage() {
   useEffect(() => {
     const checkRatings = async () => {
       try {
-        const response = await axios.get(`http://localhost:30/mypagerating${subsr}`);
+        const response = await axios.get("http://localhost:30/mypagerating",{subsr}); //post
         const found = response.data.filter((item) => item.subsr === subsr);
         if (found.length > 0) {
         setIsRated(true);

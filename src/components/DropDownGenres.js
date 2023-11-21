@@ -14,6 +14,16 @@ export default function DropDownGenres() {
     const toggleDropdown = () => {
       setIsOpen(!isOpen);
     };
+
+    useEffect(()=>{
+      const getgenres = async () => {
+        const result = await genres();
+        setGenres(result);
+      }
+      getgenres()
+      
+    },[]);
+
   
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -31,16 +41,6 @@ export default function DropDownGenres() {
         document.removeEventListener('click', handleClickOutside);
       };
     }, []);
-
-
-    useEffect(()=>{
-      const getgenres = async () => {
-        const result = await genres();
-        setGenres(result);
-      }
-      getgenres()
-      
-    },[]);
 
     const handleLogout = () => {
       setIsOpen(!isOpen);}

@@ -27,15 +27,16 @@ export default function Main() {
   const [VODs2, setVODs2] = useState([]);
   const [VODs3, setVODs3] = useState([]);
 
-  //초기 결과 받을 리스트
+  //
+  const subsr=localStorage.getItem('subsr')
   
 // 전체 모델 결과
 useEffect(()=>{
   const getAllVODs = async () => {
-    const result = await allVods();
-    setVODs1(result["model1"]);
-    setVODs2(result["model2"]);
-    setVODs3(result["model3"]);
+    const result = await allVods(subsr);
+    setVODs1(result["description_data"]);
+    setVODs2(result["genre_data"]);
+    setVODs3(result["personal_data"]);
   };
   getAllVODs();
   
@@ -44,20 +45,20 @@ useEffect(()=>{
 
   //모델 1 새로고침 결과
   const getVOD1 = async () => {
-    const result = await VOD_model1();
+    const result = await VOD_model1(subsr);
     setVODs1(result)
   };
 
 
   //모델 2 새로고침 결과
     const getVOD2 = async () => {
-      const result = await VOD_model2();
+      const result = await VOD_model2(subsr);
       setVODs2(result)
     };
 
   //모델 3 새로고침 결과
     const getVOD3 = async () => {
-      const result = await VOD_model3();
+      const result = await VOD_model3(subsr);
       setVODs3(result)
     };
 

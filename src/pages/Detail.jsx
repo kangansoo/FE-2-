@@ -5,56 +5,67 @@ import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 //상세페이지 동적 url 라우팅 위한 useParams 
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { wishes } from '../apis/wishes';
-import imageData from "../components/imgdata";
+import { postwish } from '../apis/postwish';
 import axios from "axios";
 import ReviewModal from '../components/ReviewModal';
 import { Rating } from 'react-simple-star-rating'
+import { getVodData} from '../apis/getVodData';
+import { getwishdata } from '../apis/getwishdata';
+import { getratingdata } from '../apis/getratingdata';
 
 export default function Detail() {
     
     //url 파라미터("localhost:3000/detail/" 뒤에 붙는 상세 페이지 파라미터)를 content_id 변수로 저장
     let {content_id}=useParams();
+    //유저아이디
+    const subsr= localStorage.getItem('subsr');
 
-    //url 파라미터로 포스터 찾기 (content_id로 연결)
-    const poster=imageData.find(
-        function (imageData) 
-        { return imageData.content_id === content_id }
-    );
+    //VOD 데이터
+    const [vodData, setVodData] = useState({});
+
+    //rating 데이터
+    const [ratingData, setRatingData] = useState([]);
+
+    useEffect(()=> {
+      const getvoddata = async() => {
+        try {
+          const response = await getVodData(content_id);
+          setVodData(response);
+        }catch (error){
+          console.log(error);
+        }
+      };
+      getvoddata();
+    },[]);
 
     //찜하기
-    const subsr= localStorage.getItem('subsr');
     const [count,setCount]=useState(0);
     const [wish, setWish] = useState();
     
-    //review 데이터
-    const [reviewData, setReviewData] = useState();
-
     //wish get요청
     useEffect(() => {
-      const checkWishes = async () => {
+      const getWishData = async () => {
         try {
-          const response = await axios.get('http://localhost:30/wishes');
-          const found = response.data.filter((item) => item.subsr === subsr&&item.content_id === content_id);
-          if (found.length > 0) {
-            setWish(found[found.length-1].wish);
+          const response = await getwishdata(content_id);
+          if (response.length > 0) {
+            setWish(response[response.length-1]?.wish);
           } 
         } catch (error) {   
           console.log("error", error);
         }
       };
-      checkWishes();
-    }, [subsr, content_id]);
+      getWishData();
+    }, []);
     
     //POST Wishes
     useEffect(() => {
-      const postwishes = async()=>{
-        wishes(subsr, content_id, wish);}
+      const postWish = async()=>{
+        await postwish(subsr, content_id, wish);}
       
       if (count===0) {
           setCount(count+1)
     } else {
-      postwishes();
+      postWish();
     }
     }, [subsr, content_id, wish]);
 
@@ -67,30 +78,29 @@ export default function Detail() {
       }
     };
 
-    //review get요청
+    //rating get요청
     useEffect(() => {
-      const getReivew = async () => {
+      const getRatingData = async () => {
         try {
-          const response = await axios.get('http://localhost:30/ratings');
-          const found = response.data.filter((item) => item.content_id === content_id);
-          if (found.length > 0) {
-            setReviewData(found);
-            console.log("found", found)
+          const response = await getratingdata(content_id);
+          if (response.length > 0) {
+            setRatingData(response);
           } 
         } catch (error) {   
           console.log("error", error);
         }
       };
-      getReivew();
-    }, [content_id]);
+      getRatingData();
+    }, []);
 
     return (
     <div>
-        <h2>{poster.label}</h2>
-        <div>
-            <img src={poster.url} alt={poster.alt} >
-            </img><p>{poster.desc}</p>
-        </div>
+        <h2>{vodData[0]?.title}</h2>
+        <img src={vodData[0]?.posterurl} alt="" />
+        <p>{vodData[0]?.releaseyear}·{vodData[0]?.genre}·{vodData[0]?.country}</p>
+        <div>감독 : {vodData[0]?.director}</div>
+        <div>출연진 : {vodData[0]?.actors}</div>
+        <div>줄거리 : {vodData[0]?.desc}</div>
         
         <ReviewModal />
             <Button
@@ -100,7 +110,7 @@ export default function Detail() {
         <div>
           <h2>리뷰 목록</h2>
             {
-              (reviewData&&reviewData.map((item, index)=>(
+              (ratingData&&ratingData.map((item, index)=>(
                 <li key={index}>
                   {item.subsr}
                   <Rating
@@ -109,7 +119,7 @@ export default function Detail() {
                     initialValue={item.rating}
                     readonly="true"
                   />
-                  {item.reating_date}
+                  {item.rating_date}
                   <br />
                   {item.review}
                   <hr />

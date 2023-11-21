@@ -40,7 +40,7 @@ const Login = () => {
     //토큰 없이 json-server 이용 로그인
     const onClick = async() => {
         //토큰 없이 json-server 이용 로그인
-        axios.get(`http://localhost:30/login${subsr}`)
+        axios.get("http://localhost:30/login",{subsr}) //post
         .then((Response)=>{
             if (Response.data.length>0 && Response.data[0].subsr=== subsr ){//&& Response.data[0].password === password){
                 localStorage.setItem('subsr', Response.data[0].subsr);

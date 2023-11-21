@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Modal from 'react-modal';
 import { Rating } from 'react-simple-star-rating'
-import axios from "axios";
+
 import { useParams } from 'react-router-dom';
 import moment from "moment/moment";
 import { postrating } from '../apis/postrating';
@@ -43,16 +43,11 @@ export default function ReviewModal() {
       checkRatings();
     }, [subsr, content_id]);
 
-  let subtitle;
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#000000';
   }
 
   function closeModal() {
@@ -91,7 +86,7 @@ export default function ReviewModal() {
       
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
+        
         onRequestClose={closeModal}
         contentLabel="Example Modal"
         style={customStyles}

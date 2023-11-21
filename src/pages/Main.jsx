@@ -5,12 +5,12 @@ import "react-multi-carousel/lib/styles.css";
 import {NavLink} from "react-router-dom";
 
 //처음 추천 결과 요청
-import { allVods } from '../apis/vodallmodels';
+import { allVods } from '../apis/main';
 
 //각 모델 새로고침 결과 요청
-import { VOD_model1 } from '../apis/vodmodel1';
-import { VOD_model2 } from '../apis/vodmodel2'
-import { VOD_model3 } from '../apis/vodmodel3';
+import { VOD_model1 } from '../apis/reload1';
+import { VOD_model2 } from '../apis/reload2';
+import { VOD_model3 } from '../apis/reload3';
 
 
 export default function Main() {
@@ -73,7 +73,7 @@ console.log("vods1:",VODs1)
           focusOnSelect={true}
           swipeable={false}
           draggable={true}
-          showDots={true}
+          showDots={false}
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.
           infinite={true}
@@ -110,7 +110,7 @@ console.log("vods1:",VODs1)
           focusOnSelect={true}
           swipeable={false}
           draggable={true}
-          showDots={true}
+          showDots={false}
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.
           infinite={true}
@@ -146,7 +146,7 @@ console.log("vods1:",VODs1)
           centerMode={true}
           swipeable={false}
           draggable={true}
-          showDots={true}
+          showDots={false}
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.
           infinite={true}

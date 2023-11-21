@@ -4,6 +4,8 @@ import { Rating } from 'react-simple-star-rating'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import moment from "moment/moment";
+import { postrating } from '../apis/postrating';
+import { getratingdata } from '../apis/getratingdata';
 
 export default function ReviewModal() {
     let {content_id}=useParams();
@@ -22,8 +24,8 @@ export default function ReviewModal() {
     useEffect(() => {
       const checkRatings = async () => {
         try {
-          const response = await axios.get('http://localhost:30/ratings');
-          const found = response.data.filter((item) => item.subsr === subsr && item.content_id === content_id);
+          const response = await getratingdata(content_id);
+          const found = response.filter((item) => item.subsr === subsr);
           if (found.length > 0) {
             setRating(found[found.length-1].rating);
             setReview(found[found.length-1].review);
@@ -68,8 +70,7 @@ export default function ReviewModal() {
     }
     //POST Rating 
     const handleRating = async() => {
-        const rating_info={subsr:subsr, content_id:content_id, rating:rating, rating_date:rating_date, review:review};
-        await axios.post("http://localhost:30/ratings", rating_info);
+        await postrating(content_id, subsr, rating, review, rating_date);
     };
 
     const clickSubmit = async(e) => {
@@ -95,7 +96,7 @@ export default function ReviewModal() {
         contentLabel="Example Modal"
         style={customStyles}
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{content_id}</h2>
+        {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{content_id}</h2> */}
         <button onClick={closeModal}>×</button>
         <div>
         {<Rating

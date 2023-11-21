@@ -86,7 +86,7 @@ export default function Mypage() {
             <NavLink to={"/detail/"+item.content_id} className='ImageDiv'>
               <img 
               src={item.posterurl}
-              alt={item.alt}
+              alt={index}
               />
               <figcaption><progress value={item.disp_rtm} max={item.use_tms} /><figcaption>{item.title}</figcaption></figcaption>
             </NavLink>

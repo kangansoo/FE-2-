@@ -13,20 +13,25 @@ export default function Mood() {
 
     //각 genre 별 검색 목록 불러오기
     useEffect(()=>{
+      try {
     const getgenreList = async()=>{
             const result =await genreList(genre);    
-            setGenreVods(result)}
-            getgenreList()
+            setGenreVods(result.data)
+            console.log(result.status)
+            getgenreList()}
+    }catch (error){
+          console.log(error)
+        }
     },[genre]);
 
 
     return (
         <div>
         <h3>{genre} VOD 목록 </h3>
-         {genreVods&&genreVods.map(image => (
-            <label key={image.alt}>
+         {genreVods&&genreVods.map((image,index) => (
+            <label key={index}>
               <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={image.alt}/>
+              <img src={image.posterurl} alt={index}/>
               </NavLink></label>))} 
               </div> 
     );

@@ -86,10 +86,7 @@ export default function ReviewModal() {
         }
       }
     }
-    console.log("rating", rating)
-    console.log("rating_date", rating_date)
-    console.log("ratinreview", review)
-    
+
 
   return (
     <div>

@@ -6,14 +6,12 @@ import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { postwish } from '../apis/postwish';
-import axios from "axios";
 import ReviewModal from '../components/ReviewModal';
 import { Rating } from 'react-simple-star-rating'
 import { getVodData} from '../apis/getVodData';
 import { getwishdata } from '../apis/getwishdata';
 import { getratingdata } from '../apis/getratingdata';
-import { putwish0 } from '../apis/putrating';
-import { putwish1 } from '../apis/putrating';
+
 
 export default function Detail() {
     
@@ -28,6 +26,12 @@ export default function Detail() {
     //rating 데이터
     const [ratingData, setRatingData] = useState([]);
 
+    //찜하기
+    const [count,setCount]=useState(0);
+    const [wish, setWish] = useState();
+    const [wishClick,setWishClick]=useState(0);
+
+    // VOD GET 요청
     useEffect(()=> {
       const getvoddata = async() => {
         try {
@@ -40,9 +44,6 @@ export default function Detail() {
       getvoddata();
     },[]);
 
-    //찜하기
-    const [count,setCount]=useState(0);
-    const [wish, setWish] = useState();
     
     //wish get요청
     useEffect(() => {
@@ -59,17 +60,20 @@ export default function Detail() {
       getWishData();
     }, []);
     
-    //POST Wishes
+    //Wish POST 요청
     useEffect(() => {
       const postWish = async()=>{
         await postwish(subsr, content_id, wish);}
       
-      if (count===0) {
-          setCount(count+1)
-    } else {
-      postWish();
-    }
-    }, [subsr, content_id, wish]);
+    //   if (count===0) {
+    //       setCount(count+1)
+    // } else {
+    //   postWish();
+    // }
+        if (wishClick===1){
+          postWish();
+        }
+    }, [wishClick]);     //subsr, content_id, wish]);
 
     //wish 변경 
     const handleWishButton = () => {
@@ -78,6 +82,7 @@ export default function Detail() {
       } else {
         setWish(0);
       }
+      setWishClick(1)
     };
 
     //rating get요청

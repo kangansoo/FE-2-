@@ -3,6 +3,7 @@ import Carousel from "react-multi-carousel";
 //import imageData from "../components/imgdata";
 import "react-multi-carousel/lib/styles.css";
 import {NavLink} from "react-router-dom";
+import { Loading } from '../components/Loading';
 
 //처음 추천 결과 요청
 import { allVods } from '../apis/main';
@@ -27,20 +28,24 @@ export default function Main() {
   const [VODs2, setVODs2] = useState([]);
   const [VODs3, setVODs3] = useState([]);
 
-  //
+  //subsr 변수
   const subsr=localStorage.getItem('subsr')
+
+  //로딩 페이지 변수
+  const [loading, setLoading] = useState(true);
   
 // 전체 모델 결과
 useEffect(()=>{
   const getAllVODs = async () => {
+    setLoading(true);
     const result = await allVods(subsr);
     setVODs1(result["description_data"]);
     setVODs2(result["genre_data"]);
     setVODs3(result["personal_data"]);
+    setLoading(false);
   };
   getAllVODs();
 },[]);
-console.log("vods1:",VODs1)
 
   //모델 1 새로고침 결과
   const getVOD1 = async () => {
@@ -66,6 +71,7 @@ console.log("vods1:",VODs1)
 
     return (
       <div>
+        {loading ? <Loading /> :null}<div>
         <h1>인기작</h1>
         <button onClick={getVOD1}>새로고침</button>
           <Carousel
@@ -174,7 +180,7 @@ console.log("vods1:",VODs1)
             </label>
             ))
           }
-        </Carousel>
+        </Carousel></div>}
   
       </div>
   );

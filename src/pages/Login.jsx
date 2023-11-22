@@ -5,8 +5,7 @@ import {Wrapper, Title, Form, Inputs, Input} from "../components/Common";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 //token X import { login } from '../apis/login';
-
-import axios from 'axios';
+import { login } from '../apis/login_post';
 
 
 // 로그인 화면
@@ -40,11 +39,10 @@ const Login = () => {
     //토큰 없이 json-server 이용 로그인
     const onClick = async() => {
         //토큰 없이 json-server 이용 로그인
-        axios.get("http://localhost:30/login",{subsr}) //post
+       await login(subsr)
         .then((Response)=>{
-            if (Response.data.length>0 && Response.data[0].subsr=== subsr ){//&& Response.data[0].password === password){
+            if (Response.data.length>0 && Response.data[0].subsr=== subsr ){
                 localStorage.setItem('subsr', Response.data[0].subsr);
-                //localStorage.setItem('password', Response.data[0].password);
                 navigate("/main");
             }else{
                 alert('셋탑박스 회원 정보가 틀렸습니다.\n정보 확인을 부탁드립니다.');

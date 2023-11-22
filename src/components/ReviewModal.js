@@ -4,9 +4,9 @@ import { Rating } from 'react-simple-star-rating'
 
 import { useParams } from 'react-router-dom';
 import moment from "moment/moment";
-import { postrating } from '../apis/postrating';
-import { getratingdata } from '../apis/getratingdata';
-import { putrating } from '../apis/putrating';
+import { postrating } from '../apis/postdetailrating';
+import { getratingdata } from '../apis/getdetailrating';
+import { putrating } from '../apis/putdetailrating';
 
 export default function ReviewModal() {
     let {content_id}=useParams();

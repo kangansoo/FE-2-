@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import './DropDownGenres.css'
 import { NavLink } from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search"
-import { genres } from '../apis/allgenres';
+import { genres } from '../apis/getGenres';
 
 
 export default function DropDownGenres() {
@@ -57,7 +57,7 @@ export default function DropDownGenres() {
           카테고리 검색
           <br />{allGenres&&allGenres.map((genre)=>(
             <label key={genre}>
-              <NavLink to={`../vods/${encodeURIComponent(genre)}`} >
+              <NavLink to={`../genre/${encodeURIComponent(genre)}`} >
               <p onClick={handleLogout}>{genre}</p>
           </NavLink></label>
           ))}

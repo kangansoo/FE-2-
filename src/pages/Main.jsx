@@ -6,12 +6,12 @@ import {NavLink} from "react-router-dom";
 import { Loading } from '../components/Loading';
 
 //처음 추천 결과 요청
-import { allVods } from '../apis/main';
+import { allVods } from '../apis/getmain_post';
 
 //각 모델 새로고침 결과 요청
-import { VOD_model1 } from '../apis/reload1';
-import { VOD_model2 } from '../apis/reload2';
-import { VOD_model3 } from '../apis/reload3';
+import { VOD_model1 } from '../apis/getreload1_post';
+import { VOD_model2 } from '../apis/getreload2_post';
+import { VOD_model3 } from '../apis/getreload3_post';
 
 
 export default function Main() {
@@ -34,18 +34,18 @@ export default function Main() {
   //로딩 페이지 변수
   const [loading, setLoading] = useState(true);
   
-// 전체 모델 결과
-useEffect(()=>{
-  const getAllVODs = async () => {
-    setLoading(true);
-    const result = await allVods(subsr);
-    setVODs1(result["description_data"]);
-    setVODs2(result["genre_data"]);
-    setVODs3(result["personal_data"]);
-    setLoading(false);
-  };
-  getAllVODs();
-},[]);
+  // 전체 모델 결과
+  useEffect(()=>{
+    const getAllVODs = async () => {
+      setLoading(true);
+      const result = await allVods(subsr);
+      setVODs1(result["description_data"]);
+      setVODs2(result["genre_data"]);
+      setVODs3(result["personal_data"]);
+      setLoading(false);
+    };
+    getAllVODs();
+  },[]);
 
   //모델 1 새로고침 결과
   const getVOD1 = async () => {

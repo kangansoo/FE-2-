@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react'
 
 import { useParams } from 'react-router-dom';
-import { moodList } from '../apis/mood';
+import { moodList } from '../apis/getmood';
 import { NavLink } from 'react-router-dom';
 
 export default function Moodpage() {

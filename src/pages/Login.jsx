@@ -2,7 +2,7 @@ import React from 'react'
 import { styled } from 'styled-components';
 import {Wrapper, Title, Form, Inputs, Input} from "../components/Common";
 //import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 //token X import { login } from '../apis/login';
 import { login } from '../apis/login_post';
@@ -21,20 +21,22 @@ const Login = () => {
     //     subsr.includes('@') && password.length >= 7 ? setButton(false) :setButton(true);
     // }
 
-    function changeButton() {
-        subsr.includes('@') ? setButton(false) :setButton(true);
+    function changeButton(subsr) {
+        subsr.length > 7 ? setButton(false) :setButton(true);
     }
 
     const navigate = useNavigate();
     
     const onChangeId = (e) => {
         setId(e.target.value);
-        changeButton();
     };
     // const onChangePw = (e) => {
     //     setPw(e.target.value);
     //     changeButton();
     // };
+    useEffect(()=> {
+        changeButton(subsr);
+    }, [subsr])
 
     //토큰 없이 json-server 이용 로그인
     const onClick = async() => {

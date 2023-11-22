@@ -1,6 +1,6 @@
 import React from 'react'
 import { confirmAlert } from 'react-confirm-alert';
-import './DelConfirmAlert.css';
+import '../css/DelConfirmAlert.css';
 import { delReview } from '../apis/reviewdel';
 
 export default function DelConfirmAlert() {

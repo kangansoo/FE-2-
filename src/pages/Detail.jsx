@@ -5,12 +5,12 @@ import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 //상세페이지 동적 url 라우팅 위한 useParams 
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { postwish } from '../apis/postwish';
+import { postwish } from '../apis/postdetailwish';
 import ReviewModal from '../components/ReviewModal';
 import { Rating } from 'react-simple-star-rating'
 import { getVodData} from '../apis/getVodData';
-import { getwishdata } from '../apis/getwishdata';
-import { getratingdata } from '../apis/getratingdata';
+import { getwishdata } from '../apis/getmywish_post';
+import { getratingdata } from '../apis/getdetailrating';
 import DelConfirmAlert from '../components/DelConfirmAlert';
 
 
@@ -30,7 +30,7 @@ export default function Detail() {
     //찜하기
     //const [count,setCount]=useState(0);
     const [wish, setWish] = useState();
-    const [wishClick,setWishClick]=useState(0);
+    //const [wishClick,setWishClick]=useState(0);
 
     // VOD GET 요청
     useEffect(()=> {

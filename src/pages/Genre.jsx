@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react'
 
 import { useParams } from 'react-router-dom';
-import { genreList } from '../apis/genre';
+import { genreList } from '../apis/getGenre';
 import { NavLink } from 'react-router-dom';
 
 export default function Mood() {
@@ -18,7 +18,8 @@ export default function Mood() {
             const result =await genreList(genre);    
             setGenreVods(result.data)
             console.log(result.status)
-            getgenreList()}
+            }
+            getgenreList();
     }catch (error){
           console.log(error)
         }

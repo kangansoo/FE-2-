@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { NavLink } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
-import {getReplay} from '../apis/mypage_replay';
+import {getReplay} from '../apis/getmypagereplay_post';
 import "../css/Mypage.css"
 import { getmypagewish } from '../apis/getmypagewish_post';
 import { getmypagerating } from '../apis/getmypagerating_post';
@@ -65,7 +65,6 @@ export default function Mypage() {
 
   return (
     <>
-      {/* ? = data가 undefined일 때 아무것도 출력하지 마라 (useEffect 실행 전까지는 undefined)*/}
       <div>
       <h2>회원정보</h2>
 
@@ -86,7 +85,7 @@ export default function Mypage() {
               src={item.posterurl}
               alt={index}
               />
-              <figcaption><progress value={item.disp_rtm} max={item.use_tms} /><figcaption>{item.title}</figcaption></figcaption>
+              <figcaption><progress value={item.user_preference} max={100} /><figcaption>{item.title}</figcaption></figcaption>
             </NavLink>
           </figure>
         ))):(

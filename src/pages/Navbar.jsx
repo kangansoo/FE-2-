@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/Navbar.css';
 import { Link } from 'react-router-dom';
 import DropDownSubsr from '../components/DropDownSubsr';
-import DropDownCategories from '../components/DropDownGenres';
+import DropDownGenres from '../components/DropDownGenres';
 
 export default function Navbar() {
   const subsr = localStorage.getItem('subsr');
@@ -15,9 +15,9 @@ export default function Navbar() {
         
         
         {/* <Link to='/search'> */}
-          <DropDownCategories>
+          <DropDownGenres>
             
-            </DropDownCategories>
+            </DropDownGenres>
             {/* </Link> */}
         
 

@@ -61,29 +61,31 @@ export default function Detail() {
       getWishData();
     }, []);
     
-    //Wish POST 요청
-    useEffect(() => {
-      const postWish = async()=>{
-        await postwish(subsr, content_id, wish);}
+    // //Wish POST 요청
+    // useEffect(() => {
+    //   const postWish = async()=>{
+    //     await postwish(subsr, content_id, wish);}
       
-    //   if (count===0) {
-    //       setCount(count+1)
-    // } else {
-    //   postWish();
-    // }
-        if (wishClick===1){
-          postWish();
-        }
-    }, [wishClick]);     //subsr, content_id, wish]);
+    // //   if (count===0) {
+    // //       setCount(count+1)
+    // // } else {
+    // //   postWish();
+    // // }
+        
+    //     postWish();
+      
+    // }, [wishClick]);     //subsr, content_id, wish]);
+
+    const postWish = async()=>{
+           await postwish(subsr, content_id, Number(!wish));}
 
     //wish 변경 
-    const handleWishButton = () => {
+    const handleWishButton = async() => {
       if (!wish) {
         setWish(1);
       } else {
         setWish(0);
       }
-      setWishClick(1)
     };
 
     //rating get요청
@@ -113,7 +115,9 @@ export default function Detail() {
         <DelConfirmAlert />
         <ReviewModal />
             <Button
-                onClick={handleWishButton}>
+                onClick={()=>{
+                  handleWishButton();
+                  postWish();}}>
                 {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
             </Button>
         

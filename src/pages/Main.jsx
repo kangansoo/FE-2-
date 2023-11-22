@@ -180,7 +180,7 @@ useEffect(()=>{
             </label>
             ))
           }
-        </Carousel></div>}
+        </Carousel></div>
   
       </div>
   );

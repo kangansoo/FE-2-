@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import axios from "axios";
 import { NavLink } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
 import {getReplay} from '../apis/mypage_replay';
-import DelConfirmAlert from '../components/DelConfirmAlert'
 import "../css/Mypage.css"
+import { getmypagewish } from '../apis/getmypagewish_post';
+import { getmypagerating } from '../apis/getmypagerating_post';
 
 export default function Mypage() {
   const subsr = localStorage.getItem('subsr');
@@ -31,11 +31,10 @@ export default function Mypage() {
   useEffect(() => {
     const checkWishes = async () => {
       try {
-        const response = await axios.get("http://localhost:30/mypagewish",{subsr}); //post
-        const found = response.data.filter((item) => item.subsr === subsr);
-        if (found.length > 0) {
+        const response = await getmypagewish("http://localhost:30/mypagewish",{subsr});
+        if (response.length > 0) {
           setIsWished(true);
-          setWishData(found);
+          setWishData(response);
         } else{
           setIsWished();
         }
@@ -44,17 +43,16 @@ export default function Mypage() {
       }
     };
     checkWishes();
-  }, []);
+  }, [subsr]);
 
   //평점 GET
   useEffect(() => {
     const checkRatings = async () => {
       try {
-        const response = await axios.get("http://localhost:30/mypagerating",{subsr}); //post
-        const found = response.data.filter((item) => item.subsr === subsr);
-        if (found.length > 0) {
+        const response = await getmypagerating("http://localhost:30/mypagerating",{subsr});
+        if (response.length > 0) {
         setIsRated(true);
-        setRatingData(found);
+        setRatingData(response);
         } else{
           setIsRated();
         }
@@ -63,7 +61,7 @@ export default function Mypage() {
       }
     };
     checkRatings();
-  }, []);
+  }, [subsr]);
 
   return (
     <>
@@ -140,8 +138,6 @@ export default function Mypage() {
           ))}</text>*/}
           
         </NavLink>
-          <DelConfirmAlert />
-          {console.log()}
           <hr />
         </div>
       

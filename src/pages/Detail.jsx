@@ -11,6 +11,7 @@ import { Rating } from 'react-simple-star-rating'
 import { getVodData} from '../apis/getVodData';
 import { getwishdata } from '../apis/getwishdata';
 import { getratingdata } from '../apis/getratingdata';
+import DelConfirmAlert from '../components/DelConfirmAlert';
 
 
 export default function Detail() {
@@ -27,7 +28,7 @@ export default function Detail() {
     const [ratingData, setRatingData] = useState([]);
 
     //찜하기
-    const [count,setCount]=useState(0);
+    //const [count,setCount]=useState(0);
     const [wish, setWish] = useState();
     const [wishClick,setWishClick]=useState(0);
 
@@ -60,29 +61,31 @@ export default function Detail() {
       getWishData();
     }, []);
     
-    //Wish POST 요청
-    useEffect(() => {
-      const postWish = async()=>{
-        await postwish(subsr, content_id, wish);}
+    // //Wish POST 요청
+    // useEffect(() => {
+    //   const postWish = async()=>{
+    //     await postwish(subsr, content_id, wish);}
       
-    //   if (count===0) {
-    //       setCount(count+1)
-    // } else {
-    //   postWish();
-    // }
-        if (wishClick===1){
-          postWish();
-        }
-    }, [wishClick]);     //subsr, content_id, wish]);
+    // //   if (count===0) {
+    // //       setCount(count+1)
+    // // } else {
+    // //   postWish();
+    // // }
+        
+    //     postWish();
+      
+    // }, [wishClick]);     //subsr, content_id, wish]);
+
+    const postWish = async()=>{
+           await postwish(subsr, content_id, Number(!wish));}
 
     //wish 변경 
-    const handleWishButton = () => {
+    const handleWishButton = async() => {
       if (!wish) {
         setWish(1);
       } else {
         setWish(0);
       }
-      setWishClick(1)
     };
 
     //rating get요청
@@ -109,11 +112,15 @@ export default function Detail() {
         <div>출연진 : {vodData[0]?.actors}</div>
         <div>줄거리 : {vodData[0]?.desc}</div>
         
+        <DelConfirmAlert />
         <ReviewModal />
             <Button
-                onClick={handleWishButton}>
+                onClick={()=>{
+                  handleWishButton();
+                  postWish();}}>
                 {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
             </Button>
+        
         <div>
           <h2>리뷰 목록</h2>
             {

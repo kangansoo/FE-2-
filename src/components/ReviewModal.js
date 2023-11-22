@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import moment from "moment/moment";
 import { postrating } from '../apis/postrating';
 import { getratingdata } from '../apis/getratingdata';
+import { putrating } from '../apis/putrating';
 
 export default function ReviewModal() {
     let {content_id}=useParams();
@@ -19,6 +20,8 @@ export default function ReviewModal() {
     //rating_date 설정 useState
     const [ratingDate, setRatingDate] = useState();
     const rating_date = moment(ratingDate).format('yyyy-MM-DD HH:mm');
+
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     //rating get요청
     useEffect(() => {
@@ -41,10 +44,9 @@ export default function ReviewModal() {
         }
       };
       checkRatings();
-    }, [subsr, content_id]);
+    }, [subsr, content_id, modalIsOpen]);
 
-
-  const [modalIsOpen, setIsOpen] = useState(false);
+  
 
   function openModal() {
     setIsOpen(true);
@@ -64,18 +66,30 @@ export default function ReviewModal() {
         setRatingDate(new Date());
     }
     //POST Rating 
-    const handleRating = async() => {
-        await postrating(content_id, subsr, rating, review, rating_date);
-    };
+    // const handleRating = async() => {
+    //   if(isRated){
+    //     await putreview(content_id, subsr, rating, review, rating_date);
+    //   }else{
+    //     await postrating(content_id, subsr, rating, review, rating_date);
+    //   }
+    // };
 
     const clickSubmit = async(e) => {
       if(rating === 0){
         alert("평점을 메겨주세요");
         e.preventDefault();
       }else{
-        await handleRating();
+        if (isRated){
+          await putrating(content_id, subsr, rating, review, rating_date);
+        } else {
+          await postrating(content_id, subsr, rating, review, rating_date);
+        }
       }
     }
+    console.log("rating", rating)
+    console.log("rating_date", rating_date)
+    console.log("ratinreview", review)
+    
 
   return (
     <div>

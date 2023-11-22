@@ -12,6 +12,8 @@ import { Rating } from 'react-simple-star-rating'
 import { getVodData} from '../apis/getVodData';
 import { getwishdata } from '../apis/getwishdata';
 import { getratingdata } from '../apis/getratingdata';
+import { putwish0 } from '../apis/putrating';
+import { putwish1 } from '../apis/putrating';
 
 export default function Detail() {
     
@@ -132,6 +134,7 @@ export default function Detail() {
     </div>
     )
 }
+  
 
 const Button = styled.button`
     border: 0;

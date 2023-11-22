@@ -8,7 +8,7 @@ import Navbar from './pages/Navbar';
 import Detail from './pages/Detail';
 import Modal from 'react-modal';
 import Mood from './pages/Mood';
-import Genre from './pages/Vods'
+import Genre from './pages/Genre'
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route path='/main' element={<><Navbar /><Main /></>} />
         <Route path='/detail/:content_id' element={<><Navbar /><Detail /></>} />
         <Route path='/mood/:mood' element={<><Navbar /><Mood /></>} />
-        <Route path='/vods/:genre' element={<><Navbar /><Genre /></>} />
+        <Route path='/genre/:genre' element={<><Navbar /><Genre /></>} />
       </Routes>
     </BrowserRouter>
   );

@@ -111,7 +111,7 @@ export default function Detail() {
         <p>{vodData[0]?.disp_rtm}·{vodData[0]?.grade}</p>
         <div>감독 : {vodData[0]?.director}</div>
         <div>출연진 : {vodData[0]?.actors}</div>
-        <div>줄거리 : {vodData[0]?.desc}</div>
+        <div>줄거리 : {vodData[0]?.description}</div>
         
         
         <ReviewModal />

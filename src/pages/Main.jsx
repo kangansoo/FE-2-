@@ -53,7 +53,6 @@ export default function Main() {
     setVODs1(result)
   };
 
-
   //모델 2 새로고침 결과
     const getVOD2 = async () => {
       const result = await VOD_model2(subsr);
@@ -108,6 +107,12 @@ export default function Main() {
                 #{gpt}
                 </label>
               ))}
+              <br />
+              {image.gpt_subjects.map((gpt,index)=>(
+                <label key={index}>
+                #{gpt}
+                </label>
+              ))}
             </label>
             ))
           }
@@ -145,6 +150,18 @@ export default function Main() {
                 #{mood}</NavLink>
                 </label>
               ))}
+              <br />
+              {image.gpt_genres.map((gpt,index)=>(
+                <label key={index}>
+                #{gpt}
+                </label>
+              ))}
+              <br />
+              {image.gpt_subjects.map((gpt,index)=>(
+                <label key={index}>
+                #{gpt}
+                </label>
+              ))}
             </label>
             ))
           }
@@ -180,6 +197,18 @@ export default function Main() {
                 <NavLink to={"/mood/"+mood}>
                   #{mood}</NavLink>
                   </label>
+              ))}
+              <br />
+              {image.gpt_genres.map((gpt,index)=>(
+                <label key={index}>
+                #{gpt}
+                </label>
+              ))}
+              <br />
+              {image.gpt_subjects.map((gpt,index)=>(
+                <label key={index}>
+                #{gpt}
+                </label>
               ))}
             </label>
             ))

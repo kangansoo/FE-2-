@@ -23,8 +23,8 @@ export default function Moodpage() {
     return (
         <div>
         <h3>{mood} VOD 목록 </h3>
-         {moodVods&&moodVods.map(image => (
-            <label key={image.alt}>
+         {moodVods&&moodVods.map((image, index) => (
+            <label key={index}>
               <NavLink to={"/detail/"+image.content_id}>
               <img src={image.posterurl} alt={image.alt}/>
               </NavLink></label>))}

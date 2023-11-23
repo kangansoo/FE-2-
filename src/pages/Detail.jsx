@@ -107,12 +107,13 @@ export default function Detail() {
     <div>
         <h2>{vodData[0]?.title}</h2>
         <img src={vodData[0]?.posterurl} alt="" />
-        <p>{vodData[0]?.releaseyear}·{vodData[0]?.genre}·{vodData[0]?.country}</p>
+        <p>{vodData[0]?.release_year}·{vodData[0]?.category}·{vodData[0]?.genre}·{vodData[0]?.country}</p>
+        <p>{vodData[0]?.disp_rtm}·{vodData[0]?.grade}</p>
         <div>감독 : {vodData[0]?.director}</div>
         <div>출연진 : {vodData[0]?.actors}</div>
-        <div>줄거리 : {vodData[0]?.desc}</div>
+        <div>줄거리 : {vodData[0]?.description}</div>
         
-        <DelConfirmAlert />
+        
         <ReviewModal />
             <Button
                 onClick={()=>{
@@ -120,11 +121,33 @@ export default function Detail() {
                   postWish();}}>
                 {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
             </Button>
-        
         <div>
-          <h2>리뷰 목록</h2>
+          <h2>나의 리뷰</h2>
             {
-              (ratingData&&ratingData.map((item, index)=>(
+              (ratingData&&ratingData.filter((ratingData)=>ratingData.subsr === subsr).map((item, index)=>(
+                <li key={index}>
+                  {item.subsr}
+                  <Rating
+                    fillColor="#A50034"
+                    size="15"
+                    initialValue={item.rating}
+                    readonly="true"
+                  />
+                  {item.rating_date}
+                  <br />
+                  {item.review}
+                  <DelConfirmAlert />
+                  <hr />
+                </li>
+              )))
+            }
+            
+        </div>
+        <br />
+        <div>
+          <h2>모든 리뷰</h2>
+            {
+              (ratingData&&ratingData.filter((ratingData)=>ratingData.subsr !== subsr).map((item, index)=>(
                 <li key={index}>
                   {item.subsr}
                   <Rating

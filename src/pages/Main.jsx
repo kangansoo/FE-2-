@@ -51,8 +51,6 @@ export default function Main() {
   const getVOD1 = async () => {
     const result = await VOD_model1(subsr);
     setVODs1(result)
-    console.log(result)
-    console.log(VODs1)
   };
 
 
@@ -102,6 +100,12 @@ export default function Main() {
                 <label key={index}>
                 <NavLink to={"/mood/"+mood}>
                 #{mood}</NavLink>
+                </label>
+              ))}
+              <br />
+              {image.gpt_genres.map((gpt,index)=>(
+                <label key={index}>
+                #{gpt}
                 </label>
               ))}
             </label>

@@ -17,7 +17,7 @@ export default function Mood() {
     const getgenreList = async()=>{
             const result =await genreList(genre);    
             setGenreVods(result.data)
-            console.log(result.status)
+            console.log(result)
             }
             getgenreList();
     }catch (error){

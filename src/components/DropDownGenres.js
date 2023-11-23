@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import './DropDownGenres.css'
+import '../css/DropDownGenres.css'
 import { NavLink } from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search"
 import { genres } from '../apis/getGenres';
@@ -18,7 +18,7 @@ export default function DropDownGenres() {
     useEffect(()=>{
       const getgenres = async () => {
         const result = await genres();
-        setGenres(result);
+        setGenres(result.data);
       }
       getgenres()
       

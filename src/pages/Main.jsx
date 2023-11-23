@@ -13,6 +13,10 @@ import { VOD_model1 } from '../apis/getreload1_post';
 import { VOD_model2 } from '../apis/getreload2_post';
 import { VOD_model3 } from '../apis/getreload3_post';
 
+//react-slick-slider
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 export default function Main() {
     const responsive = {
@@ -37,32 +41,50 @@ export default function Main() {
   // 전체 모델 결과
   useEffect(()=>{
     const getAllVODs = async () => {
-      setLoading(true);
-      const result = await allVods(subsr);
-      setVODs1(result["description_data"]);
-      setVODs2(result["genre_data"]);
-      setVODs3(result["personal_data"]);
-      setLoading(false);
+      try {
+        setLoading(true);
+        const result = await allVods(subsr);
+        setVODs1(result.data["description_data"]);
+        setVODs2(result.data["genre_data"]);
+        setVODs3(result.data["personal_data"]);
+        setLoading(false);
+      }catch(error){
+        console.log(error);
+      }
     };
     getAllVODs();
   },[]);
 
   //모델 1 새로고침 결과
   const getVOD1 = async () => {
-    const result = await VOD_model1(subsr);
-    setVODs1(result)
+    try {
+      const result = await VOD_model1(subsr);
+      setVODs1(result.data);
+    }catch(error){
+      console.log(error);
+    }
+    
   };
 
   //모델 2 새로고침 결과
     const getVOD2 = async () => {
-      const result = await VOD_model2(subsr);
-      setVODs2(result)
+      try{
+        const result = await VOD_model2(subsr);
+        setVODs2(result.data);
+      }catch(error){
+        console.log(error);
+      }
+      
     };
 
   //모델 3 새로고침 결과
     const getVOD3 = async () => {
-      const result = await VOD_model3(subsr);
-      setVODs3(result)
+      try{
+        const result = await VOD_model3(subsr);
+        setVODs3(result.data)
+      }catch(error){
+        console.log(error);
+      }
     };
 
 
@@ -214,7 +236,6 @@ export default function Main() {
             ))
           }
         </Carousel></div>
-  
       </div>
   );
 };

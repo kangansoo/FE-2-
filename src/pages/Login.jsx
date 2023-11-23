@@ -4,7 +4,7 @@ import {Wrapper, Title, Form, Inputs, Input} from "../components/Common";
 //import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-//token X import { login } from '../apis/login';
+
 import { login } from '../apis/getlogin_post';
 
 
@@ -17,9 +17,6 @@ const Login = () => {
     
     const [button, setButton] = useState(true);
 
-    // function changeButton() {
-    //     subsr.includes('@') && password.length >= 7 ? setButton(false) :setButton(true);
-    // }
 
     function changeButton(subsr) {
         subsr.length > 7 ? setButton(false) :setButton(true);

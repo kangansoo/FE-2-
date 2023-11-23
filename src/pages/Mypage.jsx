@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { NavLink } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
-import {getReplay} from '../apis/getmypagereplay_post';
+
 import "../css/Mypage.css"
+
+import {getReplay} from '../apis/getmypagereplay_post';
 import { getmypagewish } from '../apis/getmypagewish_post';
 import { getmypagerating } from '../apis/getmypagerating_post';
+
 
 export default function Mypage() {
   const subsr = localStorage.getItem('subsr');
@@ -32,9 +35,9 @@ export default function Mypage() {
     const checkWishes = async () => {
       try {
         const response = await getmypagewish("http://localhost:30/mypagewish",{subsr});
-        if (response.length > 0) {
+        if (response.data.length > 0) {
           setIsWished(true);
-          setWishData(response);
+          setWishData(response.data);
         } else{
           setIsWished();
         }
@@ -50,9 +53,9 @@ export default function Mypage() {
     const checkRatings = async () => {
       try {
         const response = await getmypagerating("http://localhost:30/mypagerating",{subsr});
-        if (response.length > 0) {
+        if (response.data.length > 0) {
         setIsRated(true);
-        setRatingData(response);
+        setRatingData(response.data);
         } else{
           setIsRated();
         }

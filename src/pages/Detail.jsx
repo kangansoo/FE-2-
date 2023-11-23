@@ -37,7 +37,7 @@ export default function Detail() {
       const getvoddata = async() => {
         try {
           const response = await getVodData(content_id);
-          setVodData(response);
+          setVodData(response.data);
         }catch (error){
           console.log(error);
         }
@@ -51,8 +51,8 @@ export default function Detail() {
       const getWishData = async () => {
         try {
           const response = await getwishdata(content_id);
-          if (response.length > 0) {
-            setWish(response[response.length-1]?.wish);
+          if (response.data.length > 0) {
+            setWish(response.data[response.data.length-1]?.wish);
           } 
         } catch (error) {   
           console.log("error", error);
@@ -93,8 +93,8 @@ export default function Detail() {
       const getRatingData = async () => {
         try {
           const response = await getratingdata(content_id);
-          if (response.length > 0) {
-            setRatingData(response);
+          if (response.data.length > 0) {
+            setRatingData(response.data);
           } 
         } catch (error) {   
           console.log("error", error);

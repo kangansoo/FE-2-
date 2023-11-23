@@ -6,5 +6,5 @@ export const postwish = async(subsr, content_id, wish) => {
         content_id,
         wish
     });
-    return result.data;
+    return result.status;
 }

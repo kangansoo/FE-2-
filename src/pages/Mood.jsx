@@ -15,7 +15,7 @@ export default function Moodpage() {
     useEffect(()=>{
     const getmoodList = async()=>{
             const result =await moodList(mood);    
-            setMoodVods(result)}
+            setMoodVods(result.data)}
             getmoodList()
     },[]);
 

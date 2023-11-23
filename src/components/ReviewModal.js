@@ -4,6 +4,7 @@ import { Rating } from 'react-simple-star-rating'
 
 import { useParams } from 'react-router-dom';
 import moment from "moment/moment";
+
 import { postrating } from '../apis/postdetailrating';
 import { getratingdata } from '../apis/getdetailrating';
 import { putrating } from '../apis/putdetailrating';
@@ -19,6 +20,7 @@ export default function ReviewModal() {
     const [isRated, setIsRated] = useState(false);
     //rating_date 설정 useState
     const [ratingDate, setRatingDate] = useState();
+  
     const rating_date = moment(ratingDate).format('yyyy-MM-DD HH:mm');
 
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -28,7 +30,7 @@ export default function ReviewModal() {
       const checkRatings = async () => {
         try {
           const response = await getratingdata(content_id);
-          const found = response.filter((item) => item.subsr === subsr);
+          const found = response.data.filter((item) => item.subsr === subsr);
           if (found.length > 0) {
             setRating(found[found.length-1].rating);
             setReview(found[found.length-1].review);

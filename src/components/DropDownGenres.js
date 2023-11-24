@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import '../css/DropDownGenres.css'
 import { NavLink } from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search"
-import { genres } from '../apis/getGenres';
+import { genres } from '../apis/genres/getGenres';
 
 
 export default function DropDownGenres() {

@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
-import { Input, Inputs, Title, Wrapper } from '../components/Common';
-import { useForm } from '../hooks/useForm';
+import { Input, Inputs, Title, Wrapper } from '../../components/Common';
+import { useForm } from '../../hooks/useForm';
 import { styled } from 'styled-components';
 //import { signUp } from '../apis/signUp';
 import { useNavigate } from 'react-router-dom';

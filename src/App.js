@@ -19,7 +19,7 @@ function App() {
         <Route path='/main' element={<><Navbar /><Main /></>} />
         <Route path='/detail/:content_id' element={<><Navbar /><Detail /></>} />
         <Route path='/mood/:mood' element={<><Navbar /><Mood /></>} />
-        <Route path='/genre/:genre' element={<><Navbar /><Genre /></>} />
+        <Route path='/genres/:genre' element={<><Navbar /><Genre /></>} />
       </Routes>
     </BrowserRouter>
   );

@@ -55,9 +55,9 @@ export default function DropDownGenres() {
       {isOpen && (
         <div className="dropdown-content">
           카테고리 검색
-          <br />{allGenres&&allGenres.map((genre)=>(
-            <label key={genre}>
-              <NavLink to={`../genre/${encodeURIComponent(genre)}`} >
+          <br />{allGenres&&allGenres.map((genre,index)=>(
+            <label key={index}>
+               <NavLink to={`../genres/${genre}`} > {/*{`../genre/${encodeURIComponent(genre)}`} */}
               <p onClick={handleLogout}>{genre}</p>
           </NavLink></label>
           ))}

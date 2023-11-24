@@ -51,8 +51,8 @@ export default function Detail() {
       const getWishData = async () => {
         try {
           const response = await getwishdata(content_id);
-          if (response.data.length > 0) {
-            setWish(response.data[response.data.length-1]?.wish);
+          if (response.data) {
+            setWish(response.data);
           } 
         } catch (error) {   
           console.log("error", error);
@@ -93,7 +93,7 @@ export default function Detail() {
       const getRatingData = async () => {
         try {
           const response = await getratingdata(content_id);
-          if (response.data.length > 0) {
+          if (response.data) {
             setRatingData(response.data);
           } 
         } catch (error) {   
@@ -105,13 +105,13 @@ export default function Detail() {
 
     return (
     <div>
-        <h2>{vodData[0]?.title}</h2>
-        <img src={vodData[0]?.posterurl} alt="" />
-        <p>{vodData[0]?.release_year}·{vodData[0]?.category}·{vodData[0]?.genre}·{vodData[0]?.country}</p>
-        <p>{vodData[0]?.disp_rtm}·{vodData[0]?.grade}</p>
-        <div>감독 : {vodData[0]?.director}</div>
-        <div>출연진 : {vodData[0]?.actors}</div>
-        <div>줄거리 : {vodData[0]?.description}</div>
+        <h2>{vodData?.title}</h2>
+        <img src={vodData?.posterurl} alt="" />
+        <p>{vodData?.release_year}·{vodData?.category}·{vodData?.genre}·{vodData?.country}</p>
+        <p>{vodData?.disp_rtm}·{vodData?.grade}</p>
+        <div>감독 : {vodData?.director}</div>
+        <div>출연진 : {vodData?.actors}</div>
+        <div>줄거리 : {vodData?.description}</div>
         
         
         <ReviewModal />
@@ -136,7 +136,7 @@ export default function Detail() {
                   {item.rating_date}
                   <br />
                   {item.review}
-                  <DelConfirmAlert />
+                  <DelConfirmAlert/>
                   <hr />
                 </li>
               )))

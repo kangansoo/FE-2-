@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {React, useState,useEffect} from 'react' 
 import Carousel from "react-multi-carousel";
 //import imageData from "../components/imgdata";

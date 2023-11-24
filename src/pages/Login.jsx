@@ -5,7 +5,7 @@ import {Wrapper, Title, Form, Inputs, Input} from "../components/Common";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { login } from '../apis/getlogin_post';
+import { login } from '../apis/login/getlogin_post';
 
 
 // 로그인 화면

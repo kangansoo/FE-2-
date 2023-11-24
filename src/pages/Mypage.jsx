@@ -4,9 +4,9 @@ import { Rating } from 'react-simple-star-rating'
 
 import "../css/Mypage.css"
 
-import {getReplay} from '../apis/getmypagereplay_post';
-import { getmypagewish } from '../apis/getmypagewish_post';
-import { getmypagerating } from '../apis/getmypagerating_post';
+import {getReplay} from '../apis/mypage/getmypagereplay_post';
+import { getmypagewish } from '../apis/mypage/getmypagewish_post';
+import { getmypagerating } from '../apis/mypage/getmypagerating_post';
 
 
 export default function Mypage() {

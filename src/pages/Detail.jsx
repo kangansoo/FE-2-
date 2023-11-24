@@ -5,12 +5,12 @@ import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 //상세페이지 동적 url 라우팅 위한 useParams 
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { postwish } from '../apis/postdetailwish';
+import { postwish } from '../apis/detail/postdetailwish';
 import ReviewModal from '../components/ReviewModal';
 import { Rating } from 'react-simple-star-rating'
-import { getVodData} from '../apis/getVodData';
-import { getwishdata } from '../apis/getmywish_post';
-import { getratingdata } from '../apis/getdetailrating';
+import { getVodData} from '../apis/detail/getVodData';
+import { getwishdata } from '../apis/detail/getmywish_post';
+import { getratingdata } from '../apis/detail/getdetailrating';
 import DelConfirmAlert from '../components/DelConfirmAlert';
 
 

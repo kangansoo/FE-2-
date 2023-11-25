@@ -38,15 +38,17 @@ const Login = () => {
     //토큰 없이 json-server 이용 로그인
     const onClick = async() => {
         //토큰 없이 json-server 이용 로그인
-       await login(subsr)
+    await login(subsr)
         .then((Response)=>{
-            if (Response.data.length>0 && Response.data[0].subsr=== subsr ){
-                localStorage.setItem('subsr', Response.data[0].subsr);
-                console.log(Response);
+            if (Response.data){ // && Response.data=== subsr 
+                console.log(Response.data)
+                localStorage.setItem('subsr', Response.data);
                 navigate("/main");
             }else{
                 alert('셋탑박스 회원 정보가 틀렸습니다.\n정보 확인을 부탁드립니다.');
-            }});
+            }
+        }
+            );
     };
 
     const keyPress=e=>{

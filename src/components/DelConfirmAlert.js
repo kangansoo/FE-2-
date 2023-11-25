@@ -3,9 +3,11 @@ import { confirmAlert } from 'react-confirm-alert';
 import '../css/DelConfirmAlert.css';
 import { delReview } from '../apis/detail/deldetailrating';
 
-export default function DelConfirmAlert() {
+//import { useParams } from 'react-router-dom';
 
+export default function DelConfirmAlert(content_id) {
 
+  //let {content_id}=useParams();
     
     const handleDelete = () => {
         
@@ -18,7 +20,8 @@ export default function DelConfirmAlert() {
                 <button onClick={onClose}>취소</button>
                 <button
                   onClick={() => {
-                    delReview();
+                    const subsr=localStorage.getItem('subsr');
+                    delReview(subsr,content_id);
                     window.location.reload();
                   }}
                 >

@@ -24,9 +24,9 @@ export default function Mypage() {
   //replay GET
   useEffect(()=> {
     const getreplay = async () => {
-      const result = await getReplay();
-      setReplayData(result);
-      console.log(result);
+      const result = await getReplay(subsr);
+      setReplayData(result.data);
+      console.log(result)
     };
     getreplay();
   }, []);
@@ -35,11 +35,12 @@ export default function Mypage() {
   useEffect(() => {
     const checkWishes = async () => {
       try {
-        const response = await getmypagewish("http://localhost:30/mypagewish",{subsr});
-        if (response.data.length > 0) {
+        const response = await getmypagewish(subsr);
+        const found = response.data.filter((item) => item.wish === 1);
+        if (found) {
           setIsWished(true);
-          setWishData(response.data);
-          console.log(response);
+          setWishData(found);
+          console.log(found)
         } else{
           setIsWished();
         }
@@ -54,8 +55,8 @@ export default function Mypage() {
   useEffect(() => {
     const checkRatings = async () => {
       try {
-        const response = await getmypagerating("http://localhost:30/mypagerating",{subsr});
-        if (response.data.length > 0) {
+        const response = await getmypagerating(subsr);
+        if (response.data) {
         setIsRated(true);
         setRatingData(response.data);
         console.log(response);
@@ -83,7 +84,7 @@ export default function Mypage() {
       <div className='Div'>
       <br />
       <h2>시청중인 컨텐츠</h2>
-        { replayData&&replayData.length > 0 ?
+        { replayData?
         (replayData.map((item, index) =>(
           <figure key={index} >
             <NavLink to={"/detail/"+item.content_id} className='ImageDiv'>
@@ -108,7 +109,7 @@ export default function Mypage() {
           <NavLink to={"/detail/"+item.content_id} className='ImageDiv' >
               <img 
               src={item.posterurl}
-              alt={item.alt}
+              alt={index}
               /><figcaption>{item.title}</figcaption>
               
           </NavLink>
@@ -126,7 +127,7 @@ export default function Mypage() {
           <NavLink to={"/detail/"+item.content_id}>
           <img 
               src={item.posterurl}
-              alt={item.alt} width="50px" 
+              alt={index} width="50px" 
               />
           {item.title}
           <Rating

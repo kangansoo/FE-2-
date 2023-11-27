@@ -12,7 +12,7 @@ import { getVodData} from '../apis/detail/getVodData';
 import { getwishdata } from '../apis/detail/getmywish_post';
 import { getratingdata } from '../apis/detail/getdetailrating';
 import DelConfirmAlert from '../components/DelConfirmAlert';
-
+import { delReview } from '../apis/detail/deldetailrating';
 
 export default function Detail() {
     
@@ -88,6 +88,10 @@ export default function Detail() {
       }
     };
 
+    const deleletereview=async()=>{
+      await delReview(subsr,content_id);
+    }
+
     //rating get요청
     useEffect(() => {
       const getRatingData = async () => {
@@ -140,7 +144,7 @@ export default function Detail() {
                   <hr />
                 </li>
               )))
-            }
+            }<button onClick={deleletereview}>리뷰 삭제</button>
             
         </div>
         <br />

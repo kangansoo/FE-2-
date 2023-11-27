@@ -53,7 +53,11 @@
       "last 1 safari version"
     ]
   },
+<<<<<<< HEAD
   "proxy": "http://1.220.201.108:8080",
+=======
+  "proxy":"http://1.220.201.108:8080",
+>>>>>>> 97f3c58 (:lipstick: 마이페이지 css 수정)
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }

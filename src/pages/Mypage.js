@@ -12,8 +12,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {ReactComponent as Next} from '../assets/slider-arrow-right.svg'
 import {ReactComponent as Prev} from '../assets/slider-arrow-left.svg'
+<<<<<<< HEAD
 import { StyledSlider, Div, DivPre, ImgLabel, Poster, RatingBox, MypageTitle, MypageText, RatingTitle,
         SliderContainer} from '../css/StyledComponents';
+=======
+import { StyledSlider, Div, DivPre, ImgLabel, Poster, RatingBox, MypageTitle, MypageText, RatingTitle } from '../css/StyledComponents';
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
 
 
 export default function Mypage() {
@@ -112,8 +116,13 @@ export default function Mypage() {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
+<<<<<<< HEAD
     prevArrow: <SlickArrowLeft />,
     nextArrow: <SlickArrowRight />,
+=======
+    nextArrow: <Div><Next /></Div>,
+    prevArrow: <DivPre><Prev /></DivPre>
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
   };
 
   return (
@@ -125,9 +134,15 @@ export default function Mypage() {
         셋탑박스 번호 : {subsr}
       </MypageText>
       </div>
+<<<<<<< HEAD
  
       <MypageTitle>시청중인 컨텐츠</MypageTitle>
       <SliderContainer>
+=======
+
+      <div style={{height:'350px'}}>
+      <MypageTitle>시청중인 컨텐츠</MypageTitle>
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
         { replayData?
         <StyledSlider {...settings}>
         {(replayData.map((item, index) =>(
@@ -149,9 +164,14 @@ export default function Mypage() {
         )}
       </SliderContainer>
 
+<<<<<<< HEAD
       
       <MypageTitle>찜 목록</MypageTitle>
       <SliderContainer>
+=======
+      <div style={{height:'350px'}}>
+      <MypageTitle>찜 목록</MypageTitle>
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
         { isWished ? 
         <StyledSlider {...settings}>
         {(wishData.map((item, index) => (
@@ -176,11 +196,19 @@ export default function Mypage() {
       <div>
       <MypageTitle>리뷰 목록</MypageTitle> 
         { isRated ? 
+<<<<<<< HEAD
           <div>
           {(ratingData.map((item, index) => (
             
               <RatingBox key={index}>
                 <NavLink to={"/detail/"+item.content_id} className="LinkText">
+=======
+          
+          (ratingData.map((item, index) => (
+            <RatingBox>
+              <div key={index}>
+                <NavLink to={"/detail/"+item.content_id} style={{textDecoration:"none", textDecorationLine:"none"}}>
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
                   <ImgLabel>
                     <Poster 
                       src={item.posterurl}
@@ -193,11 +221,15 @@ export default function Mypage() {
                     size="20"
                     initialValue={item.rating}
                     readonly="true"
+<<<<<<< HEAD
                     className="Rating"
                   />
                   
                   {item.review}
                   {item.rating_date}
+=======
+                  />{item.rating_date}{item.review}
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
 
                   {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 
                   <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
@@ -206,10 +238,16 @@ export default function Mypage() {
                     <label key={index}>{item2.review}</label>
                   ))}</text>*/}
                 
+<<<<<<< HEAD
               </RatingBox>
               
           )))}
           </div> 
+=======
+              </div>
+              </RatingBox>
+          ))) 
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
           : (
             <MypageText>평점 내역이 존재하지 않습니다.</MypageText>
           )}

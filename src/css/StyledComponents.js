@@ -8,7 +8,11 @@ export const StyledSlider = styled(Slider)`
   text-align: center;
 
   .slick-list {
+<<<<<<< HEAD
     margin: 0 50px;
+=======
+    margin: 0 30px;
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
     overflow: hidden;
     height: 270px;
     text-align: center;
@@ -54,8 +58,13 @@ export const DivPre = styled.div`
     line-height: 30px;
 `;
 
+<<<<<<< HEAD
 export const MypageTitle = styled.h2`
   margin-top: 4%;
+=======
+export const MypageTitle = styled.h1`
+  margin-top: 2%;
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
   margin-bottom: 2%;
   margin-left: 10%
 `
@@ -86,6 +95,7 @@ export const RatingBox = styled.div`
   margin-bottom: 1%;
   border-bottom : 2px #d4d4d4 solid;
 `
+<<<<<<< HEAD
 export const RatingTitle = styled.span`
   position: relative;
   margin-left: 1%;
@@ -98,5 +108,11 @@ export const SliderContainer = styled.div`
   margin: 0 10%;
 `
 
+=======
+export const RatingTitle = styled.a`
+  position: relative;
+  top: -150px;
+>>>>>>> cfcab4b (:lipstick: 마이페이지 css 수정)
 
+`
 

@@ -8,6 +8,12 @@ import {getReplay} from '../apis/mypage/getmypagereplay_post';
 import { getmypagewish } from '../apis/mypage/getmypagewish_post';
 import { getmypagerating } from '../apis/mypage/getmypagerating_post';
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import {ReactComponent as Next} from '../assets/slider-arrow-right.svg'
+import {ReactComponent as Prev} from '../assets/slider-arrow-left.svg'
+import { StyledSlider, Div, DivPre, ImgLabel, Poster } from '../css/StyledComponents';
+
 
 export default function Mypage() {
   const subsr = localStorage.getItem('subsr');
@@ -59,6 +65,7 @@ export default function Mypage() {
         if (response.data) {
         setIsRated(true);
         setRatingData(response.data);
+        console.log(response);
         } else{
           setIsRated();
         }
@@ -68,6 +75,17 @@ export default function Mypage() {
     };
     checkRatings();
   }, [subsr]);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 1,
+    variableWidth: true,
+    nextArrow: <Div><Next /></Div>,
+    prevArrow: <DivPre><Prev /></DivPre>
+  };
 
   return (
     <>
@@ -80,42 +98,51 @@ export default function Mypage() {
       </div>
       <br/>
 
-      <div className='Div'>
+      <div style={{height:'350px'}}>
       <br />
       <h2>시청중인 컨텐츠</h2>
         { replayData?
-        (replayData.map((item, index) =>(
+        <StyledSlider {...settings}>
+        {(replayData.map((item, index) =>(
           <figure key={index} >
             <NavLink to={"/detail/"+item.content_id} className='ImageDiv'>
-              <img 
-              src={item.posterurl}
-              alt={index}
-              />
+              <ImgLabel>
+                <Poster 
+                src={item.posterurl}
+                alt={index}
+                />
+              </ImgLabel>
               <figcaption><progress value={item.user_preference} max={100} /><figcaption>{item.title}</figcaption></figcaption>
             </NavLink>
           </figure>
-        ))):(
+        )))}
+        </StyledSlider>
+        :(
           '시청 중인 컨텐츠가 없습니다.'
         )}
       </div>
 
-      <div className='Div'>
+      <div style={{height:'350px'}}>
       <h2>찜목록</h2>
-      
-      { isWished ? 
-      (wishData.map((item, index) => (
-        <figure key={index}>
-          <NavLink to={"/detail/"+item.content_id} className='ImageDiv' >
-              <img 
-              src={item.posterurl}
-              alt={index}
-              /><figcaption>{item.title}</figcaption>
-              
-          </NavLink>
-        </figure>
-      ))) : (
-        "찜 내역이 존재하지 않습니다."
-      )}
+        { isWished ? 
+        <StyledSlider {...settings}>
+        {(wishData.map((item, index) => (
+          <figure key={index}>
+            <NavLink to={"/detail/"+item.content_id}>
+              <ImgLabel>
+                <Poster 
+                  src={item.posterurl}
+                  alt={index}
+                />
+              </ImgLabel>
+              <figcaption>{item.title}</figcaption>
+            </NavLink>
+          </figure>
+        )))} 
+        </StyledSlider>
+        : (
+          "찜 내역이 존재하지 않습니다."
+        )}
       </div>
 
       <h2>리뷰목록</h2>

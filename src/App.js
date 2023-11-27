@@ -18,7 +18,7 @@ function App() {
         <Route path='/mypage' element={<><Navbar /><Mypage /></>} />
         <Route path='/main' element={<><Navbar /><Main /></>} />
         <Route path='/detail/:content_id' element={<><Navbar /><Detail /></>} />
-        <Route path='/mood/:mood' element={<><Navbar /><Mood /></>} />
+        <Route path='/main/:mood' element={<><Navbar /><Mood /></>} />
         <Route path='/genres/:genre' element={<><Navbar /><Genre /></>} />
       </Routes>
     </BrowserRouter>

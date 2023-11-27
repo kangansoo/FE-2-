@@ -120,7 +120,7 @@ export default function Main() {
               
               {image.mood.map((mood,index)=>(
                 <label key={index}>
-                <NavLink to={"/mood/"+mood}>
+                <NavLink to={"/main/"+mood}>
                 #{mood}</NavLink>
                 </label>
               ))}
@@ -169,7 +169,7 @@ export default function Main() {
               
               {image.mood.map(mood=>(
                 <label key={mood}>
-                <NavLink to={"/mood/"+mood}>
+                <NavLink to={"/main/"+mood}>
                 #{mood}</NavLink>
                 </label>
               ))}
@@ -217,7 +217,7 @@ export default function Main() {
               
               {image.mood.map(mood=>(
                 <label key={mood}>
-                <NavLink to={"/mood/"+mood}>
+                <NavLink to={"/main/"+mood}>
                   #{mood}</NavLink>
                   </label>
               ))}

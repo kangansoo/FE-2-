@@ -58,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "proxy":"1.223.55.43",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

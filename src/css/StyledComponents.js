@@ -2,13 +2,13 @@ import Slider from "react-slick";
 import styled from "styled-components";
 
 export const StyledSlider = styled(Slider)`
-  margin-left: 0%;
+  margin-left: 0 auto;
   width: 90%;
   height: 270px;
   text-align: center;
 
   .slick-list {
-    margin: 0 30px;
+    margin: 0 50px;
     overflow: hidden;
     height: 270px;
     text-align: center;
@@ -38,7 +38,7 @@ export const Div = styled.div`
     width: 24px;
     height: 24px;
     position: absolute;
-    right: 1vw;
+    right: 4vw;
     z-index: 99;
     text-align: right;
     line-height: 30px;
@@ -48,14 +48,14 @@ export const DivPre = styled.div`
     width: 24px;
     height: 24px;
     position: absolute;
-    left: -0.5vw;
+    left: 2.5vw;
     z-index: 99;
     text-align: left;
     line-height: 30px;
 `;
 
-export const MypageTitle = styled.h1`
-  margin-top: 2%;
+export const MypageTitle = styled.h2`
+  margin-top: 4%;
   margin-bottom: 2%;
   margin-left: 10%
 `
@@ -86,9 +86,17 @@ export const RatingBox = styled.div`
   margin-bottom: 1%;
   border-bottom : 2px #d4d4d4 solid;
 `
-export const RatingTitle = styled.a`
+export const RatingTitle = styled.span`
   position: relative;
+  margin-left: 1%;
+  box-sizing: content-box;
   top: -150px;
-
+  display: inline-flex;
 `
+export const SliderContainer = styled.div`
+  height: 350px;
+  margin: 0 10%;
+`
+
+
 

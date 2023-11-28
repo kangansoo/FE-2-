@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {ReactComponent as Next} from '../assets/slider-arrow-right.svg'
 import {ReactComponent as Prev} from '../assets/slider-arrow-left.svg'
-import { StyledSlider, Div, DivPre, ImgLabel, Poster } from '../css/StyledComponents';
+import { StyledSlider, Div, DivPre, ImgLabel, Poster, RatingBox, MypageTitle, MypageText, RatingTitle } from '../css/StyledComponents';
 
 
 export default function Mypage() {
@@ -32,7 +32,6 @@ export default function Mypage() {
     const getreplay = async () => {
       const result = await getReplay(subsr);
       setReplayData(result.data);
-      console.log(result)
     };
     getreplay();
   }, []);
@@ -46,7 +45,6 @@ export default function Mypage() {
         if (found) {
           setIsWished(true);
           setWishData(found);
-          console.log(found)
         } else{
           setIsWished();
         }
@@ -65,7 +63,6 @@ export default function Mypage() {
         if (response.data) {
         setIsRated(true);
         setRatingData(response.data);
-        console.log(response);
         } else{
           setIsRated();
         }
@@ -80,9 +77,8 @@ export default function Mypage() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 7,
+    slidesToShow: 5,
     slidesToScroll: 1,
-    variableWidth: true,
     nextArrow: <Div><Next /></Div>,
     prevArrow: <DivPre><Prev /></DivPre>
   };
@@ -90,24 +86,22 @@ export default function Mypage() {
   return (
     <>
       <div>
-      <h2>회원정보</h2>
+      <MypageTitle>회원정보</MypageTitle>
 
-      <li>
+      <MypageText>
         셋탑박스 번호 : {subsr}
-      </li>
+      </MypageText>
       </div>
-      <br/>
 
       <div style={{height:'350px'}}>
-      <br />
-      <h2>시청중인 컨텐츠</h2>
+      <MypageTitle>시청중인 컨텐츠</MypageTitle>
         { replayData?
         <StyledSlider {...settings}>
         {(replayData.map((item, index) =>(
           <figure key={index} >
             <NavLink to={"/detail/"+item.content_id} className='ImageDiv'>
               <ImgLabel>
-                <Poster 
+                <Poster
                 src={item.posterurl}
                 alt={index}
                 />
@@ -118,12 +112,12 @@ export default function Mypage() {
         )))}
         </StyledSlider>
         :(
-          '시청 중인 컨텐츠가 없습니다.'
+          <MypageText>시청 중인 컨텐츠가 없습니다.</MypageText>
         )}
       </div>
 
       <div style={{height:'350px'}}>
-      <h2>찜목록</h2>
+      <MypageTitle>찜 목록</MypageTitle>
         { isWished ? 
         <StyledSlider {...settings}>
         {(wishData.map((item, index) => (
@@ -141,41 +135,45 @@ export default function Mypage() {
         )))} 
         </StyledSlider>
         : (
-          "찜 내역이 존재하지 않습니다."
+          <MypageText>찜 내역이 존재하지 않습니다.</MypageText>
         )}
       </div>
 
-      <h2>리뷰목록</h2>
-      <div >
-      { isRated ? 
-      (ratingData.map((item, index) => (
-        <div key={index}>
-          <NavLink to={"/detail/"+item.content_id}>
-          <img 
-              src={item.posterurl}
-              alt={index} width="50px" 
-              />
-          {item.title}
-          <Rating
-            size="20"
-            initialValue={item.rating}
-            readonly="true"
-          />{item.rating_date}{item.review}
-
-          {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 
-           <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
-          &&reviewitem.content_id === item.content_id)
-          .map((item2, index)=>(
-            <label key={index}>{item2.review}</label>
-          ))}</text>*/}
+      <div>
+      <MypageTitle>리뷰 목록</MypageTitle> 
+        { isRated ? 
           
-        </NavLink>
-          <hr />
-        </div>
-      
-      ))) : (
-        "평점 내역이 존재하지 않습니다."
-      )}
+          (ratingData.map((item, index) => (
+            <RatingBox>
+              <div key={index}>
+                <NavLink to={"/detail/"+item.content_id} style={{textDecoration:"none", textDecorationLine:"none"}}>
+                  <ImgLabel>
+                    <Poster 
+                      src={item.posterurl}
+                      alt={index} width="120px" 
+                      />
+                  </ImgLabel>
+                  <RatingTitle>{item.title}</RatingTitle>
+                </NavLink>
+                  <Rating
+                    size="20"
+                    initialValue={item.rating}
+                    readonly="true"
+                  />{item.rating_date}{item.review}
+
+                  {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 
+                  <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
+                  &&reviewitem.content_id === item.content_id)
+                  .map((item2, index)=>(
+                    <label key={index}>{item2.review}</label>
+                  ))}</text>*/}
+                
+              </div>
+              </RatingBox>
+          ))) 
+          : (
+            <MypageText>평점 내역이 존재하지 않습니다.</MypageText>
+          )}
       </div>
     </>
   )

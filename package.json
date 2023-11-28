@@ -16,6 +16,7 @@
     "babel-plugin-styled-components": "^2.1.4",
     "framer-motion": "^10.16.5",
     "gitmoji-cli": "^9.0.0",
+    "http-proxy-middleware": "^2.0.6",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-confirm-alert": "^3.0.6",

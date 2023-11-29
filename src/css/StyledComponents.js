@@ -8,7 +8,7 @@ export const StyledSlider = styled(Slider)`
   text-align: center;
 
   .slick-list {
-    margin: 0 40px;
+    margin: 0 50px;
     overflow: hidden;
     height: 270px;
     text-align: center;
@@ -54,6 +54,15 @@ export const DivPre = styled.div`
     line-height: 30px;
 `;
 
+export const MypageTitle = styled.h2`
+  margin-top: 4%;
+  margin-bottom: 2%;
+  margin-left: 10%
+`
+export const MypageText = styled.p`
+  margin-left: 10%;
+  font-size: 18px;
+`
 export const ImgLabel = styled.label`
     width: 176; 
     height: 244; 
@@ -70,5 +79,21 @@ export const Poster = styled.img`
     alignSelf: stretch;
     flex: 1 1 0;
 `
-
-
+export const RatingBox = styled.div`
+  width: 80%;
+  height: 180px;
+  margin-left: 10%;
+  margin-bottom: 1%;
+  border-bottom : 2px #d4d4d4 solid;
+`
+export const RatingTitle = styled.span`
+  position: relative;
+  margin-left: 1%;
+  box-sizing: content-box;
+  top: -150px;
+  display: inline-flex;
+  `
+  export const SliderContainer = styled.div`
+    height: 350px;
+    margin: 0 10%;
+  `

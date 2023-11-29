@@ -1,4 +1,4 @@
-name: REACT_S3_gitaction
+name: REACT_S3_action
 
 on:
   push:

@@ -2,6 +2,8 @@
     cursor: pointer;
     border: 0;
     background-color: transparent;
+    color: white;
+    font-size : 16px;
 }
 
 .dropdown {
@@ -11,12 +13,15 @@
   
   .dropdown-content {
     display: block;
-    position: absolute;
-    background-color: #f9f9f9;
+    position: relative;
+    left: -70px;
+    background-color: black;
     width: 200px;
     height: 160px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    font-size:18px;
+    text-align: center;
   }
   
   .dropdown-content p {
@@ -63,3 +68,22 @@
   .custom-ui button:hover {
     background-color: #f1f1f1;
   }
+
+.DropDownLink{
+  text-decoration: none;
+}
+  
+
+.DropDownMenu{
+  flex-direction: column;
+  display: flex;
+  margin-top: 30%;
+}
+  .DropDownMenu p {
+    display: flex;
+    color:black;
+  }
+
+.DropDownHello{
+  margin-top: 10%;
+}

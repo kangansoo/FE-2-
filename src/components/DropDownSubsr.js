@@ -68,13 +68,17 @@ export default function DropDownSubsr() {
       </button>
       {isOpen && (
         <div className="dropdown-content">
-          안녕하세요
-          <br />
-          {subsr}님
-            <Link to='../mypage' onClick={handleMyPageClick}>
+          <div className="DropDownHello">
+            안녕하세요
+            <br />
+            {subsr}님
+          </div>
+          <div className='DropDownMenu'>
+            <Link to='../mypage' onClick={handleMyPageClick} className='DropDownLink'>
                 <p>마이페이지</p>
             </Link>
             <p onClick={handleLogout}>로그아웃</p>
+          </div>
         </div>
       )}
     </div>

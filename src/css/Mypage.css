@@ -5,12 +5,15 @@
     display: inline;
     white-space: nowrap;
     margin-right: 1%;
-    text-decoration-line: unset;
+    text-decoration-line: none !important;
 }
 
 .Rating{
-    display: block;
-    position: relative;
-    top: -138px;
+    display: inline-block;
+}
+
+.RatingContainer{
+    flex-direction: row;
+    display: inline-block;
 }
 

@@ -1,18 +1,19 @@
 import React, {useState, useEffect} from 'react'
-
+import '../css/Detail.css';
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
+import ReviewModal from '../components/ReviewModal';
 
 //상세페이지 동적 url 라우팅 위한 useParams 
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { postwish } from '../apis/detail/postdetailwish';
-import ReviewModal from '../components/ReviewModal';
 import { Rating } from 'react-simple-star-rating'
 import { getVodData} from '../apis/detail/getVodData';
 import { getwishdata } from '../apis/detail/getmywish_post';
 import { getratingdata } from '../apis/detail/getdetailrating';
 import DelConfirmAlert from '../components/DelConfirmAlert';
 import { delReview } from '../apis/detail/deldetailrating';
+import {PageTitle, ImgLabel, Poster} from '../css/StyledComponents';
 
 export default function Detail() {
     
@@ -111,24 +112,35 @@ export default function Detail() {
 
     return (
     <div>
-        <h2>{vodData?.title}</h2>
-        <img src={vodData?.posterurl} alt="" />
-        <p>{vodData?.release_year}·{vodData?.category}·{vodData?.genre}·{vodData?.country}</p>
-        <p>{vodData?.disp_rtm}·{vodData?.grade}</p>
-        <div>감독 : {vodData?.director}</div>
-        <div>출연진 : {vodData?.actors}</div>
-        <div>줄거리 : {vodData?.description}</div>
+        <div className="VodDataContainer">
+          <ImgLabel>
+            <Poster src={vodData?.posterurl} alt=""/>
+          </ImgLabel>
+          <div className='VodData'>
+            <div className="TitleContainer">
+              <h1 className="VodTitle">{vodData?.title}</h1>
+              <Button
+                  className="WishButton"
+                  onClick={()=>{
+                    handleWishButton();
+                    postWish();}}>
+                  {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
+              </Button>
+            </div>
+            <p className='VodInfo1'>{vodData?.release_year}·{vodData?.category}·{vodData?.genre}·{vodData?.country}</p>
+            <p>{vodData?.disp_rtm}·{vodData?.grade}</p>
+            <div>감독 : {vodData?.director}</div>
+            <div>출연진 : {vodData?.actors}</div>
+            <div>줄거리 : {vodData?.description}</div>
+            <br />
+            <ReviewModal />
+          </div>
+        </div>
         
         
-        <ReviewModal />
-            <Button
-                onClick={()=>{
-                  handleWishButton();
-                  postWish();}}>
-                {wish? <HeartFilled style={{color:"red", fontSize: '30px'}}/>:<HeartOutlined style={{fontSize: '30px'}}/>}
-            </Button>
+            
         <div>
-          <h2>나의 리뷰</h2>
+          <PageTitle>나의 리뷰</PageTitle>
             {
               (ratingData&&ratingData.filter((ratingData)=>ratingData.subsr === subsr).map((item, index)=>(
                 <li key={index}>
@@ -146,12 +158,11 @@ export default function Detail() {
                   <hr />
                 </li>
               )))
-            }<button onClick={deleletereview}>리뷰 삭제</button>
+            }<button className='DelReviewButton' onClick={deleletereview}>리뷰 삭제</button>
             
         </div>
-        <br />
         <div>
-          <h2>모든 리뷰</h2>
+          <PageTitle>모든 리뷰</PageTitle>
             {
               (ratingData&&ratingData.filter((ratingData)=>ratingData.subsr !== subsr).map((item, index)=>(
                 <li key={index}>
@@ -163,7 +174,6 @@ export default function Detail() {
                     readonly="true"
                   />
                   {item.rating_date}
-                  <br />
                   {item.review}
                   <hr />
                 </li>

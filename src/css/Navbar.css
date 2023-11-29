@@ -4,14 +4,15 @@
 
 .NavBar {
     height: 70px;
-    
+    width: 100%;
     display: flex;
     align-items: center;
-    background-color: lightblue;
+    background-color: black;
     position: sticky;
     top: 0;
     z-index: 100;
     margin: 0 auto;
+    justify-content: flex-start;
 }
 
 .NavBarSearchIcon {
@@ -19,3 +20,26 @@
     width: 20px;
 
 }
+
+.LinkContainer{
+    margin-left:3%;
+}
+
+.NavbarLink {
+    text-decoration: none;
+}
+
+.Logo{
+    color: white;
+}
+
+.SubsrContainer{
+    display:inline-flex;
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.Subsr{
+    font-size : 21px;
+}
+

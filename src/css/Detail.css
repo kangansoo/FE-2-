@@ -1,0 +1,43 @@
+.VodDataContainer{
+    margin-left: 10%;
+    margin-top: 2%;
+    flex-direction: row;
+    display: flex;
+}
+
+.VodData{
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1%;
+}
+
+.VodInfo1{
+    display: flex;
+    white-space: nowrap;
+}
+
+.TitleContainer{
+    flex-direction: row;
+}
+
+.VodTitle{
+    display: inline-flex;
+    font-weight: bolder;
+    position: relative;
+    top: -5px;
+}
+
+.WishButton{
+    display: inline-flex;
+}
+
+.ModalButton{
+    margin-left:10%;
+}
+
+.DelReviewButton{
+    margin-left:10%;
+}
+
+

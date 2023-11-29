@@ -9,22 +9,23 @@ export default function Navbar() {
 
   return (
     <div className='NavBar'>
-        <Link to='/main'>
-            <span>LOGO</span>
-        </Link>
+        <div className='LinkContainer'>
+          <Link to='/main' className='NavbarLink'>
+              <span className='Logo'>LOGO</span>
+          </Link>
+        </div>
         
-        
-        {/* <Link to='/search'> */}
-          <DropDownGenres>
-            
+          {/* <Link to='/search'> */}
+            <DropDownGenres>
+              
             </DropDownGenres>
-            {/* </Link> */}
-        
-
-        <DropDownSubsr>
-         {subsr}
-        </DropDownSubsr>
-
+              {/* </Link> */}
+          
+        <div className="SubsrContainer"> 
+          <DropDownSubsr>
+            {subsr}
+          </DropDownSubsr>
+        </div>
     </div>
   )
 }

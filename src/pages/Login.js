@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components';
-import {Wrapper, Title, Form, Inputs, Input} from "../components/Common";
+import {Wrapper, Title, Form, Inputs, Input} from "../css/StyledComponents";
 //import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';

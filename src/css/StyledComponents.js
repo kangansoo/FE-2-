@@ -54,7 +54,7 @@ export const DivPre = styled.div`
     line-height: 30px;
 `;
 
-export const MypageTitle = styled.h2`
+export const MypageTitle = styled.h3`
   margin-top: 4%;
   margin-bottom: 2%;
   margin-left: 10%
@@ -64,9 +64,9 @@ export const MypageText = styled.p`
   font-size: 18px;
 `
 export const ImgLabel = styled.label`
-    width: 176; 
-    height: 244; 
-    border-radius: 5px; 
+    width: 176px; 
+    height: 244px; 
+    border-radius: 3px; 
     overflow: hidden;
     border: 1px #d4d4d4 solid;
     flexDirection: column;
@@ -74,6 +74,7 @@ export const ImgLabel = styled.label`
     alignItems: flex-start;
     display: inline-flex;
     cursor: pointer;
+    flexDirection: row;
 `
 export const Poster = styled.img`
     alignSelf: stretch;
@@ -85,18 +86,61 @@ export const RatingBox = styled.div`
   margin-left: 10%;
   margin-bottom: 1%;
   border-bottom : 2px #d4d4d4 solid;
+  display: inline-block;
+  flexDirection: row;
 `
-export const RatingTitle = styled.span`
+export const RatingTitle = styled.div`
   position: relative;
   margin-left: 1%;
   box-sizing: content-box;
-  top: -150px;
-  display: inline-flex;
+  display: inline-block;
+  text-align: start;
 `
 export const SliderContainer = styled.div`
   height: 350px;
   margin: 0 10%;
 `
+export const PageTitle = styled.h3`
+    margin-left: 10%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+`
+export const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+`;
+export const Inputs = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-right: 10px;
+`;
 
+export const Form = styled.div`
+    display: flex;
+    height: 100%;
+`;
 
+export const Title = styled.div`
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 30px;
+`;
+
+export const Input = styled.input`
+    font-size: 20px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    &::placeholder {
+        color: darkgray;
+        font-size: 20px;
+        font-weight: 500;
+        font-family: 'OTWelcomeRA';
+    }
+`;
 

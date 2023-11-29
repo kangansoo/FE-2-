@@ -1,9 +1,16 @@
-.Div{
-    width: 2000px;
-    height: 300px;
+
+
+.LinkText{
+    
+    display: inline;
+    white-space: nowrap;
+    margin-right: 1%;
+    text-decoration-line: unset;
 }
 
-.ImageDiv{
-    float:left;
-    width: 10%;
+.Rating{
+    display: block;
+    position: relative;
+    top: -138px;
 }
+

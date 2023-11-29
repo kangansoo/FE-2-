@@ -58,7 +58,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://1.220.201.108:8080",
+  "proxy": "http://1.220.201.108:8080",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }

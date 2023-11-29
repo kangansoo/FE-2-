@@ -25,7 +25,7 @@ jobs:
       - name: 캐싱 작업
         uses: actions/cache@v2
         with:
-          path: node_modules
+          path: cache
           key: ${{ runner.OS }}-yarn-${{ hashFiles('**/yarn-lock') }}
           restore-keys: |
             ${{ runner.OS }}-yarn-

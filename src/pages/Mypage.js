@@ -12,10 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {ReactComponent as Next} from '../assets/slider-arrow-right.svg'
 import {ReactComponent as Prev} from '../assets/slider-arrow-left.svg'
-
-import { StyledSlider, Div, DivPre, ImgLabel, Poster, RatingBox, MypageTitle, MypageText, RatingTitle,
-        SliderContainer} from '../css/StyledComponents';
-
+import { StyledSlider, Div, DivPre, ImgLabel, Poster } from '../css/StyledComponents';
 
 
 export default function Mypage() {
@@ -114,9 +111,9 @@ export default function Mypage() {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
-
-    prevArrow: <SlickArrowLeft />,
-    nextArrow: <SlickArrowRight />,
+    variableWidth: true,
+    nextArrow: <Div><Next /></Div>,
+    prevArrow: <DivPre><Prev /></DivPre>
   };
 
   return (
@@ -128,12 +125,11 @@ export default function Mypage() {
         셋탑박스 번호 : {subsr}
       </MypageText>
       </div>
- 
-      <MypageTitle>시청중인 컨텐츠</MypageTitle>
-      <SliderContainer>
+      <br/>
 
       <div style={{height:'350px'}}>
-      <MypageTitle>시청중인 컨텐츠</MypageTitle>
+      <br />
+      <h2>시청중인 컨텐츠</h2>
         { replayData?
         <StyledSlider {...settings}>
         {(replayData.map((item, index) =>(
@@ -153,10 +149,10 @@ export default function Mypage() {
         :(
           <MypageText>시청 중인 컨텐츠가 없습니다.</MypageText>
         )}
-      </SliderContainer>
+      </div>
 
       <div style={{height:'350px'}}>
-      <MypageTitle>찜 목록</MypageTitle>
+      <h2>찜목록</h2>
         { isWished ? 
         <StyledSlider {...settings}>
         {(wishData.map((item, index) => (
@@ -178,25 +174,37 @@ export default function Mypage() {
         )}
       </SliderContainer>
 
-      <div>
-      <MypageTitle>리뷰 목록</MypageTitle> 
-        { isRated ? 
-          <div>
-          {(ratingData.map((item, index) => (
-            
-              <RatingBox key={index}>
-                <NavLink to={"/detail/"+item.content_id} className="LinkText">
+      <h2>리뷰목록</h2>
+      <div >
+      { isRated ? 
+      (ratingData.map((item, index) => (
+        <div key={index}>
+          <NavLink to={"/detail/"+item.content_id}>
+          <img 
+              src={item.posterurl}
+              alt={index} width="50px" 
+              />
+          {item.title}
+          <Rating
+            size="20"
+            initialValue={item.rating}
+            readonly="true"
+          />{item.rating_date}{item.review}
 
-              </RatingBox>
-              
-          )))}
-          </div> 
-              </div>
-              </RatingBox>
-          ))) 
-          : (
-            <MypageText>평점 내역이 존재하지 않습니다.</MypageText>
-          )}
+          {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 
+           <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
+          &&reviewitem.content_id === item.content_id)
+          .map((item2, index)=>(
+            <label key={index}>{item2.review}</label>
+          ))}</text>*/}
+          
+        </NavLink>
+          <hr />
+        </div>
+      
+      ))) : (
+        "평점 내역이 존재하지 않습니다."
+      )}
       </div>
     </>
   )

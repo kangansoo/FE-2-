@@ -20,10 +20,10 @@ export default function Mypage() {
 
   const [isWished, setIsWished] = useState(false);
   const [wishData, setWishData] = useState();
-
+  
   const [isRated, setIsRated] = useState(false);
   const [ratingData, setRatingData] = useState();
-
+  
   const [replayData, setReplayData] = useState();
   //const [reviewData, setReviewData] = useState();
   
@@ -54,7 +54,7 @@ export default function Mypage() {
     };
     checkWishes();
   }, [subsr]);
-
+  
   //평점 GET
   useEffect(() => {
     const checkRatings = async () => {
@@ -131,22 +131,22 @@ export default function Mypage() {
         <StyledSlider {...settings}>
         {(replayData.map((item, index) =>(
           <figure key={index} >
-            <NavLink to={"/detail/"+item.content_id} className="LinkText">
-              <ImgLabel>
-                <Poster
-                src={item.posterurl}
-                alt={index}
-                />
-              </ImgLabel>
-              <figcaption><progress value={item.user_preference} max={100} /><figcaption>{item.title}</figcaption></figcaption>
-            </NavLink>
-          </figure>
-        )))}
-        </StyledSlider>
-        :(
-          <MypageText>시청 중인 컨텐츠가 없습니다.</MypageText>
-        )}
-      </SliderContainer>
+          <NavLink to={"/detail/"+item.content_id} className="LinkText">
+          <ImgLabel>
+            <Poster
+            src={item.posterurl}
+            alt={index}
+            />
+          </ImgLabel>
+          <figcaption><progress value={item.user_preference} max={100} /><figcaption>{item.title}</figcaption></figcaption>
+        </NavLink>
+      </figure>
+    )))}
+    </StyledSlider>
+    :(
+      <MypageText>시청 중인 컨텐츠가 없습니다.</MypageText>
+    )}
+          </SliderContainer>
 
       
       <PageTitle>찜 목록</PageTitle>
@@ -155,22 +155,22 @@ export default function Mypage() {
         <StyledSlider {...settings}>
         {(wishData.map((item, index) => (
           <figure key={index}>
-            <NavLink to={"/detail/"+item.content_id} className="LinkText">
-              <ImgLabel>
-                <Poster 
-                  src={item.posterurl}
-                  alt={index}
-                />
-              </ImgLabel>
-              <figcaption>{item.title}</figcaption>
-            </NavLink>
-          </figure>
-        )))} 
-        </StyledSlider>
-        : (
-          <MypageText>찜 내역이 존재하지 않습니다.</MypageText>
-        )}
-      </SliderContainer>
+          <NavLink to={"/detail/"+item.content_id} className="LinkText">
+          <ImgLabel>
+            <Poster 
+              src={item.posterurl}
+              alt={index}
+            />
+          </ImgLabel>
+          <figcaption>{item.title}</figcaption>
+        </NavLink>
+      </figure>
+    )))} 
+    </StyledSlider>
+    : (
+      <MypageText>찜 내역이 존재하지 않습니다.</MypageText>
+    )}
+     </SliderContainer>
 
       <div>
       <PageTitle>리뷰 목록</PageTitle> 
@@ -199,22 +199,22 @@ export default function Mypage() {
                   {item.review}
                   {item.rating_date}
 
-                  {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 
-                  <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
-                  &&reviewitem.content_id === item.content_id)
-                  .map((item2, index)=>(
-                    <label key={index}>{item2.review}</label>
-                  ))}</text>*/}
-                
-              </RatingBox>
-              
-          )))}
-          </div> 
-          : (
-            <MypageText>평점 내역이 존재하지 않습니다.</MypageText>
-          )}
-      </div>
-    </>
-  )
-  
+               {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 
+               <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
+               &&reviewitem.content_id === item.content_id)
+               .map((item2, index)=>(
+                 <label key={index}>{item2.review}</label>
+               ))}</text>*/}
+
+</RatingBox>
+
+)))}
+</div> 
+: (
+  <MypageText>평점 내역이 존재하지 않습니다.</MypageText>
+)}
+</div>
+</>
+)
+
 }

@@ -22,6 +22,10 @@ jobs:
         with:
           node-version: 18
 
+      - name: node 버전 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: 캐싱 작업
         uses: actions/cache@v2
         with:

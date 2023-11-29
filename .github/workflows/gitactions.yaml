@@ -1,4 +1,4 @@
-name: REACT_S3
+name: REACT_S3_gitaction
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.OS }}-yarn-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.OS }}-yarn-${{ hashFiles('**/yarn-lock') }}
           restore-keys: |
             ${{ runner.OS }}-yarn-
 

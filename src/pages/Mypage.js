@@ -172,7 +172,7 @@ export default function Mypage() {
         : (
           <MypageText>찜 내역이 존재하지 않습니다.</MypageText>
         )}
-      </SliderContainer>
+      </div>
 
       <h2>리뷰목록</h2>
       <div >

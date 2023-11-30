@@ -5,7 +5,6 @@ import DropDownSubsr from '../components/DropDownSubsr';
 import DropDownGenres from '../components/DropDownGenres';
 
 export default function Navbar() {
-  const subsr = localStorage.getItem('subsr');
 
   return (
     <div className='NavBar'>
@@ -16,14 +15,15 @@ export default function Navbar() {
         </div>
         
           {/* <Link to='/search'> */}
+           <div className="GenreMenu"> 
             <DropDownGenres>
               
             </DropDownGenres>
               {/* </Link> */}
-          
+            </div>
         <div className="SubsrContainer"> 
           <DropDownSubsr>
-            {subsr}
+            
           </DropDownSubsr>
         </div>
     </div>

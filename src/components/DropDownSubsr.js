@@ -61,23 +61,23 @@ export default function DropDownSubsr() {
 
     return (
     <div className="dropdown" ref={dropdownRef}>
-      <button
-      className='dropdownbutton'
-      onClick={toggleDropdown}>
-        {subsr}
-      </button>
+      <div
+        className='dropdownbutton'
+        onClick={toggleDropdown}>
+        <div className="UserContainer"></div>
+      </div>
       {isOpen && (
         <div className="dropdown-content">
           <div className="DropDownHello">
             안녕하세요
             <br />
-            {subsr}님
+            <div style={{fontSize:"15px"}}>{subsr}님</div>
           </div>
           <div className='DropDownMenu'>
             <Link to='../mypage' onClick={handleMyPageClick} className='DropDownLink'>
-                <p>마이페이지</p>
+                <p className="DropDownMypage">마이페이지</p>
             </Link>
-            <p onClick={handleLogout}>로그아웃</p>
+            <p onClick={handleLogout} className="DropDownLogout">로그아웃</p>
           </div>
         </div>
       )}

@@ -47,20 +47,20 @@ export default function DropDownGenres() {
       setIsOpen(!isOpen);}
 
     return (
-    <div className="dropdown" ref={dropdownRef}>
+    <div className="grdropdown" ref={dropdownRef}>
       <button
-      className='dropdownbutton'
+      className='grdropdownbutton'
       onClick={toggleDropdown}>
         <SearchIcon className='NavBarSearchIcon' color="white"></SearchIcon>
       </button>
       {isOpen && (
-        <div className="dropdown-content">
+        <div className="grdropdown-content">
           카테고리 검색
           <br />{allGenres&&allGenres.map((genre,index)=>(
             <label key={index}>
-               <NavLink to={`../genres/${genre}`} > {/*{`../genre/${encodeURIComponent(genre)}`} */}
-              <p onClick={handleLogout}>{genre}</p>
-          </NavLink></label>
+              <NavLink to={`../genres/${genre}`} className="DropDownNav"> {/*{`../genre/${encodeURIComponent(genre)}`} */}
+                <p onClick={handleLogout}>{genre}</p>
+              </NavLink></label>
           ))}
             
         </div>

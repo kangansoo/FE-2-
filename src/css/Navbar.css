@@ -23,6 +23,7 @@
 
 .LinkContainer{
     margin-left:3%;
+    margin-right: 3%;
 }
 
 .NavbarLink {
@@ -35,11 +36,16 @@
 
 .SubsrContainer{
     display:inline-flex;
-    margin-left: auto;
     margin-right: 5%;
 }
 
 .Subsr{
     font-size : 21px;
+}
+
+.GenreMenu{
+    display:flex;
+    margin-left: auto;
+    margin-right: 5%;
 }
 

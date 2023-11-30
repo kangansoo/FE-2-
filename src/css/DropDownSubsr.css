@@ -1,9 +1,7 @@
 .dropdownbutton {
     cursor: pointer;
-    border: 0;
     background-color: transparent;
-    color: white;
-    font-size : 16px;
+    display: flex;
 }
 
 .dropdown {
@@ -13,26 +11,28 @@
   
   .dropdown-content {
     display: block;
-    position: relative;
-    left: -70px;
-    background-color: black;
-    width: 200px;
-    height: 160px;
+    position: absolute;
+    left: -105px;
+    background-color: #28292a;
+    width: 180px;
+    height: 250px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    font-size:18px;
     text-align: center;
+    border-radius: 3px;
   }
   
   .dropdown-content p {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    color:#D4D4D4;
   }
   
   .dropdown-content p:hover {
-    background-color: #f1f1f1;
+    background-color: #393939;
     cursor: pointer;
+    color: white;
   }
 
   .custom-ui {
@@ -76,14 +76,25 @@
 
 .DropDownMenu{
   flex-direction: column;
-  display: flex;
+  display: block;
   margin-top: 30%;
 }
   .DropDownMenu p {
-    display: flex;
-    color:black;
+    display: block;
+    color:white;
   }
 
 .DropDownHello{
   margin-top: 10%;
+  color: white;
 }
+
+.UserContainer{
+  width: 35px;
+  height: 35px;
+  border: 1px solid #d4d4d4;
+  border-radius: 50%;
+  background: url('../assets/user.jpg');
+  background-size: cover;
+}
+

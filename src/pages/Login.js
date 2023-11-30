@@ -4,7 +4,7 @@ import {Wrapper, Title, Form, Inputs, Input} from "../css/StyledComponents";
 //import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import '../css/Login.css';
 import { login } from '../apis/login/getlogin_post';
 
 
@@ -82,7 +82,7 @@ const Login = () => {
                 onKeyDown={keyPress} />
                 {/*<Input placeholder="비밀번호" type="password" value={password} onChange={onChangePw}/>*/}
             </Inputs>
-            <Button onClick={onClick} disabled={button}>Login</Button>
+            <Button onClick={onClick} disabled={button} className="LoginButton">Login</Button>
         </Form>
         {/* 주석 처리 <CustomLink to='/signup'>회원가입하기</CustomLink> */}
     </Wrapper>

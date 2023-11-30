@@ -1,36 +1,42 @@
-.dropdownbutton {
+.grdropdownbutton {
     cursor: pointer;
     border: 0;
     background-color: transparent;
+    color:white;
 }
 
-.dropdown {
+.grdropdown {
     position: relative;
     display: inline-block;
   }
   
-  .dropdown-content {
+  .grdropdown-content {
     display: block;
     position: absolute;
-    background-color: #f9f9f9;
-    width: 200px;
+    left: -120px;
+    background-color: #28292a;
+    width: 180px;
     height: 250px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    text-align: center;
+    border-radius: 3px;
   }
   
-  .dropdown-content p {
+  .grdropdown-content p {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    color:#D4D4D4;
   }
   
-  .dropdown-content p:hover {
-    background-color: #f1f1f1;
+  .grdropdown-content p:hover {
+    background-color: #393939;
     cursor: pointer;
+    color: white;
   }
 
-  .custom-ui {
+  .grcustom-ui {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -42,16 +48,16 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  .custom-ui h1 {
+  .grcustom-ui h1 {
     font-size: 20px;
     margin-bottom: 10px;
   }
   
-  .custom-ui p {
+  .grcustom-ui p {
     margin-bottom: 20px;
   }
   
-  .custom-ui button {
+  .grcustom-ui button {
     color: black;
     border: none;
     padding: 10px;
@@ -60,6 +66,14 @@
     border-radius: 3px;
   }
   
-  .custom-ui button:hover {
+  .grcustom-ui button:hover {
     background-color: #f1f1f1;
   }
+
+.DropDownNav{
+  text-decoration: none;
+}
+
+
+
+

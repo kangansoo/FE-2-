@@ -86,15 +86,15 @@ export const RatingBox = styled.div`
   margin-left: 10%;
   margin-bottom: 1%;
   border-bottom : 2px #d4d4d4 solid;
-  display: inline-block;
+  display: inline-flex;
   flexDirection: row;
 `
 export const RatingTitle = styled.div`
-  position: relative;
   margin-left: 1%;
-  box-sizing: content-box;
-  display: inline-block;
+  margin-right: 2%;
+  display: inline-flex;
   text-align: start;
+  white-space: nowrap;
 `
 export const SliderContainer = styled.div`
   height: 350px;
@@ -140,7 +140,6 @@ export const Input = styled.input`
         color: darkgray;
         font-size: 20px;
         font-weight: 500;
-        font-family: 'OTWelcomeRA';
     }
 `;
 

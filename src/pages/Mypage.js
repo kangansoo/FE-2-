@@ -116,7 +116,7 @@ export default function Mypage() {
   };
 
   return (
-    <>
+    <div className="Mypage">
       <div>
       <PageTitle>회원정보</PageTitle>
 
@@ -138,7 +138,7 @@ export default function Mypage() {
             alt={index}
             />
           </ImgLabel>
-          <figcaption><progress value={item.user_preference} max={100} /><figcaption>{item.title}</figcaption></figcaption>
+          <figcaption><progress className='ProgressBar' value={item.user_preference} max={100} /></figcaption>
         </NavLink>
       </figure>
     )))}
@@ -177,44 +177,48 @@ export default function Mypage() {
         { isRated ? 
           <div>
           {(ratingData.map((item, index) => (
-            
               <RatingBox key={index}>
                 <NavLink to={"/detail/"+item.content_id} className="LinkText">
-                  <ImgLabel>
-                    <Poster 
+                  <label className='RatingImgContainer'>
+                    <img
+                      className="RatingImg" 
                       src={item.posterurl}
-                      alt={index} width="120px" 
+                      alt={index}
                       />
-                  </ImgLabel>
-                  </NavLink>
-                  <div>
-                    <RatingTitle>{item.title}</RatingTitle>
-                    <Rating
-                      size="20"
-                      initialValue={item.rating}
-                      readonly="true"
-                      className="Rating"
-                    />
+                  </label>
+                </NavLink>
+                  <div className="RatingDataContainer">
+                    <div className="RatingTitleContainer">
+                      <RatingTitle>{item.title}</RatingTitle>
+                        <Rating
+                          size="20"
+                          initialValue={item.rating}
+                          readonly="true"
+                          fillColor="#a50034"
+                          className="Rating"
+                        />
+                        <div className="RatingDate">
+                          {item.rating_date}
+                        </div>
+                    </div>
+                      <div className="Review">
+                        {item.review}
+                      </div>
                   </div>
-                  {item.review}
-                  {item.rating_date}
-
-               {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 
-               <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
-               &&reviewitem.content_id === item.content_id)
-               .map((item2, index)=>(
-                 <label key={index}>{item2.review}</label>
-               ))}</text>*/}
-
-</RatingBox>
-
-)))}
-</div> 
-: (
-  <MypageText>평점 내역이 존재하지 않습니다.</MypageText>
-)}
-</div>
-</>
-)
+                {/* 평점 데이터에서 subsr과 content_id로 다시 리뷰 데이터 가져와서 매핑 
+                <text>리뷰: {reviewData.filter((reviewitem) => reviewitem.subsr === item.subsr
+                &&reviewitem.content_id === item.content_id)
+                .map((item2, index)=>(
+                  <label key={index}>{item2.review}</label>
+                ))}</text>*/}
+              </RatingBox>
+            )))}
+          </div> 
+        : (
+          <MypageText>평점 내역이 존재하지 않습니다.</MypageText>
+        )}
+      </div>
+    </div>
+  )
 
 }

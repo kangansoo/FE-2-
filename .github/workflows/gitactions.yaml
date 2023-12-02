@@ -1,7 +1,7 @@
 name: REACT_S3_action
 
 on:
-  pull_request:
+  push:
     branches: [ "deploy" ]
     
 jobs:

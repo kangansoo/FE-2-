@@ -15,7 +15,7 @@ import { getratingdata } from '../apis/detail/getdetailrating';
 import { delReview } from '../apis/detail/deldetailrating';
 import {PageTitle, ImgLabel, Poster} from '../css/StyledComponents';
 
-import altimage from "../assets/altimage.png"
+
 
 export default function Detail() {
     

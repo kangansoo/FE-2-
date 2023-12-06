@@ -149,38 +149,4 @@ export const Title = styled.div`
     color:white;
 `;
 
-export const Input = styled.input`
-    font-size: 20px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    padding: 15px;
-    &::placeholder {
-        color: #d4d4d4;
-        font-size: 20px;
-        font-weight: 550;
-        border: none;
-    };
-    &:focus {
-        outline: 2px solid #a50034;
-    };
-`;
-
-export const Button = styled.button`
-    background-color: #a50034;
-    height: 60px;
-    width: 280px;
-    color: white;
-    font-size: 20px;
-    border: none;
-    border-radius: 5px;
-    align-content: center;
-    justify-content: center;
-    cursor: pointer;
-    &:disabled {
-        background-color: #F5ADAD;
-      }
-}
-`;
-
 

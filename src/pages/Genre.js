@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-
+import '../css/Genre.css';
 import { useParams } from 'react-router-dom';
 import { genreList } from '../apis/genres/getGenre';
 import { NavLink } from 'react-router-dom';
@@ -27,14 +27,16 @@ export default function Mood() {
 
 
     return (
-        <div>
-        <h3>{genre} VOD 목록 </h3>
-         {genreVods&&genreVods.map((image,index) => (
-            <label key={index}>
-              <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={index}/>
-              </NavLink></label>))} 
-              </div> 
+        <div className='GenreBackground'>
+          <div className='GenreVodContainer'>
+          {genreVods&&genreVods.map((image,index) => (
+              <label key={index} className="GenreLabel">
+                <NavLink to={"/detail/"+image.content_id}>
+                  <img src={image.posterurl} alt={index} className="GenrePoster"/>
+                </NavLink>
+              </label>))} 
+          </div> 
+        </div>
     );
 
 }

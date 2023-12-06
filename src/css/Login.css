@@ -6,3 +6,7 @@
     display: flex;
     align-items: center;
 }
+
+.LoginBackground {
+    height: 100vh;
+}

@@ -60,9 +60,10 @@ export const MypageTitle = styled.h3`
   margin-bottom: 2%;
   margin-left: 10%
 `
-export const MypageText = styled.p`
+export const MypageText = styled.text`
   margin-left: 10%;
   font-size: 18px;
+  color: white;
 `
 export const ImgLabel = styled.label`
     width: 176px; 
@@ -101,7 +102,7 @@ export const SliderContainer = styled.div`
   height: 250px;
   margin: 0 10%;
 `
-export const PageTitle = styled.h3`
+export const PageTitle = styled.h2`
     margin-left: 10%;
     margin-top: 3%;
     margin-bottom: 3%;

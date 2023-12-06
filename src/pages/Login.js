@@ -74,7 +74,7 @@ const Login = () => {
 
 
   return (
-    <div style={{margin: '0', width: '100%', height: '100vh', background:`url(${background})`, backgroundRepeat:'no-repeat', backgroundSize:'cover'}}>
+    <div className = 'LoginBackground' style={{background:`url(${background})`, backgroundRepeat:'no-repeat', backgroundSize:'cover'}}>
         <Wrapper>
             <Form>
                 <Inputs>

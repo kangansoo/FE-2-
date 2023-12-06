@@ -1,7 +1,12 @@
-.divbg{
+.Mypagebg{
     background-color: black;
-    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* position: absolute;
     display: block;
+    height: 100vh;
+    width: 100vw; */
 }
 
 .LinkText{
@@ -14,9 +19,9 @@
 
 .ProgressBar{
     display:flex;
-    position: absolute;
-
-    z-index: 1;
+    position: relative;
+    top: -11px;
+    right: -1px;
 }
 
 progress {
@@ -24,13 +29,14 @@ progress {
 }
 progress::-webkit-progress-bar {
     background:transparent;
+    opacity: 0.5;
     width: 177px;
     height: 10px;
+    border-radius:2px;
 }
 progress::-webkit-progress-value {
-    border-radius:1px;
+    border-radius:2px;
     background: #a50034;
-    opacity: 0.7;
 }
 
 .Rating{

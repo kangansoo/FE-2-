@@ -117,7 +117,7 @@ export default function Mypage() {
 
   return (
     <>
-    <div className='divbg'>
+    <div className='Mypagebg'>
       {/* <div ><PageTitle>회원정보</PageTitle>
 
       <MypageText>
@@ -140,12 +140,12 @@ export default function Mypage() {
             <figcaption><progress className='ProgressBar' value={item.user_preference} max={100} /></figcaption>
           </NavLink>
         </figure>
-    )))}
-    </StyledSlider>
-    :(
-      <MypageText>시청 중인 컨텐츠가 없습니다.</MypageText>
-    )}
-          </SliderContainer>
+        )))}
+        </StyledSlider>
+        :(
+          <MypageText>시청 중인 컨텐츠가 없습니다.</MypageText>
+        )}
+      </SliderContainer>
 
       
       <PageTitle>찜 목록</PageTitle>
@@ -164,11 +164,11 @@ export default function Mypage() {
           <figcaption>{item.title}</figcaption>
         </NavLink>
       </figure>
-    )))} 
-    </StyledSlider>
-    : (
-      <MypageText>찜 내역이 존재하지 않습니다.</MypageText>
-    )}
+        )))} 
+        </StyledSlider>
+        : (
+          <MypageText>찜 내역이 존재하지 않습니다.</MypageText>
+        )}
      </SliderContainer>
 
       <div>
@@ -180,7 +180,7 @@ export default function Mypage() {
                 <NavLink to={"/detail/"+item.content_id} className="LinkText">
                   <label className='RatingImgContainer'>
                     <img
-                      className="RatingImg" 
+                      className="RatingImg"
                       src={item.posterurl}
                       alt={index}
                       />

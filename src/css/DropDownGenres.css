@@ -75,6 +75,11 @@
 .DropDownNav{
   text-decoration: none;
 }
+.DropDownHamburg{
+  margin-top: 40%;
+  margin-left: 40%;
+  width: 45px;
+}
 
 
 

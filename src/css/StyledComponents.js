@@ -35,6 +35,16 @@ export const StyledSlider = styled(Slider)`
   }
 `;
 
+export const SliderContainer = styled.div`
+  height: 250px;
+  margin: 0 10%;
+`;
+
+export const MainSliderContainer = styled.div`
+  height: 300px;
+  margin: 0 10%;
+  margin-bottom: 3%;
+`;
 
 export const Div = styled.div`
     width: 24px;
@@ -62,13 +72,15 @@ export const MypageTitle = styled.h3`
   margin-top: 4%;
   margin-bottom: 2%;
   margin-left: 10%
-`
+`;
+
 export const MypageText = styled.text`
   margin-left: 10%;
   font-size: 18px;
   color: white;
   text-decoration: underline;
-`
+`;
+
 export const ImgLabel = styled.label`
     width: 176px; 
     height: 244px; 
@@ -79,13 +91,14 @@ export const ImgLabel = styled.label`
     justifyContent: flex-start;
     display: flex;
     cursor: pointer;
-`
+`;
+
 export const Poster = styled.img`
     display: flex;
     alignSelf: stretch;
     flex: 1 1 0;
     border-color: black;
-`
+`;
 export const RatingBox = styled.div`
   width: 80%;
   height: 180px;
@@ -94,26 +107,25 @@ export const RatingBox = styled.div`
   border-bottom : 2px #d4d4d4 solid;
   display: inline-flex;
   flexDirection: row;
-`
+`;
+
 export const RatingTitle = styled.div`
   margin-left: 1%;
   margin-right: 2%;
   display: inline-flex;
   text-align: start;
   white-space: nowrap;
-`
-export const SliderContainer = styled.div`
-  height: 250px;
-  margin: 0 10%;
-`
+`;
+
 export const PageTitle = styled.p`
-    margin-left: 10%;
+    margin-left: 5%;
     margin-top: 3%;
     margin-bottom: 3%;
     color:white;
     font-weight: bold;
     font-size: 22px;
 `;
+
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;

@@ -7,28 +7,19 @@ import { Loading } from '../components/Loading';
 
 //처음 추천 결과 요청
 import { allVods } from '../apis/main/getmain_post';
-
 //각 모델 새로고침 결과 요청
 import { VOD_model1 } from '../apis/main/getreload1_post';
 import { VOD_model2 } from '../apis/main/getreload2_post';
 import { VOD_model3 } from '../apis/main/getreload3_post';
-
 import { StyledSlider, Div, DivPre, ImgLabel, Poster, MypageText, 
-  SliderContainer, PageTitle} from '../css/StyledComponents';
+  MainSliderContainer, PageTitle} from '../css/StyledComponents';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {ReactComponent as Next} from '../assets/slider-arrow-right.svg'
 import {ReactComponent as Prev} from '../assets/slider-arrow-left.svg'
-
+import '../css/Main.css';
 
 export default function Main() {
-    const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 500 },
-      items: 5,
-      slidesToSlide: 1 // optional, default to 1.
-    }
-  };
 
   //모델별 결과 받을 리스트
   const [VODs1, setVODs1] = useState([]);
@@ -141,105 +132,111 @@ export default function Main() {
         <div>
         <PageTitle>인기작</PageTitle>
         {/* <button onClick={getVOD1}>새로고침</button> */}
-        <SliderContainer>
+        <MainSliderContainer>
           <StyledSlider {...settings}>
               {VODs1&&VODs1.map((image,index) => (
-                <label key={index}> 
-                  <NavLink to={"/detail/"+image.content_id}>
-                  <img src={image.posterurl} alt={image.title}/>
-                  </NavLink>
-                  
-                  {image.mood&&image.mood.map((mood,index)=>(
-                    <label key={index}>
-                    <NavLink to={"/main/"+mood}>
-                    #{mood}</NavLink>
-                    </label>
-                  ))}
-                  <br />
-                  {image.gpt_genres&&image.gpt_genres.map((gpt,index)=>(
-                    <label key={index}>
-                    #{gpt}
-                    </label>
-                  ))}
-                  <br />
-                  {image.gpt_subjects&&image.gpt_subjects.map((gpt,index)=>(
-                    <label key={index}>
-                    #{gpt}
-                    </label>
-                  ))}
-                </label>
+                <div>  
+                  <ImgLabel key={index}> 
+                    <NavLink to={"/detail/"+image.content_id}>
+                    <Poster src={image.posterurl} alt={image.title}/>
+                    </NavLink>
+                  </ImgLabel>  
+                    {image.mood&&image.mood.map((mood,index)=>(
+                      <label key={index}>
+                      <NavLink to={"/main/"+mood} className='MainLink'>
+                        #{mood}
+                      </NavLink>
+                      </label>
+                    ))}
+                    <br />
+                    {image.gpt_genres&&image.gpt_genres.map((gpt,index)=>(
+                      <label key={index} className='TextColor'>
+                      #{gpt}
+                      </label>
+                    ))}
+                    <br />
+                    {image.gpt_subjects&&image.gpt_subjects.map((gpt,index)=>(
+                      <label key={index} className='TextColor'>
+                      #{gpt}
+                      </label>
+                    ))}
+                  </div>
                 ))
               }
           </StyledSlider>  
-        </SliderContainer>
+        </MainSliderContainer>
         
         <PageTitle>장르별 추천</PageTitle>
-        <SliderContainer>
+        <MainSliderContainer>
           <StyledSlider {...settings}>
         {/* <button onClick={getVOD2}>새로고침</button> */}
           {VODs2&&VODs2.map((image,index) => (
-            <label key={index}>
-              <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={image.title}/>
-              </NavLink>
-              
-              {image.mood&&image.mood.map(mood=>(
-                <label key={mood}>
-                <NavLink to={"/main/"+mood}>
-                #{mood}</NavLink>
-                </label>
-              ))}
-              <br />
-              {image.gpt_genres&&image.gpt_genres.map((gpt,index)=>(
-                <label key={index}>
-                #{gpt}
-                </label>
-              ))}
-              <br />
-              {image.gpt_subjects&&image.gpt_subjects.map((gpt,index)=>(
-                <label key={index}>
-                #{gpt}
-                </label>
-              ))}
-            </label>
+            <div>
+              <ImgLabel key={index}>
+                <NavLink to={"/detail/"+image.content_id}>
+                <Poster src={image.posterurl} alt={image.title}/>
+                </NavLink>
+              </ImgLabel>  
+                {image.mood&&image.mood.map(mood=>(
+                  <label key={mood}>
+                  <NavLink to={"/main/"+mood} className='MainLink'>
+                    #{mood}
+                  </NavLink>
+                  </label>
+                ))}
+                <br />
+                {image.gpt_genres&&image.gpt_genres.map((gpt,index)=>(
+                  <label key={index} className='TextColor'>
+                  #{gpt}
+                  </label>
+                ))}
+                <br />
+                {image.gpt_subjects&&image.gpt_subjects.map((gpt,index)=>(
+                  <label key={index} className='TextColor'>
+                  #{gpt}
+                  </label>
+                ))}
+              </div>
             ))
           }
           </StyledSlider>
-        </SliderContainer>
+        </MainSliderContainer>
 
         <PageTitle>감독, 배우 추천</PageTitle>
         {/* <button onClick={getVOD3}>새로고침</button> */}
-        <SliderContainer>
+        <MainSliderContainer>
           <StyledSlider {...settings}>
           {VODs3&&VODs3.map((image,index) => (
-            <label key={index}>
-              <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={image.title}/>
-              </NavLink>
-              
-              {image.mood&&image.mood.map(mood=>(
-                <label key={mood}>
-                <NavLink to={"/main/"+mood}>
-                  #{mood}</NavLink>
+            <div>  
+              <ImgLabel key={index}>
+                <NavLink to={"/detail/"+image.content_id}>
+                <Poster src={image.posterurl} alt={image.title}/>
+                </NavLink>
+              </ImgLabel>
+                {image.mood&&image.mood.map(mood=>(
+                  <label key={mood}>
+                  <NavLink to={"/main/"+mood} className='MainLink'>
+                    #{mood}
+                  </NavLink>
                   </label>
-              ))}
-              <br />
-              {image.gpt_genres&&image.gpt_genres.map((gpt,index)=>(
-                <label key={index}>
-                #{gpt}
-                </label>
-              ))}
-              <br />
-              {image.gpt_subjects&&image.gpt_subjects.map((gpt,index)=>(
-                <label key={index}>
-                #{gpt}
-                </label>
-              ))}
-            </label>
+                ))}
+                <br />
+                {image.gpt_genres&&image.gpt_genres.map((gpt,index)=>(
+                  <label key={index} className='TextColor'>
+                    #{gpt}
+                  </label>
+                ))}
+                <br />
+                {image.gpt_subjects&&image.gpt_subjects.map((gpt,index)=>(
+                  <label key={index} className='TextColor'>
+                  #{gpt}
+                  </label>
+                ))}
+              </div>
             ))
           }
           </StyledSlider>
-        </SliderContainer>
+        </MainSliderContainer>
         </div>
       </div>
   );

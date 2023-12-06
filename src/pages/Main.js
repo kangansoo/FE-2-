@@ -1,6 +1,5 @@
 /* eslint-disable */
 import {React, useState,useEffect} from 'react' 
-import Carousel from "react-multi-carousel";
 //import imageData from "../components/imgdata";
 import "react-multi-carousel/lib/styles.css";
 import {NavLink} from "react-router-dom";
@@ -14,10 +13,13 @@ import { VOD_model1 } from '../apis/main/getreload1_post';
 import { VOD_model2 } from '../apis/main/getreload2_post';
 import { VOD_model3 } from '../apis/main/getreload3_post';
 
-//react-slick-slider
-// import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import { StyledSlider, Div, DivPre, ImgLabel, Poster, MypageText, 
+  SliderContainer, PageTitle} from '../css/StyledComponents';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import {ReactComponent as Next} from '../assets/slider-arrow-right.svg'
+import {ReactComponent as Prev} from '../assets/slider-arrow-left.svg'
+
 
 export default function Main() {
     const responsive = {
@@ -93,83 +95,92 @@ export default function Main() {
       }
     };
 
+    const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+      <button
+        {...props}
+        className={
+          "slick-prev slick-arrow" +
+          (currentSlide === 0 ? " slick-disabled" : "")
+        }
+        aria-hidden="true"
+        aria-disabled={currentSlide === 0 ? true : false}
+        type="button"
+      >
+      <DivPre><Prev /></DivPre>
+      </button>
+    );
+  
+    const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+      <button
+        {...props}
+        className={
+          "slick-next slick-arrow" +
+          (currentSlide === slideCount - 1 ? " slick-disabled" : "")
+        }
+        aria-hidden="true"
+        aria-disabled={currentSlide === slideCount - 1 ? true : false}
+        type="button"
+      >
+      <Div><Next /></Div>
+      </button>
+    );
+
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 7,
+      slidesToScroll: 7,
+      prevArrow: <SlickArrowLeft />,
+      nextArrow: <SlickArrowRight />,
+    };
 
     return (
       <div>
-        {loading ? <Loading /> :null}<div>
-        <h1>인기작</h1>
-        <button onClick={getVOD1}>새로고침</button>
-          <Carousel
-          centerMode={true}
-          focusOnSelect={true}
-          swipeable={false}
-          draggable={true}
-          showDots={false}
-          responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
-          infinite={true}
-          autoPlay={false}
-          autoPlaySpeed={10000}
-          keyBoardControl={false}
-          customTransition="all .5"
-          transitionDuration={500}
-          containerClass="carousel-container"
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-left"
-        >
-          {VODs1&&VODs1.map((image,index) => (
-            <label key={index}> 
-              <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={index}/>
-              </NavLink>
-              
-              {image.mood&&image.mood.map((mood,index)=>(
-                <label key={index}>
-                <NavLink to={"/main/"+mood}>
-                #{mood}</NavLink>
+        {loading ? <Loading /> :null}
+        <div>
+        <PageTitle>인기작</PageTitle>
+        {/* <button onClick={getVOD1}>새로고침</button> */}
+        <SliderContainer>
+          <StyledSlider {...settings}>
+              {VODs1&&VODs1.map((image,index) => (
+                <label key={index}> 
+                  <NavLink to={"/detail/"+image.content_id}>
+                  <img src={image.posterurl} alt={image.title}/>
+                  </NavLink>
+                  
+                  {image.mood&&image.mood.map((mood,index)=>(
+                    <label key={index}>
+                    <NavLink to={"/main/"+mood}>
+                    #{mood}</NavLink>
+                    </label>
+                  ))}
+                  <br />
+                  {image.gpt_genres&&image.gpt_genres.map((gpt,index)=>(
+                    <label key={index}>
+                    #{gpt}
+                    </label>
+                  ))}
+                  <br />
+                  {image.gpt_subjects&&image.gpt_subjects.map((gpt,index)=>(
+                    <label key={index}>
+                    #{gpt}
+                    </label>
+                  ))}
                 </label>
-              ))}
-              <br />
-              {image.gpt_genres&&image.gpt_genres.map((gpt,index)=>(
-                <label key={index}>
-                #{gpt}
-                </label>
-              ))}
-              <br />
-              {image.gpt_subjects&&image.gpt_subjects.map((gpt,index)=>(
-                <label key={index}>
-                #{gpt}
-                </label>
-              ))}
-            </label>
-            ))
-          }
-        </Carousel>
-        <br /><br />
-        <h1>장르별 추천</h1>
-        <button onClick={getVOD2}>새로고침</button>
-          <Carousel
-          centerMode={true}
-          focusOnSelect={true}
-          swipeable={false}
-          draggable={true}
-          showDots={false}
-          responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
-          infinite={true}
-          autoPlay={false}
-          autoPlaySpeed={10000}
-          keyBoardControl={false}
-          customTransition="all .5"
-          transitionDuration={500}
-          containerClass="carousel-container"
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-left"
-        >
+                ))
+              }
+          </StyledSlider>  
+        </SliderContainer>
+        
+        <PageTitle>장르별 추천</PageTitle>
+        <SliderContainer>
+          <StyledSlider {...settings}>
+        {/* <button onClick={getVOD2}>새로고침</button> */}
           {VODs2&&VODs2.map((image,index) => (
             <label key={index}>
               <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={index}/>
+              <img src={image.posterurl} alt={image.title}/>
               </NavLink>
               
               {image.mood&&image.mood.map(mood=>(
@@ -193,31 +204,17 @@ export default function Main() {
             </label>
             ))
           }
-        </Carousel>
-          <br/><br />
-        <h1>감독, 배우 추천</h1>
-        <button onClick={getVOD3}>새로고침</button>
-          <Carousel
-          centerMode={true}
-          swipeable={false}
-          draggable={true}
-          showDots={false}
-          responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
-          infinite={true}
-          autoPlay={false}
-          autoPlaySpeed={10000}
-          keyBoardControl={false}
-          customTransition="all .5"
-          transitionDuration={500}
-          containerClass="carousel-container"
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-left"
-        >
+          </StyledSlider>
+        </SliderContainer>
+
+        <PageTitle>감독, 배우 추천</PageTitle>
+        {/* <button onClick={getVOD3}>새로고침</button> */}
+        <SliderContainer>
+          <StyledSlider {...settings}>
           {VODs3&&VODs3.map((image,index) => (
             <label key={index}>
               <NavLink to={"/detail/"+image.content_id}>
-              <img src={image.posterurl} alt={index}/>
+              <img src={image.posterurl} alt={image.title}/>
               </NavLink>
               
               {image.mood&&image.mood.map(mood=>(
@@ -241,7 +238,9 @@ export default function Main() {
             </label>
             ))
           }
-        </Carousel></div>
+          </StyledSlider>
+        </SliderContainer>
+        </div>
       </div>
   );
 };

@@ -2,14 +2,15 @@ import Slider from "react-slick";
 import styled from "styled-components";
 
 export const StyledSlider = styled(Slider)`
-  margin-left: 5%;
+  margin-left: 7%;
   width: 90%;
   height: 270px;
   text-align: center;
+  justify-content: center;
   
 
   .slick-list {
-    margin: 0 -10px;
+    margin: 0 -130px;
     overflow: hidden;
     height: 270px;
     text-align: center;
@@ -39,7 +40,7 @@ export const Div = styled.div`
     width: 24px;
     height: 24px;
     position: absolute;
-    right: -0.5vw;
+    right: -8vw;
     top: -1vw;
     z-index: 99;
     text-align: right;
@@ -50,7 +51,7 @@ export const DivPre = styled.div`
     width: 24px;
     height: 24px;
     position: absolute;
-    left: -2.5vw;
+    left: -10.5vw;
     top: -1vw;
     z-index: 99;
     text-align: left;

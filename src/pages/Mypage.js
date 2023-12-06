@@ -110,8 +110,8 @@ export default function Mypage() {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToShow: 7,
+    slidesToScroll: 7,
     prevArrow: <SlickArrowLeft />,
     nextArrow: <SlickArrowRight />,
   };

@@ -27,7 +27,7 @@ progress {
 }
 progress::-webkit-progress-bar {
     background:transparent;
-    opacity: 0.5;
+    opacity: 0.7;
     width: 177px;
     height: 10px;
     border-radius:2px;

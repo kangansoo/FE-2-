@@ -51,7 +51,7 @@ export default function DropDownGenres() {
       <button
       className='grdropdownbutton'
       onClick={toggleDropdown}>
-        <MenuIcon fontSize='large' color="white"></MenuIcon>
+        <MenuIcon fontsize="large" color="white" ></MenuIcon>
       </button>
       {isOpen && (
         <div className="grdropdown-content">

@@ -3,6 +3,7 @@ import '../css/Genre.css';
 import { useParams } from 'react-router-dom';
 import { genreList } from '../apis/genres/getGenre';
 import { NavLink } from 'react-router-dom';
+import { ImgLabel, Poster} from '../css/StyledComponents'
 
 export default function Mood() {
     
@@ -25,16 +26,15 @@ export default function Mood() {
         }
     },[genre]);
 
-
     return (
         <div className='GenreBackground'>
           <div className='GenreVodContainer'>
           {genreVods&&genreVods.map((image,index) => (
-              <label key={index} className="GenreLabel">
+              <ImgLabel key={index} className='GenreLabel'>
                 <NavLink to={"/detail/"+image.content_id}>
-                  <img src={image.posterurl} alt={index} className="GenrePoster"/>
+                  <Poster src={image.posterurl} alt={image.title}/>
                 </NavLink>
-              </label>))} 
+              </ImgLabel>))} 
           </div> 
         </div>
     );

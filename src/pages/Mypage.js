@@ -14,6 +14,7 @@ import {ReactComponent as Next} from '../assets/slider-arrow-right.svg'
 import {ReactComponent as Prev} from '../assets/slider-arrow-left.svg'
 import { StyledSlider, Div, DivPre, ImgLabel, Poster, RatingBox, MypageText, RatingTitle,
         SliderContainer, PageTitle} from '../css/StyledComponents';
+import { TroubleshootRounded } from '@mui/icons-material';
 
 export default function Mypage() {
   const subsr = localStorage.getItem('subsr');
@@ -116,7 +117,6 @@ export default function Mypage() {
   };
 
   return (
-    <>
     <div className='Mypagebg'>
       {/* <div ><PageTitle>회원정보</PageTitle>
 
@@ -133,7 +133,7 @@ export default function Mypage() {
             <ImgLabel>
               <Poster
               src={item.posterurl}
-              alt={index}
+              alt={item.title}
               />
               {/* <div><progress className='ProgressBar' value={item.user_preference} max={100} /></div> */}
               </ImgLabel>
@@ -158,7 +158,7 @@ export default function Mypage() {
           <ImgLabel>
             <Poster 
               src={item.posterurl}
-              alt={index}
+              alt={item.title}
             />
           </ImgLabel>
           <figcaption>{item.title}</figcaption>
@@ -171,7 +171,7 @@ export default function Mypage() {
         )}
      </SliderContainer>
 
-      <div>
+      <div className="RatingContainer">
       <PageTitle>리뷰 목록</PageTitle> 
         { isRated ? 
           <div>
@@ -182,7 +182,7 @@ export default function Mypage() {
                     <img
                       className="RatingImg"
                       src={item.posterurl}
-                      alt={index}
+                      alt={item.title}
                       />
                   </label>
                 </NavLink>
@@ -217,7 +217,7 @@ export default function Mypage() {
           <MypageText>평점 내역이 존재하지 않습니다.</MypageText>
         )}
       </div>
-    </div></>
+    </div>
   )
 
 }

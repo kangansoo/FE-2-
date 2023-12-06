@@ -98,3 +98,8 @@
   background-size: cover;
 }
 
+.ButtonSet{
+  display: flex;
+  justify-content: flex-end;
+}
+

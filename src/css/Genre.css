@@ -1,8 +1,9 @@
 .GenreBackground{
     background-color: black;
-    background-size: cover; 
-    background-position: center;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .GenreVodContainer {
@@ -14,20 +15,5 @@
 }
 
 .GenreLabel{
-    width: 176px; 
-    height: 244px; 
-    border-radius: 3px; 
-    overflow: hidden;
-    border: 1px black solid;
-    flex-direction: column;
-    justify-content: flex-start;
-    display: flex;
-    cursor: pointer;
     margin: 2% 2%;
-}
-
-.GenrePoster{
-    display: flex;
-    align-self: stretch;
-    flex: 1 1 0;
 }

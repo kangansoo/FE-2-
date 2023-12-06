@@ -2,14 +2,14 @@ import Slider from "react-slick";
 import styled from "styled-components";
 
 export const StyledSlider = styled(Slider)`
-  margin-left: 0 auto;
+  margin-left: 5%;
   width: 90%;
   height: 270px;
   text-align: center;
   
 
   .slick-list {
-    margin: 0 10px;
+    margin: 0 -10px;
     overflow: hidden;
     height: 270px;
     text-align: center;
@@ -39,7 +39,8 @@ export const Div = styled.div`
     width: 24px;
     height: 24px;
     position: absolute;
-    right: 4vw;
+    right: -0.5vw;
+    top: -1vw;
     z-index: 99;
     text-align: right;
     line-height: 30px;
@@ -49,7 +50,8 @@ export const DivPre = styled.div`
     width: 24px;
     height: 24px;
     position: absolute;
-    left: 2.5vw;
+    left: -2.5vw;
+    top: -1vw;
     z-index: 99;
     text-align: left;
     line-height: 30px;
@@ -64,6 +66,7 @@ export const MypageText = styled.text`
   margin-left: 10%;
   font-size: 18px;
   color: white;
+  text-decoration: underline;
 `
 export const ImgLabel = styled.label`
     width: 176px; 
@@ -102,11 +105,13 @@ export const SliderContainer = styled.div`
   height: 250px;
   margin: 0 10%;
 `
-export const PageTitle = styled.h2`
+export const PageTitle = styled.p`
     margin-left: 10%;
     margin-top: 3%;
     margin-bottom: 3%;
     color:white;
+    font-weight: bold;
+    font-size: 22px;
 `;
 export const Wrapper = styled.div`
     display: flex;

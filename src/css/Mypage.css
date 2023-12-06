@@ -3,10 +3,8 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    /* position: absolute;
-    display: block;
-    height: 100vh;
-    width: 100vw; */
+    display: flex;
+    flex-direction: column;
 }
 
 .LinkText{
@@ -92,4 +90,8 @@ progress::-webkit-progress-value {
 
 .fig{
     border-color:black;
+}
+
+.RatingContainer{
+    margin-bottom: 3%;
 }

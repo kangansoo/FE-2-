@@ -40,16 +40,18 @@ export default function DropDownSubsr() {
               <div className='custom-ui'>
                 <h1>로그아웃 확인</h1>
                 <p>정말로 로그아웃하시겠습니까?</p>
-                <button onClick={onClose}>닫기</button>
-                <button
-                  onClick={() => {
-                    localStorage.removeItem('subsr', subsr);
-                    navigate("../")
-                    onClose();
-                  }}
-                >
-                  로그아웃
-                </button>
+                <div className="ButtonSet">
+                  <button onClick={onClose}>닫기</button>
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem('subsr', subsr);
+                      navigate("../")
+                      onClose();
+                    }}
+                  >
+                    로그아웃
+                  </button>
+                </div>
               </div>
             );
           },

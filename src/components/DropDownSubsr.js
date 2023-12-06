@@ -70,10 +70,9 @@ export default function DropDownSubsr() {
       </div>
       {isOpen && (
         <div className="dropdown-content">
-          <div className="DropDownHello">
+          <div className="DropDownHello"><br />
             안녕하세요
-            <br />
-            <div style={{fontSize:"15px"}}>{subsr}님</div>
+            <div style={{fontSize:"18px"}}>{subsr}님</div>
           </div>
           <div className='DropDownMenu'>
             <Link to='../mypage' onClick={handleMyPageClick} className='DropDownLink'>
